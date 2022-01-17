@@ -1,0 +1,8 @@
+{
+	"contains_albedo": false,
+	"resolution": 2048,
+	"src": {
+		"a": "res://textures/terrain/rocks_01/aerial_rocks_01_rough_2k.jpg",
+		"rgb": "res://textures/terrain/rocks_01/aerial_rocks_01_nor_gl_2k.jpg"
+	}
+}
