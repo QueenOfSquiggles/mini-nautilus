@@ -1,11 +1,31 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Scenes/player/FirstPersonChar.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/player/PlayerRayCast.gd" type="Script" id=2]
+[ext_resource path="res://Scenes/player/HUD.gd" type="Script" id=3]
 
 [sub_resource type="CapsuleShape" id=1]
 height = 0.864072
 
 [sub_resource type="CapsuleMesh" id=2]
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 0, 0, 0, 0.266667 )
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color( 0, 0.607843, 1, 1 )
+border_blend = true
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+corner_detail = 16
+expand_margin_left = 10.0
+expand_margin_right = 10.0
+expand_margin_top = 10.0
+expand_margin_bottom = 10.0
 
 [node name="FirstPersonChar" type="KinematicBody"]
 script = ExtResource( 1 )
@@ -20,13 +40,14 @@ shape = SubResource( 1 )
 [node name="Camera" type="Camera" parent="rotation_helper/model"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.40169 )
 current = true
-far = 500.0
+far = 1000.0
 
 [node name="RayCast" type="RayCast" parent="rotation_helper/model/Camera"]
 enabled = true
 cast_to = Vector3( 0, 0, -5 )
 debug_shape_custom_color = Color( 1, 0, 0, 1 )
 debug_shape_thickness = 4.0
+script = ExtResource( 2 )
 
 [node name="SpotLight" type="SpotLight" parent="rotation_helper/model/Camera"]
 spot_range = 20.0
@@ -35,3 +56,30 @@ spot_angle = 35.0
 [node name="MeshInstance" type="MeshInstance" parent="rotation_helper/model"]
 mesh = SubResource( 2 )
 material/0 = null
+
+[node name="HUD" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tooltip" type="PanelContainer" parent="HUD"]
+margin_left = 552.0
+margin_top = 328.0
+margin_right = 676.0
+margin_bottom = 367.0
+custom_styles/panel = SubResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="HUD/Tooltip"]
+margin_left = 4.0
+margin_top = 4.0
+margin_right = 120.0
+margin_bottom = 35.0
+text = "Press E to interact
+"
+align = 1

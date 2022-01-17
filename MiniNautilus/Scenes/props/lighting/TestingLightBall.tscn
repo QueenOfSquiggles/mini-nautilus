@@ -7,8 +7,9 @@ radial_segments = 16
 rings = 8
 
 [sub_resource type="SpatialMaterial" id=11]
-flags_unshaded = true
 flags_do_not_receive_shadows = true
+transmission_enabled = true
+transmission = Color( 2, 2, 2, 1 )
 
 [node name="TestLightBall" type="OmniLight"]
 light_specular = 2.39
