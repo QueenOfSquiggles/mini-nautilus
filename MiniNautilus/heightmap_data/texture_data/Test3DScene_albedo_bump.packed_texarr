@@ -1,0 +1,18 @@
+{
+	"contains_albedo": true,
+	"layers": [
+		{
+			"a": "res://textures/terrain/rock_ground_05/rocks_ground_05_disp_2k.jpg",
+			"rgb": "res://textures/terrain/rock_ground_05/rocks_ground_05_diff_2k.jpg"
+		},
+		{
+			"a": "res://textures/terrain/rocks_01/aerial_rocks_01_disp_2k.jpg",
+			"rgb": "res://textures/terrain/rocks_01/aerial_rocks_01_diff_2k.jpg"
+		},
+		{
+			"a": "res://textures/terrain/sand_02/aerial_beach_02_disp_2k.jpg",
+			"rgb": "res://textures/terrain/sand_02/aerial_beach_02_diff_2k.jpg"
+		}
+	],
+	"resolution": 2048
+}

@@ -1,0 +1,8 @@
+{
+	"contains_albedo": true,
+	"resolution": 2048,
+	"src": {
+		"a": "res://textures/terrain/tiles_cliff/Tiles093_2K_Displacement.jpg",
+		"rgb": "res://textures/terrain/tiles_cliff/Tiles093_2K_Color.jpg"
+	}
+}

@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=2]
+
+[sub_resource type="SphereMesh" id=10]
+radius = 0.5
+height = 1.0
+radial_segments = 16
+rings = 8
+
+[sub_resource type="SpatialMaterial" id=11]
+flags_unshaded = true
+flags_do_not_receive_shadows = true
+
+[node name="TestLightBall" type="OmniLight"]
+light_specular = 2.39
+shadow_enabled = true
+omni_shadow_mode = 0
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+cast_shadow = 0
+mesh = SubResource( 10 )
+material/0 = SubResource( 11 )

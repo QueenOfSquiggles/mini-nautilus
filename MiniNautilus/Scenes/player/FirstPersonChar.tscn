@@ -18,8 +18,19 @@ shape = SubResource( 1 )
 [node name="model" type="Spatial" parent="rotation_helper"]
 
 [node name="Camera" type="Camera" parent="rotation_helper/model"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.40169 )
 current = true
 far = 500.0
+
+[node name="RayCast" type="RayCast" parent="rotation_helper/model/Camera"]
+enabled = true
+cast_to = Vector3( 0, 0, -5 )
+debug_shape_custom_color = Color( 1, 0, 0, 1 )
+debug_shape_thickness = 4.0
+
+[node name="SpotLight" type="SpotLight" parent="rotation_helper/model/Camera"]
+spot_range = 20.0
+spot_angle = 35.0
 
 [node name="MeshInstance" type="MeshInstance" parent="rotation_helper/model"]
 mesh = SubResource( 2 )

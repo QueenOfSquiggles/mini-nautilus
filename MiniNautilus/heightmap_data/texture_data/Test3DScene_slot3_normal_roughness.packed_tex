@@ -1,0 +1,8 @@
+{
+	"contains_albedo": false,
+	"resolution": 2048,
+	"src": {
+		"a": "res://textures/terrain/tiles_cliff/Tiles093_2K_Roughness.jpg",
+		"rgb": "res://textures/terrain/tiles_cliff/Tiles093_2K_NormalGL.jpg"
+	}
+}
