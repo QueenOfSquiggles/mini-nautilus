@@ -26,7 +26,7 @@ func _physics_process(delta: float) -> void:
 	process_movement(delta)
 
 
-func process_input(delta : float) -> void:
+func process_input(_delta : float) -> void:
 	dir = Vector3()
 	var camxform :Transform = camera.global_transform
 	var input_vec := Vector2()
