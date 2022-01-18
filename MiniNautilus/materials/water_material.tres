@@ -40,8 +40,14 @@ void fragment() {
 	ROUGHNESS = roughness;
 	SPECULAR = specular;
 	
-	const float timescale = 0.01f;
-	NORMALMAP = texture(texture_normal,vec2(base_uv.x + TIME * timescale, base_uv.y)).rgb * texture(texture_normal,vec2(base_uv.x + -TIME * timescale, base_uv.y)).rgb;
+	const float timescale_x = 0.01f;
+	const float timescale_y = 0.005f;
+	vec2 x_axis_factor = vec2(0.01,0.01) * TIME;
+	vec2 y_axis_factor = vec2(0.01,-0.01) * TIME;
+	
+	vec3 x_axis_normal = texture(texture_normal,vec2(base_uv.x + x_axis_factor.x, base_uv.y + x_axis_factor.y)).rgb * texture(texture_normal,vec2(base_uv.x - x_axis_factor.x, base_uv.y - x_axis_factor.y)).rgb ;
+	vec3 y_axis_normal = texture(texture_normal,vec2(base_uv.x + y_axis_factor.x, base_uv.y + y_axis_factor.y)).rgb * texture(texture_normal,vec2(base_uv.x - y_axis_factor.x, base_uv.y - y_axis_factor.y)).rgb;
+	NORMALMAP = (x_axis_normal + y_axis_normal) / 2.0f;
 	
 	
 	NORMALMAP_DEPTH = normal_scale;
@@ -71,8 +77,8 @@ shader_param/roughness = 0.5
 shader_param/point_size = 1.0
 shader_param/refraction = 0.1
 shader_param/refraction_texture_channel = Plane( 0.333333, 0.333333, 0.333333, 0 )
-shader_param/normal_scale = 0.6
-shader_param/uv1_scale = Vector3( 10, 10, 10 )
+shader_param/normal_scale = 1.0
+shader_param/uv1_scale = Vector3( 1, 1, 1 )
 shader_param/uv1_offset = Vector3( 0, 0, 0 )
 shader_param/uv2_scale = Vector3( 1, 1, 1 )
 shader_param/uv2_offset = Vector3( 0, 0, 0 )

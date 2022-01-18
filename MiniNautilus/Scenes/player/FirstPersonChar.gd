@@ -1,5 +1,7 @@
 extends KinematicBody
 
+export (Resource) var inventory : Resource
+
 const GRAVTIY := -24.8
 var vel := Vector3()
 const MAX_SPEED := 20.0
@@ -22,6 +24,7 @@ func _ready() -> void:
 	camera = $rotation_helper/model/Camera
 	rotation_helper = $rotation_helper
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	GM.set_up_player(self)
 
 func _physics_process(delta: float) -> void:
 	process_input(delta)
@@ -90,3 +93,6 @@ func do_interact() -> void:
 
 func do_attack() -> void:
 	print("Attack just pressed!")
+
+func get_inventory() -> ItemsContainer:
+	return inventory as ItemsContainer

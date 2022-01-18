@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=40 format=2]
 
 [ext_resource path="res://heightmap_data/texture_data/Test3DScene_slot1_normal_roughness.packed_tex" type="Texture" id=1]
 [ext_resource path="res://addons/zylann.hterrain/hterrain.gd" type="Script" id=2]
@@ -19,7 +19,22 @@
 [ext_resource path="res://models/imported/rocks/Rock003.tscn" type="PackedScene" id=17]
 [ext_resource path="res://models/imported/rocks/Rock004.tscn" type="PackedScene" id=18]
 [ext_resource path="res://Scenes/props/lighting/TestingLightBall.tscn" type="PackedScene" id=19]
-[ext_resource path="res://Scenes/props/resourcess/GreenMetal.tscn" type="PackedScene" id=20]
+[ext_resource path="res://Scenes/props/resourcess/PlasticRockGreen.tscn" type="PackedScene" id=20]
+[ext_resource path="res://Scenes/props/resourcess/CopperCluster.tscn" type="PackedScene" id=21]
+[ext_resource path="res://models/imported/rocks/rubberduck/rock_small_04.tscn" type="PackedScene" id=22]
+[ext_resource path="res://models/imported/rocks/rubberduck/rock_formation_02.tscn" type="PackedScene" id=23]
+[ext_resource path="res://models/imported/rocks/rubberduck/rock_small_01.tscn" type="PackedScene" id=24]
+[ext_resource path="res://models/imported/rocks/rubberduck/rock_small_07.tscn" type="PackedScene" id=25]
+[ext_resource path="res://models/imported/rocks/rubberduck/rock_small_03.tscn" type="PackedScene" id=26]
+[ext_resource path="res://models/imported/rocks/rubberduck/rock_small_08.tscn" type="PackedScene" id=27]
+[ext_resource path="res://models/imported/rocks/rubberduck/rock_small_06.tscn" type="PackedScene" id=28]
+[ext_resource path="res://Scenes/props/workstation/GrindstoneStation.tscn" type="PackedScene" id=29]
+[ext_resource path="res://Scenes/props/resourcess/PlasticRockBlue.tscn" type="PackedScene" id=30]
+[ext_resource path="res://Scenes/props/resourcess/PlasticRockPurple.tscn" type="PackedScene" id=31]
+[ext_resource path="res://Scenes/props/resourcess/PlasticRockYellow.tscn" type="PackedScene" id=32]
+[ext_resource path="res://Scenes/props/resourcess/PlasticRockRed.tscn" type="PackedScene" id=33]
+[ext_resource path="res://Scenes/props/resourcess/PlasticRockOrange.tscn" type="PackedScene" id=34]
+[ext_resource path="res://resources/implementations/items/ItemKnife.tres" type="Resource" id=35]
 
 [sub_resource type="Resource" id=1]
 script = ExtResource( 4 )
@@ -128,7 +143,7 @@ shadow_enabled = true
 [node name="DayNightCycleAnim" type="AnimationPlayer" parent="CoreObjects"]
 autoplay = "cycle"
 reset_on_save = false
-playback_speed = 0.1
+playback_speed = 0.01
 anims/cycle = SubResource( 14 )
 __meta__ = {
 "_editor_description_": "1.0 speed for testing (12 second cycle)
@@ -225,10 +240,80 @@ omni_range = 99.6474
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 368.264, -85.0328, 280.726 )
 omni_range = 99.6474
 
-[node name="InteractionTest" parent="StaticWorldObjects" instance=ExtResource( 20 )]
-transform = Transform( -2.63575, 5.80097, 7.70724, 8.2827, 5.45646, -1.27433, -4.94466, 6.0478, -6.24296, 311.952, -18.6121, 215.896 )
+[node name="ResourceCluster" parent="StaticWorldObjects" instance=ExtResource( 21 )]
+transform = Transform( 0.986399, -0.142526, 0.0818696, 0.135823, 0.987306, 0.0823381, -0.0925657, -0.0700984, 0.993236, 361.566, -9.77405, 149.818 )
+
+[node name="ResourceCluster2" parent="StaticWorldObjects" instance=ExtResource( 21 )]
+transform = Transform( -0.75103, -0.208349, 0.626534, -0.248308, 0.968374, 0.0243772, -0.611798, -0.137265, -0.779013, 305.161, -21.807, 123.266 )
+
+[node name="StaticBody5" parent="StaticWorldObjects" instance=ExtResource( 23 )]
+transform = Transform( -0.75103, -0.208349, 0.626534, -0.248308, 0.968374, 0.0243772, -0.611798, -0.137265, -0.779013, 330.442, -10.7529, 200.983 )
+
+[node name="StaticBody" parent="StaticWorldObjects" instance=ExtResource( 26 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 442.223, -19.3482, 202.598 )
+
+[node name="StaticBody2" parent="StaticWorldObjects" instance=ExtResource( 22 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 440.002, -7.74342, 228.769 )
+
+[node name="StaticBody3" parent="StaticWorldObjects" instance=ExtResource( 28 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 439.883, -17.6228, 180.288 )
+
+[node name="StaticBody4" parent="StaticWorldObjects" instance=ExtResource( 27 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 430.533, -22.4816, 200.359 )
+
+[node name="StaticBody6" parent="StaticWorldObjects" instance=ExtResource( 25 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 454.519, -8.90062, 203.907 )
+
+[node name="StaticBody7" parent="StaticWorldObjects" instance=ExtResource( 24 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 449.114, -13.1171, 185.821 )
+
+[node name="StaticBody8" parent="StaticWorldObjects" instance=ExtResource( 28 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 420.864, -19.2072, 222.915 )
+
+[node name="Spatial" type="Spatial" parent="StaticWorldObjects"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 362.754, -11.9976, 195.196 )
+
+[node name="PlasticRockGreen" parent="StaticWorldObjects/Spatial" instance=ExtResource( 20 )]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, -9.71878, 1.72044, 2.65041 )
+
+[node name="PlasticRockBlue" parent="StaticWorldObjects/Spatial" instance=ExtResource( 32 )]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, -6.57278, -0.595041, -1.71133 )
+interaction_text = "Get a knife!"
+item = ExtResource( 35 )
+num_interacts = -1
+destroy_on_interact = false
+
+[node name="PlasticRockBlue2" parent="StaticWorldObjects/Spatial" instance=ExtResource( 33 )]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, -0.953674, -0.104786, -3.46729 )
+interaction_text = "Get a knife!"
+item = ExtResource( 35 )
+num_interacts = -1
+destroy_on_interact = false
+
+[node name="PlasticRockBlue3" parent="StaticWorldObjects/Spatial" instance=ExtResource( 31 )]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, -7.22052, -0.645287, -4.85815 )
+interaction_text = "Get a knife!"
+item = ExtResource( 35 )
+num_interacts = -1
+destroy_on_interact = false
+
+[node name="PlasticRockBlue4" parent="StaticWorldObjects/Spatial" instance=ExtResource( 34 )]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, -12.0543, 1.4284, -1.64853 )
+interaction_text = "Get a knife!"
+item = ExtResource( 35 )
+num_interacts = -1
+destroy_on_interact = false
+
+[node name="PlasticRockBlue5" parent="StaticWorldObjects/Spatial" instance=ExtResource( 30 )]
+interaction_text = "Get a knife!"
+item = ExtResource( 35 )
+num_interacts = -1
+destroy_on_interact = false
+
+[node name="GrindstoneStation" parent="StaticWorldObjects" instance=ExtResource( 29 )]
+transform = Transform( 0.968021, 0.25087, 0, -0.25087, 0.968021, 0, 0, 0, 1, 140.036, 65.5584, 214.954 )
 
 [node name="Dynamics" type="Spatial" parent="."]
 
 [node name="FirstPersonChar" parent="Dynamics" instance=ExtResource( 12 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 331.29, 87.803, 242.969 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 368.432, 10.1158, 221.492 )

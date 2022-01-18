@@ -3,6 +3,8 @@ extends RayCast
 onready var player_hud : Control = $"../../../../HUD"
 onready var camera :Camera = get_parent()
 
+onready var player_root := $"../../../.."
+
 var cached_colliding_obj : Spatial
 
 func _physics_process(_delta: float) -> void:
@@ -24,14 +26,15 @@ func _physics_process(_delta: float) -> void:
 		#else:
 		#	print("Object ", colliding, " doesn't have proper method for interaction display")
 	else:
-		if player_hud.is_tooltip_visible():
+		if player_hud.is_tooltip_visible() and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
+			# only kill tooltips when mouse is captured. In UIs let Tooltip be handled there
 			player_hud.hide_tooltip()
 		if cached_colliding_obj:
 			cached_colliding_obj = null
 
 func interact() -> bool:
-	if cached_colliding_obj:
+	if cached_colliding_obj and is_instance_valid(cached_colliding_obj):
 		if cached_colliding_obj.has_method("interact"):
-			cached_colliding_obj.interact()
+			cached_colliding_obj.interact(player_root)
 			return true
 	return false

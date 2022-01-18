@@ -14,7 +14,6 @@ fog_depth_curve = 2.37842
 fog_transmit_enabled = true
 tonemap_mode = 4
 auto_exposure_max_luma = 0.83
-ssao_enabled = true
 ssao_intensity = 15.0
 ssao_radius2 = 30.0
 ssao_intensity2 = 6.0

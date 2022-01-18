@@ -18,10 +18,28 @@ _global_script_classes=[ {
 "class": "HTerrainDataSaver",
 "language": "GDScript",
 "path": "res://addons/zylann.hterrain/hterrain_resource_saver.gd"
+}, {
+"base": "Resource",
+"class": "Item",
+"language": "GDScript",
+"path": "res://resources/definitions/Item.gd"
+}, {
+"base": "Resource",
+"class": "ItemsContainer",
+"language": "GDScript",
+"path": "res://resources/definitions/ItemsContainer.gd"
+}, {
+"base": "Resource",
+"class": "Recipe",
+"language": "GDScript",
+"path": "res://resources/definitions/Recipe.gd"
 } ]
 _global_script_class_icons={
 "HTerrainDataLoader": "",
-"HTerrainDataSaver": ""
+"HTerrainDataSaver": "",
+"Item": "",
+"ItemsContainer": "",
+"Recipe": ""
 }
 
 [application]
@@ -30,9 +48,17 @@ config/name="MiniNautilus"
 run/main_scene="res://Scenes/Test3DScene.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+GM="*res://scripts/autoload/GameManager.gd"
+
 [editor_plugins]
 
-enabled=PoolStringArray( "res://addons/LOD_Manager/plugin.cfg", "res://addons/SIsilicon.vfx.godrays/plugin.cfg", "res://addons/zylann.hterrain/plugin.cfg" )
+enabled=PoolStringArray( "res://addons/SIsilicon.vfx.godrays/plugin.cfg", "res://addons/zylann.hterrain/plugin.cfg" )
+
+[global]
+
+gravity=false
 
 [input]
 
@@ -80,6 +106,7 @@ attack={
 [physics]
 
 common/enable_pause_aware_picking=true
+3d/default_gravity=4.0
 
 [rendering]
 

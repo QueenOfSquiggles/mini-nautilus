@@ -1,0 +1,30 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://models/imported/rocks/Rock001.tscn" type="PackedScene" id=1]
+[ext_resource path="res://models/rocks/rock_01_textures/3DRock001_2K_Color.jpg" type="Texture" id=2]
+[ext_resource path="res://models/rocks/rock_01_textures/3DRock001_2K_NormalGL.jpg" type="Texture" id=3]
+[ext_resource path="res://models/rocks/rock_01_textures/3DRock001_2K_Roughness.jpg" type="Texture" id=4]
+[ext_resource path="res://Scenes/props/resourcess/BasicInteractor.gd" type="Script" id=5]
+[ext_resource path="res://resources/implementations/items/ItemPlastic.tres" type="Resource" id=6]
+
+[sub_resource type="SpatialMaterial" id=1]
+albedo_color = Color( 0.054902, 1, 0, 1 )
+albedo_texture = ExtResource( 2 )
+metallic = 0.33
+metallic_specular = 1.0
+roughness = 0.0
+roughness_texture = ExtResource( 4 )
+roughness_texture_channel = 4
+normal_enabled = true
+normal_scale = 0.1
+normal_texture = ExtResource( 3 )
+
+[node name="PlasticRockGreen" instance=ExtResource( 1 )]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0 )
+script = ExtResource( 5 )
+interaction_text = "Press E To Collect"
+item = ExtResource( 6 )
+destroy_on_interact = true
+
+[node name="Mesh" parent="." index="0"]
+material/0 = SubResource( 1 )

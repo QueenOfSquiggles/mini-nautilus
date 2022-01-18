@@ -1,0 +1,20 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/HP_RockForm_02.obj-3a63dca36ac6849c82f041c9c0eb95ce.mesh"
+
+[deps]
+
+files=[ "res://.import/HP_RockForm_02.obj-3a63dca36ac6849c82f041c9c0eb95ce.mesh" ]
+
+source_file="res://models/oga_rubberduck/rocks_formation/models/HP_RockForm_02.obj"
+dest_files=[ "res://.import/HP_RockForm_02.obj-3a63dca36ac6849c82f041c9c0eb95ce.mesh", "res://.import/HP_RockForm_02.obj-3a63dca36ac6849c82f041c9c0eb95ce.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+octahedral_compression=true
+optimize_mesh_flags=4286

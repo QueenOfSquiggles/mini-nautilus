@@ -1,16 +1,53 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Scenes/player/FirstPersonChar.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/player/PlayerRayCast.gd" type="Script" id=2]
 [ext_resource path="res://Scenes/player/HUD.gd" type="Script" id=3]
+[ext_resource path="res://Scenes/items/ItemKnife.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/ui/item_system/ItemContainerUI.tscn" type="PackedScene" id=5]
+[ext_resource path="res://resources/implementations/itemscontainers/PlayerInventory.tres" type="Resource" id=7]
 
 [sub_resource type="CapsuleShape" id=1]
 height = 0.864072
 
 [sub_resource type="CapsuleMesh" id=2]
 
+[sub_resource type="StyleBoxFlat" id=4]
+bg_color = Color( 0, 0, 0, 0.14902 )
+
+[sub_resource type="Animation" id=5]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( -7, -29 ) ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "enter_view"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( -540, -29 ), Vector2( -7, -29 ) ]
+}
+
 [sub_resource type="StyleBoxFlat" id=3]
-bg_color = Color( 0, 0, 0, 0.266667 )
+bg_color = Color( 0, 0, 0, 0.784314 )
 border_width_left = 4
 border_width_top = 4
 border_width_right = 4
@@ -26,9 +63,13 @@ expand_margin_left = 10.0
 expand_margin_right = 10.0
 expand_margin_top = 10.0
 expand_margin_bottom = 10.0
+shadow_color = Color( 0, 0, 0, 0.364706 )
+shadow_size = 5
+shadow_offset = Vector2( 10, 10 )
 
 [node name="FirstPersonChar" type="KinematicBody"]
 script = ExtResource( 1 )
+inventory = ExtResource( 7 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 shape = SubResource( 1 )
@@ -38,8 +79,9 @@ shape = SubResource( 1 )
 [node name="model" type="Spatial" parent="rotation_helper"]
 
 [node name="Camera" type="Camera" parent="rotation_helper/model"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.40169 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.10061 )
 current = true
+near = 0.01
 far = 1000.0
 
 [node name="RayCast" type="RayCast" parent="rotation_helper/model/Camera"]
@@ -53,6 +95,13 @@ script = ExtResource( 2 )
 spot_range = 20.0
 spot_angle = 35.0
 
+[node name="held_item" type="Spatial" parent="rotation_helper/model/Camera"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.459, -0.32, -0.765 )
+
+[node name="ItemBase" parent="rotation_helper/model/Camera/held_item" instance=ExtResource( 4 )]
+collision_layer = 0
+collision_mask = 0
+
 [node name="MeshInstance" type="MeshInstance" parent="rotation_helper/model"]
 mesh = SubResource( 2 )
 material/0 = null
@@ -65,11 +114,43 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="InventoryPreview" type="Control" parent="HUD"]
+margin_left = 32.0
+margin_top = 55.0
+margin_right = 72.0
+margin_bottom = 95.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PanelContainer" type="PanelContainer" parent="HUD/InventoryPreview"]
+margin_left = -7.0
+margin_top = -29.0
+margin_right = 442.0
+margin_bottom = 492.0
+custom_styles/panel = SubResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ItemContainerUI" parent="HUD/InventoryPreview/PanelContainer" instance=ExtResource( 5 )]
+margin_left = 0.0
+margin_top = 0.0
+margin_right = 449.0
+margin_bottom = 521.0
+columns = 4
+target_items_container = ExtResource( 7 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="HUD/InventoryPreview/PanelContainer"]
+anims/RESET = SubResource( 5 )
+anims/enter_view = SubResource( 6 )
+
 [node name="Tooltip" type="PanelContainer" parent="HUD"]
 margin_left = 552.0
 margin_top = 328.0
 margin_right = 676.0
 margin_bottom = 367.0
+mouse_filter = 1
 custom_styles/panel = SubResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -80,6 +161,6 @@ margin_left = 4.0
 margin_top = 4.0
 margin_right = 120.0
 margin_bottom = 35.0
-text = "Press E to interact
+text = "I'm a tooltip! UwU
 "
 align = 1
