@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=2]
+[gd_scene load_steps=39 format=2]
 
 [ext_resource path="res://heightmap_data/texture_data/Test3DScene_slot1_normal_roughness.packed_tex" type="Texture" id=1]
 [ext_resource path="res://addons/zylann.hterrain/hterrain.gd" type="Script" id=2]
@@ -14,6 +14,7 @@
 [ext_resource path="res://Scenes/player/FirstPersonChar.tscn" type="PackedScene" id=12]
 [ext_resource path="res://heightmap_data/texture_data/Test3DScene_slot3_normal_roughness.packed_tex" type="Texture" id=13]
 [ext_resource path="res://heightmap_data/texture_data/Test3DScene_slot3_albedo_bump.packed_tex" type="Texture" id=14]
+[ext_resource path="res://Scenes/Managers/extended/DefaultFishManager.tscn" type="PackedScene" id=15]
 [ext_resource path="res://Scenes/DebugLines.gd" type="Script" id=16]
 [ext_resource path="res://Scenes/FPS_Counter.gd" type="Script" id=17]
 [ext_resource path="res://Scenes/props/resourcess/plastic_rocks/PlasticRockOrange.tscn" type="PackedScene" id=18]
@@ -1140,6 +1141,27 @@ __meta__ = {
 
 [node name="FirstPersonChar" parent="Dynamics" instance=ExtResource( 12 )]
 transform = Transform( -0.1529, 0, 0.988242, 0, 1, 0, -0.988242, 0, -0.1529, 332.767, -12.3414, 215.72 )
+
+[node name="DefaultFishManager" parent="Dynamics" instance=ExtResource( 15 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 369.162, 9.4835, 202.507 )
+
+[node name="DefaultFishManager6" parent="Dynamics" instance=ExtResource( 15 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 474.505, -24.2334, 177.952 )
+
+[node name="DefaultFishManager7" parent="Dynamics" instance=ExtResource( 15 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 262.683, -19.8151, 94.8183 )
+
+[node name="DefaultFishManager5" parent="Dynamics" instance=ExtResource( 15 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 197.902, 72.2783, 257.799 )
+
+[node name="DefaultFishManager2" parent="Dynamics" instance=ExtResource( 15 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 321.042, 2.8278, 440.081 )
+
+[node name="DefaultFishManager4" parent="Dynamics" instance=ExtResource( 15 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 97.5748, -65.8987, 440.081 )
+
+[node name="DefaultFishManager3" parent="Dynamics" instance=ExtResource( 15 )]
+transform = Transform( 1, 0, 0, 0, 0.996227, -0.0867906, 0, 0.0867906, 0.996227, 328.594, -412.225, 477.613 )
 
 [node name="DebugCanvasLayer" type="CanvasLayer" parent="."]
 
