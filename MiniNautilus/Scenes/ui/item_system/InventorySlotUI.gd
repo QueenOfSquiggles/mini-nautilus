@@ -37,7 +37,7 @@ func get_drag_data(_position: Vector2) -> Dictionary:
 		var dragPreview := TextureRect.new()
 		dragPreview.texture = item.inventory_texture
 		set_drag_preview(dragPreview)
-		print("Dragging : ", data)
+		#print("Dragging : ", data)
 		return data
 	if GM.player_hud:
 		GM.player_hud.hide_tooltip()
@@ -54,6 +54,6 @@ func drop_data(_position: Vector2, data : Dictionary) -> void:
 	inventory.set_item(drop_index, item) # replace item at original location
 	inventory.swap_items(index, drop_index) # swap slots around
 	# this does create a few extra signal calls so might not be very performant, but not really noticable for the most part
-	print("accepted item ", item, "from index :", drop_index, " at index : ", index)
+	#print("accepted item ", item, "from index :", drop_index, " at index : ", index)
 
 

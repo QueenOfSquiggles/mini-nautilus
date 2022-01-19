@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://heightmap_data/texture_data/Test3DScene_slot1_normal_roughness.packed_tex" type="Texture" id=1]
 [ext_resource path="res://addons/zylann.hterrain/hterrain.gd" type="Script" id=2]
@@ -14,27 +14,12 @@
 [ext_resource path="res://Scenes/player/FirstPersonChar.tscn" type="PackedScene" id=12]
 [ext_resource path="res://heightmap_data/texture_data/Test3DScene_slot3_normal_roughness.packed_tex" type="Texture" id=13]
 [ext_resource path="res://heightmap_data/texture_data/Test3DScene_slot3_albedo_bump.packed_tex" type="Texture" id=14]
-[ext_resource path="res://models/imported/rocks/Rock002.tscn" type="PackedScene" id=15]
-[ext_resource path="res://models/imported/rocks/Rock001.tscn" type="PackedScene" id=16]
-[ext_resource path="res://models/imported/rocks/Rock003.tscn" type="PackedScene" id=17]
-[ext_resource path="res://models/imported/rocks/Rock004.tscn" type="PackedScene" id=18]
-[ext_resource path="res://Scenes/props/lighting/TestingLightBall.tscn" type="PackedScene" id=19]
-[ext_resource path="res://Scenes/props/resourcess/PlasticRockGreen.tscn" type="PackedScene" id=20]
-[ext_resource path="res://Scenes/props/resourcess/CopperCluster.tscn" type="PackedScene" id=21]
-[ext_resource path="res://models/imported/rocks/rubberduck/rock_small_04.tscn" type="PackedScene" id=22]
-[ext_resource path="res://models/imported/rocks/rubberduck/rock_formation_02.tscn" type="PackedScene" id=23]
-[ext_resource path="res://models/imported/rocks/rubberduck/rock_small_01.tscn" type="PackedScene" id=24]
-[ext_resource path="res://models/imported/rocks/rubberduck/rock_small_07.tscn" type="PackedScene" id=25]
-[ext_resource path="res://models/imported/rocks/rubberduck/rock_small_03.tscn" type="PackedScene" id=26]
-[ext_resource path="res://models/imported/rocks/rubberduck/rock_small_08.tscn" type="PackedScene" id=27]
-[ext_resource path="res://models/imported/rocks/rubberduck/rock_small_06.tscn" type="PackedScene" id=28]
-[ext_resource path="res://Scenes/props/workstation/GrindstoneStation.tscn" type="PackedScene" id=29]
-[ext_resource path="res://Scenes/props/resourcess/PlasticRockBlue.tscn" type="PackedScene" id=30]
-[ext_resource path="res://Scenes/props/resourcess/PlasticRockPurple.tscn" type="PackedScene" id=31]
-[ext_resource path="res://Scenes/props/resourcess/PlasticRockYellow.tscn" type="PackedScene" id=32]
-[ext_resource path="res://Scenes/props/resourcess/PlasticRockRed.tscn" type="PackedScene" id=33]
-[ext_resource path="res://Scenes/props/resourcess/PlasticRockOrange.tscn" type="PackedScene" id=34]
-[ext_resource path="res://resources/implementations/items/ItemKnife.tres" type="Resource" id=35]
+[ext_resource path="res://Scenes/Managers/extended/DefaultFishManager.tscn" type="PackedScene" id=15]
+[ext_resource path="res://Scenes/DebugLines.gd" type="Script" id=16]
+[ext_resource path="res://Scenes/FPS_Counter.gd" type="Script" id=17]
+[ext_resource path="res://models/imported/rocks/rubberduck/rock_formation_01.tscn" type="PackedScene" id=18]
+[ext_resource path="res://models/imported/rocks/rubberduck/rock_formation_02.tscn" type="PackedScene" id=19]
+[ext_resource path="res://textures/terrain/rock_ground_05/rocks_ground_05_nor_gl_2k.jpg" type="Texture" id=35]
 
 [sub_resource type="Resource" id=1]
 script = ExtResource( 4 )
@@ -106,19 +91,45 @@ tracks/4/keys = {
 "values": [ Color( 0.0588235, 0.721569, 0.921569, 1 ), Color( 0, 0.0352941, 0.211765, 1 ), Color( 0, 0.0352941, 0.211765, 1 ), Color( 0.0588235, 0.721569, 0.921569, 1 ) ]
 }
 
+[sub_resource type="CubeMesh" id=15]
+size = Vector3( 550, 700, 5 )
+
+[sub_resource type="SpatialMaterial" id=16]
+flags_transparent = true
+params_blend_mode = 3
+albedo_color = Color( 1, 1, 1, 0.196078 )
+normal_enabled = true
+normal_scale = -0.38
+normal_texture = ExtResource( 35 )
+refraction_enabled = true
+refraction_scale = 1.0
+refraction_texture = ExtResource( 35 )
+refraction_texture_channel = 4
+uv1_scale = Vector3( 10, 10, 10 )
+
+[sub_resource type="ConvexPolygonShape" id=17]
+points = PoolVector3Array( 277.534, 351.708, -2.77665, -276.769, -351.708, -2.77665, 277.534, -351.708, -2.77665, -276.769, 351.708, -2.77665 )
+
 [sub_resource type="BoxShape" id=8]
 extents = Vector3( 268.613, 1, 257.885 )
 
 [sub_resource type="PlaneMesh" id=7]
 size = Vector2( 500, 500 )
 
+[sub_resource type="StyleBoxFlat" id=18]
+bg_color = Color( 0, 0, 0, 0.345098 )
+
 [node name="Test3DScene" type="Spatial"]
 
 [node name="CoreObjects" type="Spatial" parent="."]
+__meta__ = {
+"_editor_description_": "Core Objects Crucial to the cohesion of the game world"
+}
 
 [node name="HTerrain" type="Spatial" parent="CoreObjects"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 63, -24, 33 )
 script = ExtResource( 2 )
+ambient_wind = 0.2
 _terrain_data = ExtResource( 3 )
 chunk_size = 32
 collision_enabled = true
@@ -137,7 +148,8 @@ shader_params/u_globalmap_blend_distance = 0.0
 shader_params/u_colormap_opacity_per_texture = Plane( 1, 1, 1, 1 )
 
 [node name="DirectionalLight" type="DirectionalLight" parent="CoreObjects"]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 326.801, 206.769, 319.485 )
+transform = Transform( 1, 0, 0, 0, 0.0627904, 0.998027, 0, -0.998027, 0.0627904, 326.801, 206.769, 319.485 )
+light_energy = 0.96
 shadow_enabled = true
 
 [node name="DayNightCycleAnim" type="AnimationPlayer" parent="CoreObjects"]
@@ -155,17 +167,27 @@ In game: day = 15 minutes, night = 5 minutes"
 [node name="WorldEnvironment" type="WorldEnvironment" parent="CoreObjects"]
 environment = ExtResource( 9 )
 
-[node name="StaticWorldObjects" type="Spatial" parent="."]
+[node name="TankWall" type="StaticBody" parent="CoreObjects"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 312.217, -159.901, 550.454 )
 
-[node name="WaterSurface" type="Spatial" parent="StaticWorldObjects"]
+[node name="MeshInstance" type="MeshInstance" parent="CoreObjects/TankWall"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.74951, -70.4093, -7.24622 )
+mesh = SubResource( 15 )
+material/0 = SubResource( 16 )
 
-[node name="StaticBody" type="StaticBody" parent="StaticWorldObjects/WaterSurface"]
+[node name="CollisionShape" type="CollisionShape" parent="CoreObjects/TankWall"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.74951, -70.4093, -7.24622 )
+shape = SubResource( 17 )
+
+[node name="WaterSurface" type="Spatial" parent="CoreObjects"]
+
+[node name="StaticBody" type="StaticBody" parent="CoreObjects/WaterSurface"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 322.662, 118.042, 289.266 )
 
-[node name="CollisionShape" type="CollisionShape" parent="StaticWorldObjects/WaterSurface/StaticBody"]
+[node name="CollisionShape" type="CollisionShape" parent="CoreObjects/WaterSurface/StaticBody"]
 shape = SubResource( 8 )
 
-[node name="water_plane" type="MeshInstance" parent="StaticWorldObjects/WaterSurface"]
+[node name="water_plane" type="MeshInstance" parent="CoreObjects/WaterSurface"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 322.662, 110, 289.266 )
 generate_lightmap = false
 mesh = SubResource( 7 )
@@ -175,145 +197,97 @@ __meta__ = {
 "_editor_description_": "need to rescale at some point"
 }
 
-[node name="Rock001_" parent="StaticWorldObjects" instance=ExtResource( 16 )]
-transform = Transform( 0.868753, 0.29339, 19.979, 14.0485, 14.2115, -0.819573, -14.2086, 14.0694, 0.411231, 271.252, -20.9838, 153.454 )
+[node name="StaticWorldObjects" type="Spatial" parent="."]
+__meta__ = {
+"_editor_description_": "props and collectiables"
+}
 
-[node name="Rock001_1" parent="StaticWorldObjects" instance=ExtResource( 16 )]
-transform = Transform( 19.7629, -1.23513, -2.81085, -2.62492, -16.2949, -11.2955, -1.59255, 11.5305, -16.2638, 388.933, -6.29584, 181.789 )
+[node name="RockFormation_01" parent="StaticWorldObjects" instance=ExtResource( 18 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 369.125, -15.8609, 214.717 )
 
-[node name="Rock002_" parent="StaticWorldObjects" instance=ExtResource( 15 )]
-transform = Transform( 22.5688, 21.1536, 39.2832, 0, 44.023, -23.7059, -44.6167, 10.7003, 19.8709, 372.435, -76.9527, 272.839 )
+[node name="StaticBody" parent="StaticWorldObjects" instance=ExtResource( 19 )]
+transform = Transform( 1.48313, 0, 0, 0, 1.48313, 0, 0, 0, 1.48313, 355.875, -13.9861, 209.193 )
 
-[node name="Rock002_2" parent="StaticWorldObjects" instance=ExtResource( 15 )]
-transform = Transform( 18.2546, -8.77671, 45.7137, 10.9701, -46.9089, -13.3868, 45.2374, 14.9171, -15.2005, 311.358, -76.9528, 252.114 )
+[node name="StaticBody2" parent="StaticWorldObjects" instance=ExtResource( 19 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 365.329, -16.4502, 207.068 )
 
-[node name="Rock003_" parent="StaticWorldObjects" instance=ExtResource( 17 )]
-transform = Transform( 46.7263, -17.1755, 4.65376, -17.6625, -46.3563, 6.25506, 2.16596, -7.48945, -49.3884, 343.335, -13.2369, 215.737 )
+[node name="StaticBody3" parent="StaticWorldObjects" instance=ExtResource( 19 )]
+transform = Transform( 1.65343, 0, 0, 0, 1.65343, 0, 0, 0, 1.65343, 352.792, -11.3345, 198.996 )
 
-[node name="Rock003_2" parent="StaticWorldObjects" instance=ExtResource( 17 )]
-transform = Transform( -16.1273, 12.311, 45.6984, -39.4769, 23.1307, -20.163, -26.1053, -42.5842, 2.25933, 352.854, -10.2783, 126.161 )
+[node name="StaticBody7" parent="StaticWorldObjects" instance=ExtResource( 19 )]
+transform = Transform( 0.0194681, 1.64511, 0.164505, -1.65331, 0.0195652, 0, -0.00194661, -0.164494, 1.64522, 359.495, -18.1435, 196.597 )
 
-[node name="Rock004_" parent="StaticWorldObjects" instance=ExtResource( 18 )]
-transform = Transform( 100, 0, 0, 0, 100, 0, 0, 0, 100, 337.926, -19.2471, 156.47 )
+[node name="StaticBody8" parent="StaticWorldObjects" instance=ExtResource( 19 )]
+transform = Transform( 0.0193007, 1.63096, 0.270959, -1.65331, 0.0195652, 0, -0.00320628, -0.27094, 1.63107, 359.468, -11.5291, 202.687 )
 
-[node name="Rock004_2" parent="StaticWorldObjects" instance=ExtResource( 18 )]
-transform = Transform( 1.22984, -57.3259, 81.9282, 91.3, 34.0569, 22.4594, -40.7773, 74.5243, 52.7574, 182.682, 65.7267, 211.491 )
+[node name="RockFormation_02" parent="StaticWorldObjects" instance=ExtResource( 18 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 365.971, -12.9955, 200.034 )
 
-[node name="Rock004_3" parent="StaticWorldObjects" instance=ExtResource( 18 )]
-transform = Transform( -81.2436, 1.4317, 58.2875, -5.32485, 99.3699, -9.86279, -58.0614, -11.1166, -80.6554, 236.116, 33.9205, 211.491 )
+[node name="RockFormation_05" parent="StaticWorldObjects" instance=ExtResource( 18 )]
+transform = Transform( 0.158073, -2.18651, 0, 2.18651, 0.158073, 0, 0, 0, 2.19221, 359.454, -9.12863, 194.64 )
 
-[node name="Rock004_4" parent="StaticWorldObjects" instance=ExtResource( 18 )]
-transform = Transform( -104.634, 1.8439, 75.0689, -7.73393, 144.327, -14.3249, -108.609, -20.7945, -150.873, 236.116, 37.509, 161.681 )
+[node name="StaticBody4" parent="StaticWorldObjects" instance=ExtResource( 19 )]
+transform = Transform( 2.00292, 0, 0, 0, 2.00292, 0, 0, 0, 2.00292, 354.537, -15.0454, 175.18 )
 
-[node name="Rock004_5" parent="StaticWorldObjects" instance=ExtResource( 18 )]
-transform = Transform( -122.328, 2.1557, 87.763, -5.32485, 99.3699, -9.86279, -89.51, -17.1378, -124.342, 236.116, 11.2503, 166.988 )
+[node name="StaticBody5" parent="StaticWorldObjects" instance=ExtResource( 19 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 354.002, -13.4505, 184.007 )
 
-[node name="Rock004_6" parent="StaticWorldObjects" instance=ExtResource( 18 )]
-transform = Transform( -121.865, 2.14755, 87.4313, -7.98728, 149.055, -14.7942, -87.0922, -16.6749, -120.983, 236.116, 5.24059, 212.288 )
+[node name="RockFormation_03" parent="StaticWorldObjects" instance=ExtResource( 18 )]
+transform = Transform( 1.92637, 0, 0, 0, 1.92637, 0, 0, 0, 1.92637, 364.524, -13.3918, 185.187 )
 
-[node name="Rock004_7" parent="StaticWorldObjects" instance=ExtResource( 18 )]
-transform = Transform( -66.8946, 1.17884, 47.993, -8.19975, 153.02, -15.1877, -73.6178, -14.0951, -102.265, 251.794, -13.5957, 170.788 )
+[node name="StaticBody6" parent="StaticWorldObjects" instance=ExtResource( 19 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 343.812, -9.0243, 197.774 )
 
-[node name="Rock004_8" parent="StaticWorldObjects" instance=ExtResource( 18 )]
-transform = Transform( -81.2436, 1.4317, 58.2875, -5.32485, 99.3699, -9.86279, -58.0614, -11.1166, -80.6554, 252.512, -27.3651, 210.732 )
-
-[node name="Rock004_9" parent="StaticWorldObjects" instance=ExtResource( 18 )]
-transform = Transform( -81.2436, 1.4317, 58.2875, -5.32485, 99.3699, -9.86279, -58.0614, -11.1166, -80.6554, 259.853, -43.3611, 226.525 )
-
-[node name="TestLightBall" parent="StaticWorldObjects" instance=ExtResource( 19 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 150.518, 82.1087, 209.863 )
-omni_range = 38.5456
-
-[node name="TestLightBall2" parent="StaticWorldObjects" instance=ExtResource( 19 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 386.919, 4.39386, 152.825 )
-omni_range = 67.2698
-
-[node name="TestLightBall3" parent="StaticWorldObjects" instance=ExtResource( 19 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 198.384, -186.846, 441.073 )
-omni_range = 67.2698
-
-[node name="TestLightBall4" parent="StaticWorldObjects" instance=ExtResource( 19 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 330.454, -366.248, 398.101 )
-omni_range = 99.6474
-
-[node name="TestLightBall5" parent="StaticWorldObjects" instance=ExtResource( 19 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 368.264, -85.0328, 280.726 )
-omni_range = 99.6474
-
-[node name="ResourceCluster" parent="StaticWorldObjects" instance=ExtResource( 21 )]
-transform = Transform( 0.986399, -0.142526, 0.0818696, 0.135823, 0.987306, 0.0823381, -0.0925657, -0.0700984, 0.993236, 361.566, -9.77405, 149.818 )
-
-[node name="ResourceCluster2" parent="StaticWorldObjects" instance=ExtResource( 21 )]
-transform = Transform( -0.75103, -0.208349, 0.626534, -0.248308, 0.968374, 0.0243772, -0.611798, -0.137265, -0.779013, 305.161, -21.807, 123.266 )
-
-[node name="StaticBody5" parent="StaticWorldObjects" instance=ExtResource( 23 )]
-transform = Transform( -0.75103, -0.208349, 0.626534, -0.248308, 0.968374, 0.0243772, -0.611798, -0.137265, -0.779013, 330.442, -10.7529, 200.983 )
-
-[node name="StaticBody" parent="StaticWorldObjects" instance=ExtResource( 26 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 442.223, -19.3482, 202.598 )
-
-[node name="StaticBody2" parent="StaticWorldObjects" instance=ExtResource( 22 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 440.002, -7.74342, 228.769 )
-
-[node name="StaticBody3" parent="StaticWorldObjects" instance=ExtResource( 28 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 439.883, -17.6228, 180.288 )
-
-[node name="StaticBody4" parent="StaticWorldObjects" instance=ExtResource( 27 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 430.533, -22.4816, 200.359 )
-
-[node name="StaticBody6" parent="StaticWorldObjects" instance=ExtResource( 25 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 454.519, -8.90062, 203.907 )
-
-[node name="StaticBody7" parent="StaticWorldObjects" instance=ExtResource( 24 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 449.114, -13.1171, 185.821 )
-
-[node name="StaticBody8" parent="StaticWorldObjects" instance=ExtResource( 28 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 420.864, -19.2072, 222.915 )
-
-[node name="Spatial" type="Spatial" parent="StaticWorldObjects"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 362.754, -11.9976, 195.196 )
-
-[node name="PlasticRockGreen" parent="StaticWorldObjects/Spatial" instance=ExtResource( 20 )]
-transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, -9.71878, 1.72044, 2.65041 )
-
-[node name="PlasticRockBlue" parent="StaticWorldObjects/Spatial" instance=ExtResource( 32 )]
-transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, -6.57278, -0.595041, -1.71133 )
-interaction_text = "Get a knife!"
-item = ExtResource( 35 )
-num_interacts = -1
-destroy_on_interact = false
-
-[node name="PlasticRockBlue2" parent="StaticWorldObjects/Spatial" instance=ExtResource( 33 )]
-transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, -0.953674, -0.104786, -3.46729 )
-interaction_text = "Get a knife!"
-item = ExtResource( 35 )
-num_interacts = -1
-destroy_on_interact = false
-
-[node name="PlasticRockBlue3" parent="StaticWorldObjects/Spatial" instance=ExtResource( 31 )]
-transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, -7.22052, -0.645287, -4.85815 )
-interaction_text = "Get a knife!"
-item = ExtResource( 35 )
-num_interacts = -1
-destroy_on_interact = false
-
-[node name="PlasticRockBlue4" parent="StaticWorldObjects/Spatial" instance=ExtResource( 34 )]
-transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, -12.0543, 1.4284, -1.64853 )
-interaction_text = "Get a knife!"
-item = ExtResource( 35 )
-num_interacts = -1
-destroy_on_interact = false
-
-[node name="PlasticRockBlue5" parent="StaticWorldObjects/Spatial" instance=ExtResource( 30 )]
-interaction_text = "Get a knife!"
-item = ExtResource( 35 )
-num_interacts = -1
-destroy_on_interact = false
-
-[node name="GrindstoneStation" parent="StaticWorldObjects" instance=ExtResource( 29 )]
-transform = Transform( 0.968021, 0.25087, 0, -0.25087, 0.968021, 0, 0, 0, 1, 140.036, 65.5584, 214.954 )
+[node name="RockFormation_04" parent="StaticWorldObjects" instance=ExtResource( 18 )]
+transform = Transform( 1.73211, 0, 0, 0, 1.73211, 0, 0, 0, 1.73211, 345.613, -14.1524, 184.245 )
 
 [node name="Dynamics" type="Spatial" parent="."]
+__meta__ = {
+"_editor_description_": "Dynamic entities like the player and other living things"
+}
 
 [node name="FirstPersonChar" parent="Dynamics" instance=ExtResource( 12 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 368.432, 10.1158, 221.492 )
+transform = Transform( -0.1529, 0, 0.988242, 0, 1, 0, -0.988242, 0, -0.1529, 376.376, -15.3361, 204.878 )
+
+[node name="DefaultFishManager" parent="Dynamics" instance=ExtResource( 15 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 363.196, 3.58819, 179.065 )
+desired_number = 50
+refresh_time_spawning = 0.2
+
+[node name="DebugCanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Debug" type="Control" parent="DebugCanvasLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FPS Count" type="PanelContainer" parent="DebugCanvasLayer/Debug"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -116.0
+margin_top = 24.0
+margin_right = -44.0
+margin_bottom = 52.0
+custom_styles/panel = SubResource( 18 )
+script = ExtResource( 17 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="DebugCanvasLayer/Debug/FPS Count"]
+margin_top = 7.0
+margin_right = 72.0
+margin_bottom = 21.0
+text = "FPS : 000"
+align = 1
+
+[node name="DebugDraw" type="Control" parent="DebugCanvasLayer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 16 )
+__meta__ = {
+"_edit_use_anchors_": false
+}

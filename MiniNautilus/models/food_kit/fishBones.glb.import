@@ -2,12 +2,12 @@
 
 importer="scene"
 type="PackedScene"
-path="res://.import/bottleOil.glb-d1238b90969ab3546e5961353b7a5878.scn"
+path="res://.import/fishBones.glb-db88aa721ed0d686848fa631a013ee1b.scn"
 
 [deps]
 
-source_file="res://models/food_kit/bottleOil.glb"
-dest_files=[ "res://.import/bottleOil.glb-d1238b90969ab3546e5961353b7a5878.scn" ]
+source_file="res://models/food_kit/fishBones.glb"
+dest_files=[ "res://.import/fishBones.glb-db88aa721ed0d686848fa631a013ee1b.scn" ]
 
 [params]
 

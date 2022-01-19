@@ -29,15 +29,16 @@ func refresh_entire_display() -> void:
 	on_items_changed(range(target))
 	
 func on_items_changed(indices : Array) -> void:
-	print("Detected items changed at indices ", indices)
+	#print("Detected items changed at indices ", indices)
 	for index in indices:
 		update_slot(index)
 
 func update_slot(index : int) -> void:
 	var item := container.get_item(index) as Item
 	var slot := get_child(index)
-	print("Attempting to update display for slot #", index, "with item : ", item)
+	#print("Attempting to update display for slot #", index, "with item : ", item)
 	slot.display_item(item)
 	if not item == null:
-		print("Updating slot #", index, " to display item \"", item.name, "\"")
+		#print("Updating slot #", index, " to display item \"", item.name, "\"")
+		pass
 

@@ -1,9 +1,9 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://Scenes/player/FirstPersonChar.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/player/PlayerRayCast.gd" type="Script" id=2]
 [ext_resource path="res://Scenes/player/HUD.gd" type="Script" id=3]
-[ext_resource path="res://Scenes/items/ItemKnife.tscn" type="PackedScene" id=4]
+[ext_resource path="res://models/weapon_pack/knifeRound_smooth.obj" type="ArrayMesh" id=4]
 [ext_resource path="res://Scenes/ui/item_system/ItemContainerUI.tscn" type="PackedScene" id=5]
 [ext_resource path="res://resources/implementations/itemscontainers/PlayerInventory.tres" type="Resource" id=7]
 
@@ -67,6 +67,198 @@ shadow_color = Color( 0, 0, 0, 0.364706 )
 shadow_size = 5
 shadow_offset = Vector2( 10, 10 )
 
+[sub_resource type="Animation" id=7]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("rotation_helper/model/Camera/held_item:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0.459, -0.32, -0.765 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("rotation_helper/model/Camera/held_item:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=13]
+resource_name = "can_interact_start"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("rotation_helper/model/Camera/held_item:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0.459, -0.32, -0.765 ), Vector3( 0.459, -0.247777, -0.765 ), Vector3( 0.459, -0.775976, -0.765 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("rotation_helper/model/Camera/held_item:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 180, 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=10]
+resource_name = "cannot_attack"
+tracks/0/type = "value"
+tracks/0/path = NodePath("rotation_helper/model/Camera/held_item:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0.459, -0.32, -0.765 ), Vector3( 0.249506, -0.32, -0.765 ), Vector3( 0.459, -0.32, -0.765 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("rotation_helper/model/Camera/held_item:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.3, 0.7, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 0, 0, 37.097 ), Vector3( 0, 0, -23.83 ), Vector3( 0, 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=9]
+resource_name = "interact"
+tracks/0/type = "value"
+tracks/0/path = NodePath("rotation_helper/model/Camera/held_item:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0.459, -0.32, -0.765 ), Vector3( 1.11307, -1.37755, -0.765 ), Vector3( 0.459, -0.32, -0.765 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("rotation_helper/model/Camera/held_item:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.3, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 0, 0, -49.867 ), Vector3( 0, 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "knife_attack"
+length = 1.7
+tracks/0/type = "value"
+tracks/0/path = NodePath("rotation_helper/model/Camera/held_item:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 1, 1.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0.459, -0.32, -0.765 ), Vector3( -0.00289059, 0.0008706, -1.96915 ), Vector3( 0.459, 0.307673, -0.765 ), Vector3( 0.459, -0.32, -0.765 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("rotation_helper/model/Camera/held_item:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2, 1, 1.1, 1.2, 1.3, 1.4, 1.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( -90, 0, 0 ), Vector3( 45, 0, 0 ), Vector3( 135, 0, 0 ), Vector3( 225, 0, 0 ), Vector3( 315, 0, 0 ), Vector3( 356.374, 0, 0 ), Vector3( 0, 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=11]
+resource_name = "knife_ready"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("rotation_helper/model/Camera/held_item:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0.459, -0.32, -0.765 ), Vector3( 0.459, 0.172515, -0.765 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("rotation_helper/model/Camera/held_item:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( -116.982, 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=12]
+resource_name = "knife_unready"
+tracks/0/type = "value"
+tracks/0/path = NodePath("rotation_helper/model/Camera/held_item:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0.459, 0.172515, -0.765 ), Vector3( 0.459, -0.32, -0.765 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("rotation_helper/model/Camera/held_item:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( -116.982, 0, 0 ), Vector3( 0, 0, 0 ) ]
+}
+
 [node name="FirstPersonChar" type="KinematicBody"]
 script = ExtResource( 1 )
 inventory = ExtResource( 7 )
@@ -86,10 +278,13 @@ far = 1000.0
 
 [node name="RayCast" type="RayCast" parent="rotation_helper/model/Camera"]
 enabled = true
-cast_to = Vector3( 0, 0, -5 )
+cast_to = Vector3( 0, 0, -10 )
 debug_shape_custom_color = Color( 1, 0, 0, 1 )
 debug_shape_thickness = 4.0
 script = ExtResource( 2 )
+
+[node name="Timer" type="Timer" parent="rotation_helper/model/Camera/RayCast"]
+one_shot = true
 
 [node name="SpotLight" type="SpotLight" parent="rotation_helper/model/Camera"]
 spot_range = 20.0
@@ -97,10 +292,87 @@ spot_angle = 35.0
 
 [node name="held_item" type="Spatial" parent="rotation_helper/model/Camera"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.459, -0.32, -0.765 )
+__meta__ = {
+"_editor_description_": ""
+}
 
-[node name="ItemBase" parent="rotation_helper/model/Camera/held_item" instance=ExtResource( 4 )]
-collision_layer = 0
-collision_mask = 0
+[node name="MeshInstance" type="MeshInstance" parent="rotation_helper/model/Camera/held_item"]
+transform = Transform( 5, 4.37114e-07, -1.19209e-07, -4.37114e-07, 5, 2.38419e-07, -1.19209e-07, 2.38419e-07, -5, 0, 0, 0 )
+mesh = ExtResource( 4 )
+material/0 = null
+material/1 = null
+material/2 = null
+material/3 = null
+material/4 = null
+material/5 = null
+material/6 = null
+material/7 = null
+material/8 = null
+material/9 = null
+material/10 = null
+material/11 = null
+material/12 = null
+material/13 = null
+material/14 = null
+material/15 = null
+material/16 = null
+material/17 = null
+material/18 = null
+material/19 = null
+material/20 = null
+material/21 = null
+material/22 = null
+material/23 = null
+material/24 = null
+material/25 = null
+material/26 = null
+material/27 = null
+material/28 = null
+material/29 = null
+material/30 = null
+material/31 = null
+material/32 = null
+material/33 = null
+material/34 = null
+material/35 = null
+material/36 = null
+material/37 = null
+material/38 = null
+material/39 = null
+material/40 = null
+material/41 = null
+material/42 = null
+material/43 = null
+material/44 = null
+material/45 = null
+material/46 = null
+material/47 = null
+material/48 = null
+material/49 = null
+material/50 = null
+material/51 = null
+material/52 = null
+material/53 = null
+material/54 = null
+material/55 = null
+material/56 = null
+material/57 = null
+material/58 = null
+material/59 = null
+material/60 = null
+material/61 = null
+material/62 = null
+material/63 = null
+material/64 = null
+material/65 = null
+material/66 = null
+material/67 = null
+material/68 = null
+material/69 = null
+material/70 = null
+material/71 = null
+material/72 = null
+material/73 = null
 
 [node name="MeshInstance" type="MeshInstance" parent="rotation_helper/model"]
 mesh = SubResource( 2 )
@@ -126,8 +398,8 @@ __meta__ = {
 [node name="PanelContainer" type="PanelContainer" parent="HUD/InventoryPreview"]
 margin_left = -7.0
 margin_top = -29.0
-margin_right = 442.0
-margin_bottom = 492.0
+margin_right = 207.0
+margin_bottom = 199.0
 custom_styles/panel = SubResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -136,8 +408,8 @@ __meta__ = {
 [node name="ItemContainerUI" parent="HUD/InventoryPreview/PanelContainer" instance=ExtResource( 5 )]
 margin_left = 0.0
 margin_top = 0.0
-margin_right = 449.0
-margin_bottom = 521.0
+margin_right = 214.0
+margin_bottom = 228.0
 columns = 4
 target_items_container = ExtResource( 7 )
 
@@ -164,3 +436,18 @@ margin_bottom = 35.0
 text = "I'm a tooltip! UwU
 "
 align = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 7 )
+anims/can_interact_start = SubResource( 13 )
+anims/cannot_attack = SubResource( 10 )
+anims/interact = SubResource( 9 )
+anims/knife_attack = SubResource( 8 )
+anims/knife_ready = SubResource( 11 )
+anims/knife_unready = SubResource( 12 )
+
+[connection signal="on_end_can_attack" from="rotation_helper/model/Camera/RayCast" to="." method="_on_RayCast_on_end_can_attack"]
+[connection signal="on_end_can_interact" from="rotation_helper/model/Camera/RayCast" to="." method="_on_RayCast_on_end_can_interact"]
+[connection signal="on_start_can_attack" from="rotation_helper/model/Camera/RayCast" to="." method="_on_RayCast_on_start_can_attack"]
+[connection signal="on_start_can_interact" from="rotation_helper/model/Camera/RayCast" to="." method="_on_RayCast_on_start_can_interact"]
+[connection signal="timeout" from="rotation_helper/model/Camera/RayCast/Timer" to="rotation_helper/model/Camera/RayCast" method="_on_Timer_timeout"]

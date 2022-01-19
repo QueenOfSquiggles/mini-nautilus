@@ -1,0 +1,69 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Scenes/creatures/fish/Fish.gd" type="Script" id=1]
+[ext_resource path="res://resources/implementations/items/ItemFish.tres" type="Resource" id=2]
+[ext_resource path="res://models/food_kit/fish.glb" type="PackedScene" id=3]
+
+[sub_resource type="CapsuleShape" id=2]
+radius = 0.5
+
+[sub_resource type="Animation" id=4]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("fish:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("fish:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 12, 2, 3 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "swimming"
+length = 2.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("fish:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 9, 3, 3 ), Vector3( 12, 2, 3 ), Vector3( 9, 3, 3 ) ]
+}
+
+[node name="Fish" type="KinematicBody"]
+script = ExtResource( 1 )
+ItemFishResource = ExtResource( 2 )
+
+[node name="fish" parent="." instance=ExtResource( 3 )]
+transform = Transform( 12, 0, 0, 0, 2, 0, 0, 0, 3, 0, -0.440623, 0 )
+
+[node name="collider" type="CollisionShape" parent="."]
+shape = SubResource( 2 )
+
+[node name="view_rays" type="Spatial" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "swimming"
+anims/RESET = SubResource( 4 )
+anims/swimming = SubResource( 3 )

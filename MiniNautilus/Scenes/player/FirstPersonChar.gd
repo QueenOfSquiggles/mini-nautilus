@@ -20,6 +20,8 @@ var MOUSE_SENSITIVITY := 0.3
 
 onready var raycast : RayCast = $"rotation_helper/model/Camera/RayCast"
 
+onready var anim : AnimationPlayer = $AnimationPlayer
+
 func _ready() -> void:
 	camera = $rotation_helper/model/Camera
 	rotation_helper = $rotation_helper
@@ -33,6 +35,8 @@ func _physics_process(delta: float) -> void:
 
 func process_input(_delta : float) -> void:
 	dir = Vector3()
+	if Input.is_action_pressed("screenshot_fuckup_prevention"):
+		return
 	var camxform :Transform = camera.global_transform
 	var input_vec := Vector2() # cam-aligned movement
 	var global_up_down := 0.0 # global rise/fall
@@ -72,27 +76,45 @@ func process_movement(delta : float) -> void:
 	vel = move_and_slide(vel, Vector3.DOWN)
 
 func _input(event: InputEvent) -> void:
-	if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
-		rotation_helper.rotate_x(deg2rad(event.relative.y * MOUSE_SENSITIVITY * -1))
-		self.rotate_y(deg2rad(event.relative.x * MOUSE_SENSITIVITY * -1))
-
-		var camera_rot = rotation_helper.rotation_degrees
-		camera_rot.x = clamp(camera_rot.x, -70, 70)
-		rotation_helper.rotation_degrees = camera_rot
-		
 	# let these be event driven so I don't have to poll all the time. Movement needs to be polled because I need to know the on/off states of every movement axis each physics step, these are one-shots essentially
-	if event.is_action_pressed("interact"):
-		do_interact()
-	if event.is_action_pressed("attack"):
-		do_attack()
+	if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
+		if event is InputEventMouseMotion:
+			rotation_helper.rotate_x(deg2rad(event.relative.y * MOUSE_SENSITIVITY * -1))
+			self.rotate_y(deg2rad(event.relative.x * MOUSE_SENSITIVITY * -1))
+
+			var camera_rot = rotation_helper.rotation_degrees
+			camera_rot.x = clamp(camera_rot.x, -70, 70)
+			rotation_helper.rotation_degrees = camera_rot
+		# only try when mouse is captured
+		if event.is_action_pressed("interact"):
+			do_interact()
+		if event.is_action_pressed("attack"):
+			do_attack()
 
 
 func do_interact() -> void:
-	#print("Interaction just pressed!")
-	raycast.interact()
+	if raycast.interact():
+		anim.play("interact")
 
 func do_attack() -> void:
-	print("Attack just pressed!")
+	if raycast.attack():
+		anim.play("knife_attack")
+	else:
+		anim.play("cannot_attack")
 
 func get_inventory() -> ItemsContainer:
 	return inventory as ItemsContainer
+
+
+func _on_RayCast_on_start_can_attack() -> void:
+	anim.play("knife_ready")
+
+func _on_RayCast_on_end_can_attack() -> void:
+	anim.play("knife_unready")
+
+
+func _on_RayCast_on_start_can_interact() -> void:
+	anim.play("can_interact_start")
+
+func _on_RayCast_on_end_can_interact() -> void:
+	anim.play_backwards("can_interact_start")

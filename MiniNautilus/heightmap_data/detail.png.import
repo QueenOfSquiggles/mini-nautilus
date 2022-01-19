@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/bottleOil_SE.png-62184bf94f2166cf07abece4cf0bde7b.stex"
+path="res://.import/detail.png-c470996670cca03034e7befa93ccc20a.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://models/food_kit/bottleOil_SE.png"
-dest_files=[ "res://.import/bottleOil_SE.png-62184bf94f2166cf07abece4cf0bde7b.stex" ]
+source_file="res://heightmap_data/detail.png"
+dest_files=[ "res://.import/detail.png-c470996670cca03034e7befa93ccc20a.stex" ]
 
 [params]
 
@@ -23,13 +23,13 @@ flags/repeat=0
 flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
-flags/srgb=2
-process/fix_alpha_border=true
+flags/srgb=0
+process/fix_alpha_border=false
 process/premult_alpha=false
 process/HDR_as_SRGB=false
 process/invert_color=false
 process/normal_map_invert_y=false
 stream=false
 size_limit=0
-detect_3d=true
+detect_3d=false
 svg/scale=1.0

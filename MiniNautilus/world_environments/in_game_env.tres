@@ -2,10 +2,9 @@
 
 [resource]
 background_mode = 1
-background_color = Color( 0.0588235, 0.721569, 0.921569, 1 )
+background_color = Color( 0.0602353, 0.698667, 0.902118, 1 )
 background_energy = 0.0
-ambient_light_color = Color( 0.0588235, 0.721569, 0.921569, 1 )
-fog_enabled = true
+ambient_light_color = Color( 0.0564706, 0.694118, 0.893177, 1 )
 fog_color = Color( 0.0901961, 0.0901961, 0.0901961, 1 )
 fog_sun_amount = 0.06
 fog_depth_begin = 100.0
