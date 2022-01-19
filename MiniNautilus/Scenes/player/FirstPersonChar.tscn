@@ -274,7 +274,7 @@ shape = SubResource( 1 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.10061 )
 current = true
 near = 0.01
-far = 1000.0
+far = 200.0
 
 [node name="RayCast" type="RayCast" parent="rotation_helper/model/Camera"]
 enabled = true
