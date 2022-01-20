@@ -90,6 +90,7 @@ func load_save_data() -> void:
 		print("save data loaded : ", destruction_queue.size(), " objects to remove")
 		for node in destruction_queue:
 			print(node.name)
+		set_process(true)
 
 func save_data() -> void:
 	var dir := Directory.new()
@@ -122,6 +123,7 @@ func _process(_delta: float) -> void:
 	"""
 	if destruction_queue.empty():
 		# once that's empty, nothing more to do
+		set_process(false)
 		return
 	var num := min(destructions_per_frame, destruction_queue.size())
 	for i in range(num):

@@ -2,6 +2,8 @@ extends KinematicBody
 
 export (Resource) var inventory : Resource
 
+const PAUSE_MENU_SCENE := "res://Scenes/menus/PauseMenu.tscn"
+
 const GRAVTIY := -24.8
 var vel := Vector3()
 const MAX_SPEED := 20.0
@@ -52,12 +54,6 @@ func process_input(_delta : float) -> void:
 	dir += -camxform.basis.z * input_vec.y # align to cam-relative axis
 	dir += camxform.basis.x * input_vec.x # align to cam-relative axis
 	dir += Vector3.UP * global_up_down # keep global so up/down is easier
-	
-	if Input.is_action_just_pressed("ui_cancel"):
-		if Input.get_mouse_mode() == Input.MOUSE_MODE_VISIBLE:
-			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-		else:
-			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
 	
 func process_movement(delta : float) -> void:
@@ -90,6 +86,9 @@ func _input(event: InputEvent) -> void:
 			do_interact()
 		if event.is_action_pressed("attack"):
 			do_attack()
+	if Input.is_action_pressed("ui_cancel"):
+		var pause_menu :PackedScene= load(PAUSE_MENU_SCENE)
+		get_tree().current_scene.add_child(pause_menu.instance())
 
 
 func do_interact() -> void:

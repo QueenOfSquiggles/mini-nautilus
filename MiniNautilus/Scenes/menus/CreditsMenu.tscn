@@ -1,0 +1,30 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Scenes/menus/CreditsMenu.gd" type="Script" id=1]
+
+[node name="CreditsMenu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="."]
+margin_left = 224.0
+margin_top = 128.0
+margin_right = 276.0
+margin_bottom = 142.0
+text = "CREDITS"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BtnMainMenu" type="Button" parent="."]
+margin_left = 32.0
+margin_top = 448.0
+margin_right = 125.0
+margin_bottom = 468.0
+text = "Main Menuw"
+
+[connection signal="pressed" from="BtnMainMenu" to="." method="_on_BtnMainMenu_pressed"]

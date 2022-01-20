@@ -34,10 +34,20 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://resources/definitions/ItemsContainer.gd"
 }, {
+"base": "Control",
+"class": "LoadingScreen",
+"language": "GDScript",
+"path": "res://Scenes/menus/LoadingScreen.gd"
+}, {
 "base": "Resource",
 "class": "Recipe",
 "language": "GDScript",
 "path": "res://resources/definitions/Recipe.gd"
+}, {
+"base": "Node",
+"class": "UISlide",
+"language": "GDScript",
+"path": "res://scripts/utility/UISlide.gd"
 } ]
 _global_script_class_icons={
 "DebugDraw": "",
@@ -45,13 +55,15 @@ _global_script_class_icons={
 "HTerrainDataSaver": "",
 "Item": "",
 "ItemsContainer": "",
-"Recipe": ""
+"LoadingScreen": "",
+"Recipe": "",
+"UISlide": ""
 }
 
 [application]
 
 config/name="MiniNautilus"
-run/main_scene="res://Scenes/Test3DScene.tscn"
+run/main_scene="res://Scenes/GameWorld.tscn"
 config/icon="res://icon.png"
 
 [autoload]
@@ -59,6 +71,7 @@ config/icon="res://icon.png"
 GM="*res://scripts/autoload/GameManager.gd"
 TimeSlice="*res://scripts/autoload/TimeSlice.gd"
 SaveData="*res://scripts/autoload/PersistenceManager.gd"
+SceneManagement="*res://scripts/autoload/SceneManagement.gd"
 
 [editor_plugins]
 

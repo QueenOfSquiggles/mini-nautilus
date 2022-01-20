@@ -1,0 +1,69 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Scenes/menus/OptionsMenu.gd" type="Script" id=1]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0, 0, 0, 0.305882 )
+
+[sub_resource type="StyleBoxFlat" id=2]
+content_margin_left = 5.0
+content_margin_right = 5.0
+content_margin_top = 5.0
+content_margin_bottom = 5.0
+bg_color = Color( 0, 0, 0, 0 )
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color( 0, 0, 0, 1 )
+border_blend = true
+corner_radius_top_left = 45
+corner_radius_top_right = 45
+corner_radius_bottom_right = 45
+corner_radius_bottom_left = 45
+
+[node name="PanelContainer" type="PanelContainer"]
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -512.0
+margin_right = -12.0
+rect_min_size = Vector2( 500, 0 )
+custom_styles/panel = SubResource( 1 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+margin_right = 500.0
+margin_bottom = 600.0
+
+[node name="SettingsPanel" type="PanelContainer" parent="VBoxContainer"]
+margin_right = 500.0
+margin_bottom = 576.0
+size_flags_vertical = 3
+custom_styles/panel = SubResource( 2 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/SettingsPanel"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 495.0
+margin_bottom = 571.0
+alignment = 1
+
+[node name="CheckButton" type="CheckButton" parent="VBoxContainer/SettingsPanel/VBoxContainer"]
+margin_top = 263.0
+margin_right = 490.0
+margin_bottom = 303.0
+text = "Enable Fog"
+align = 1
+
+[node name="BtnReturn" type="Button" parent="VBoxContainer"]
+margin_top = 580.0
+margin_right = 500.0
+margin_bottom = 600.0
+text = "Return"
+
+[connection signal="toggled" from="VBoxContainer/SettingsPanel/VBoxContainer/CheckButton" to="." method="_on_CheckButton_toggled"]
+[connection signal="pressed" from="VBoxContainer/BtnReturn" to="." method="_on_BtnReturn_pressed"]
