@@ -8,53 +8,70 @@ Options menu. Most crucial elements taken from Calinou's repo : https://github.c
 
 const managed_settings := {
 	"environment" : {
+		"fog_enabled" : {
+			"keys" : ["Enabled", "Disabled (faster but with visual artifacts)"],
+			"values" : [true, false]
+		},
 		"glow_enabled": {
-			"Enabled" : true,
-			"Disabled" : false
+			"keys" : ["Enabled", "Disabled"],
+			"values" : [true, false]
 		},
 		"ss_reflections_enabled": {
-			"Enabled" : true,
-			"Disabled" : false
+			"keys" : ["Enabled", "Disabled"],
+			"values" : [true, false]
 		},
 		"ssao_enabled": {
-			"Enabled" : true,
-			"Disabled" : false
+			"keys" : ["Enabled", "Disabled"],
+			"values" : [true, false]
 		},
 		"ssao_blur":{
-			"Disabled" : Environment.SSAO_BLUR_DISABLED,
-			"Fast - 1x1" : Environment.SSAO_BLUR_1x1,
-			"Balanced - 2x2" : Environment.SSAO_BLUR_2x2,
-			"Pretty 3x3" : Environment.SSAO_BLUR_3x3			
+			"keys" : ["Disabled","Fast","Balanced","Pretty"],
+			"values" : [
+				Environment.SSAO_BLUR_DISABLED,
+				Environment.SSAO_BLUR_1x1,
+				Environment.SSAO_BLUR_2x2,
+				Environment.SSAO_BLUR_3x3
+			],
 		},
 		"ssao_quality": {
-			"Fast" : Environment.SSAO_QUALITY_LOW,
-			"Balanced" : Environment.SSAO_QUALITY_MEDIUM,
-			"Pretty" : Environment.SSAO_QUALITY_HIGH,
+			"keys" : [
+				"Fast", 
+				"Balanced", 
+				"Pretty"
+			],
+			"values" : [
+				Environment.SSAO_QUALITY_LOW,
+				Environment.SSAO_QUALITY_MEDIUM,
+				Environment.SSAO_QUALITY_HIGH,
+			],
 		},
 		"tonemap_mode" : {
-			"Linear" : Environment.TONE_MAPPER_LINEAR,
-			"Reinhardt" : Environment.TONE_MAPPER_REINHARDT,
-			"Filmic" : Environment.TONE_MAPPER_FILMIC,
-			"ACES" : Environment.TONE_MAPPER_ACES,
-			"ACES Fitted" : Environment.TONE_MAPPER_ACES_FITTED,
+			"keys" : [
+				"Linear", 
+				"Reinhardt", 
+				"Filmic", 
+				"ACES", 
+				"ACES (Fitted)"
+			],
+			"values" : [
+				Environment.TONE_MAPPER_LINEAR,
+				Environment.TONE_MAPPER_REINHARDT,
+				Environment.TONE_MAPPER_FILMIC,
+				Environment.TONE_MAPPER_ACES,
+				Environment.TONE_MAPPER_ACES_FITTED,	
+			],
 		},
 		"tonemap_exposure" : {
-			"Default (0.4)" : 0.4,
-			"Default (0.6)" : 0.6,
-			"Default (0.8)" : 0.8,
-			"Default (1.0)" : 1.0,
-			"Default (1.2)" : 1.2,
-			"Default (1.4)" : 1.4,
-			"Default (1.6)" : 1.6,
-			"Default (1.8)" : 1.8,
+			"keys" : ["0.4","0.6","0.8","1.0 (Normal)","1.2","1.4","1.6","1.8"],
+			"values" : [0.4, 0.6, 0.8, 1.0, 1.2, 1.4, 1.6, 1.8],
 		},
 	}
 }
 const default_settings := {
 	"environment" : {
 		"glow_enabled":  true,
-		"ss_reflections_enabled": true,
-		"ssao_enabled": true,
+		"ss_reflections_enabled": false,
+		"ssao_enabled": false,
 		"ssao_blur": Environment.SSAO_BLUR_1x1,
 		"ssao_quality": Environment.SSAO_QUALITY_MEDIUM,
 		"tonemap_mode" : Environment.TONE_MAPPER_ACES_FITTED,
@@ -72,26 +89,54 @@ func _ready() -> void:
 	if queued_settings.empty():
 		queued_settings = default_settings.duplicate(true)
 		save_settings()
-	print("Loaded GFX settings : ", queued_settings)
 	# TODO : how can I apply saved settings without using the pause menu?
 	propogate_changes()
 	connect("tree_exiting", self, "save_settings")
 	SaveData.connect("on_saving", self, "save_settings")
+	create_menu_items()
 	
 func save_settings() -> void:
-	print("Saving GFX settings : ", queued_settings)
+	#print("Saving GFX settings : ", queued_settings)
 	SaveData.save_custom_data(SAVE_SUFFIX, queued_settings)	
 
-func _on_CheckButton_toggled(button_pressed: bool) -> void:
-	if not queued_settings.has("environment"):
-		queued_settings["environment"] = {}
-	queued_settings["environment"]["fog_enabled"] = button_pressed
+
+
+func create_menu_items() -> void:
+	var root := $VBoxContainer/SettingsPanel/VBoxContainer
+#	var fog := create_env_setting_dropdown("fog_enabled")
+#	root.add_child(fog)
+	for entry in managed_settings["environment"].keys():
+		var dropmenu = create_env_setting_dropdown(entry)
+		root.add_child(dropmenu)
+
+func create_env_setting_dropdown(key : String) -> Control:
+	var split := HBoxContainer.new()
+	var label := Label.new()
+	var dropmenu = OptionButton.new()
+	split.add_child(label)
+	split.add_child(dropmenu)
+	label.text = key
+	split.alignment = HBoxContainer.ALIGN_CENTER
+	split.size_flags_horizontal = SIZE_EXPAND
+	
+	var dict := managed_settings["environment"] as Dictionary
+	dict = dict[key] as Dictionary
+	var names := dict["keys"] as Array
+	for option in names:
+		dropmenu.add_item(option)
+	dropmenu.connect("item_selected", self, "on_option_selected", [key])
+	return split
+		
+		
+func on_option_selected(index : int, property : String) -> void:
+	var value = managed_settings["environment"][property]["values"][index]
+	queued_settings["environment"][property] = value
 	propogate_changes()
 
+
+
 func propogate_changes() -> void:
-	print("Applying graphic settings : ", queued_settings)
 	if not try_set_current_environment():
-		print("failed to edit a currently loaded environment. attempting to edit the resource file?")
 		try_change_resource_file()
 
 func try_set_current_environment() -> bool:
@@ -110,10 +155,7 @@ func try_change_resource_file() -> void:
 func apply_settings(env : Environment) -> void:
 	var env_settings :Dictionary = queued_settings["environment"] if queued_settings.has("environment") else {}
 	for entry in env_settings.keys():
-		print("Setting environment var [%s] to [%s]" % [entry, env_settings[entry]])
 		env.set_indexed(entry, env_settings[entry])
-	#env_settings.clear()
-
 
 func _on_BtnReturn_pressed() -> void:
 	save_settings()

@@ -52,18 +52,10 @@ margin_right = 495.0
 margin_bottom = 571.0
 alignment = 1
 
-[node name="CheckButton" type="CheckButton" parent="VBoxContainer/SettingsPanel/VBoxContainer"]
-margin_top = 263.0
-margin_right = 490.0
-margin_bottom = 303.0
-text = "Enable Fog"
-align = 1
-
 [node name="BtnReturn" type="Button" parent="VBoxContainer"]
 margin_top = 580.0
 margin_right = 500.0
 margin_bottom = 600.0
 text = "Return"
 
-[connection signal="toggled" from="VBoxContainer/SettingsPanel/VBoxContainer/CheckButton" to="." method="_on_CheckButton_toggled"]
 [connection signal="pressed" from="VBoxContainer/BtnReturn" to="." method="_on_BtnReturn_pressed"]

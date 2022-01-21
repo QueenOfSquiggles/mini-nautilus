@@ -24,9 +24,6 @@ func _ready() -> void:
 	get_tree().create_timer(0.1).connect("timeout", self, "set", ["accept_inputs", true])
 	
 func set_state(state : int) -> void:
-#	if current_state == state:
-#		return
-	print("Entering state ", state)
 	match(state):
 		State.NORMAL:
 			on_enter_normal()
@@ -36,12 +33,10 @@ func set_state(state : int) -> void:
 
 
 func on_enter_normal() -> void:
-	print("entering normal")
 	OptionsMenuSlider.hide()
 	center_menu.visible = true
 	
 func on_enter_options() -> void:
-	print("called display")
 	OptionsMenuSlider.display()
 	#(OptionsMenuSlider.get_parent() as Control).visible = true
 	center_menu.visible = false

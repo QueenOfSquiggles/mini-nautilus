@@ -32,13 +32,8 @@ func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	GM.set_up_player(self)
 	SaveData.connect("on_saving", self, "save_data")
-	#SaveData.connect("on_loading", self, "load_data")
-	call_deferred("load_data")
-	#load_data()
-	# this should make it so anytime the player is unloaded from a scene, whether returning to a menu or the game is closing normally, the data gets saved.
-	# this doesn't prevent loss from crashing, but that's really hard to prevent anyway
+	SaveData.connect("on_loading", self, "load_data")
 	self.connect("tree_exiting", self, "save_data")
-	#load_data()
 	
 func _physics_process(delta: float) -> void:
 	process_input(delta)
@@ -121,7 +116,6 @@ func _on_RayCast_on_start_can_attack() -> void:
 func _on_RayCast_on_end_can_attack() -> void:
 	anim.play("knife_unready")
 
-
 func _on_RayCast_on_start_can_interact() -> void:
 	anim.play("can_interact_start")
 
@@ -138,35 +132,15 @@ const save_vars := [
 ]
 
 func load_data() -> void:
-	yield(VisualServer, "frame_post_draw")
-	print("starting loading player data")
-	yield(VisualServer, "frame_post_draw")
-
 	var data := SaveData.load_custom_data(CUSTOM_DATA_SUFFIX) as Dictionary
-	print("data loading, beginning to process")
-	yield(VisualServer, "frame_post_draw")
-
 	if data.empty():
 		return
-	yield(VisualServer, "frame_post_draw")
-	print("Loaded player data : ", data)
-#	if data.has("transform"):
-#		var t = data["transform"]
-#		print("data variable is type ", typeof(t), " with value ", t)
-#		if typeof(t) == TYPE_TRANSFORM:
-#			print("Successfully stored/loaded as a transform!!!")
-#		set_indexed("transform", t)
-	yield(VisualServer, "frame_post_draw")
 	for key in save_vars:
-		yield(VisualServer, "frame_post_draw")
 		if data.has(key):
-			var value = data[key]
-			print("Loading [",key,"] with value [", value, "], type=", typeof(value))
 			set_indexed(key, data[key])
 
 func save_data() -> void:
 	var data := {}
 	for key in save_vars:
 		data[key] = get_indexed(key)
-#	data["transform"] = get_indexed("transform")
 	SaveData.save_custom_data(CUSTOM_DATA_SUFFIX, data)

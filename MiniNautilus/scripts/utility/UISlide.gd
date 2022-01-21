@@ -22,7 +22,6 @@ func _ready() -> void:
 	call_deferred("second_tick_init")
 
 func second_tick_init() -> void:
-	print("UiSlide owner : ", target.name)
 	start_x = target.rect_position.x
 	start_y = target.rect_position.y
 	get_tree().connect("screen_resized", self, "on_screen_resize")
@@ -84,7 +83,6 @@ func hide() -> void:
 	_move(start, end)
 
 func _move(start : float, end: float) -> void:
-	print("starting UISlide tween")
 	tween.stop_all() # remove all
 	var prop := "rect_position:x"
 	if SlideStyleOption == SlideOptions.Top or SlideStyleOption == SlideOptions.Bottom:
@@ -99,4 +97,3 @@ func _on_tween_completed(object: Object, key: NodePath) -> void:
 		emit_signal("on_hide_complete")
 	else:
 		emit_signal("on_display_complete")
-	print("UISlide tween completed")

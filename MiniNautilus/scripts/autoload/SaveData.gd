@@ -64,8 +64,6 @@ func load_obj_from_data(data : Dictionary) -> void:
 signal on_saving
 signal on_loading
 
-signal load_stage_signal
-
 # the group name for objects recognized as persistent objects
 const PERSISTENT_OBJ_GROUP_NAME := "persist"
 
@@ -81,38 +79,22 @@ var custom_save_suffix := "save_slot/"
 var destruction_queue := []
 
 func load_save_data() -> void:
-	print("starting to load")
-	yield(VisualServer, "frame_post_draw")
 	var file := open_file(get_current_save_name(), File.READ)
 	if not file:
 		# no file, save data doesn't exist yet
 		return
-
-	print("file check success")
-	yield(VisualServer, "frame_post_draw")
 	var line := file.get_line()
 	destruction_queue = get_persistant_objs()
-
-	print("starting while loop")
-	yield(VisualServer, "frame_post_draw")
 	while not line.empty():
 		load_obj_from_data(parse_json(line))
 		line = file.get_line()
 	file.close()
-
-	print("file closed")
-	yield(VisualServer, "frame_post_draw")
 	if not destruction_queue.empty():
 		print("save data loaded : ", destruction_queue.size(), " objects to remove")
 		for node in destruction_queue:
 			print(node.name)
 		set_process(true)
-	else:
-		print("no objects queued for destruction")
-	
-	yield(VisualServer, "frame_post_draw")
-	emit_signal("load_stage_signal")
-	print("Completed loading save data")
+	emit_signal("on_loading")
 
 func save_data() -> void:
 	var dir := Directory.new()
@@ -194,13 +176,15 @@ func save_custom_data(suffix : String, data : Dictionary) -> void:
 	var dir := Directory.new()
 	dir.remove(get_current_save_name(suffix))
 	var file := open_file(get_current_save_name(suffix),File.WRITE)
-	file.store_var(data, true)
+	file.store_var(data, false)
 	file.close()
 
 func load_custom_data(suffix : String) -> Dictionary:
 	var file := open_file(get_current_save_name(suffix),File.READ)
 	if not file:
 		return {}
-	var data := file.get_var(true) as Dictionary
-	file.close()	
+
+	var v = file.get_var(false)
+	var data := v as Dictionary
+	file.close()
 	return data
