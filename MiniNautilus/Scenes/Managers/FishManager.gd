@@ -34,4 +34,4 @@ func add_new_owned() -> void:
 	var own :Spatial = FishPacked.instance()
 	owned_root.add_child(own)
 	own.global_transform.origin = global_transform.origin
-	print("Spawnging a new fish : ", own.name)
+	#print("Spawnging a new fish : ", own.name)

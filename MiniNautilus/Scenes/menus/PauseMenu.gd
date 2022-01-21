@@ -76,3 +76,10 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):
 		get_tree().create_timer(0.1).connect("timeout", self, "_on_BtnReturn_pressed")
 
+func _on_BtnLoadSave_pressed() -> void:
+	SaveData.load_save_data()
+
+
+func _on_BtnQuitDesktop_pressed() -> void:
+	SaveData.save_data()
+	get_tree().quit()

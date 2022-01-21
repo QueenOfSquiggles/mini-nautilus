@@ -3,16 +3,16 @@ class_name DebugDraw
 
 const DISABLED := true
 
-var draw_queue := {
-	
-}
+var draw_queue := {}
 
 func _ready() -> void:
 	GM.set_up_debug_draw(self)
+	set_process(false)
 	
-func _process(delta: float) -> void:
-	if not draw_queue.empty():
-		update()
+func _process(_delta: float) -> void:
+	if draw_queue.empty():
+		set_process(false)
+	update()
 
 func _draw() -> void:
 	for key in draw_queue.keys():
@@ -37,3 +37,5 @@ func draw_line_3d(start : Vector3, end : Vector3, size : float, color : Color) -
 	}
 	# using the hash should theoretically prevent multiple calls for the same line?
 	draw_queue[entry.hash()] = entry
+	set_process(true)
+

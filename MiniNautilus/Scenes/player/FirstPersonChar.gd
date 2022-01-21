@@ -2,6 +2,8 @@ extends KinematicBody
 
 export (Resource) var inventory : Resource
 
+const CUSTOM_DATA_SUFFIX := "_player_data"
+
 const PAUSE_MENU_SCENE := "res://Scenes/menus/PauseMenu.tscn"
 
 const GRAVTIY := -24.8
@@ -29,7 +31,13 @@ func _ready() -> void:
 	rotation_helper = $rotation_helper
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	GM.set_up_player(self)
-
+	SaveData.connect("on_saving", self, "save_data")
+	SaveData.connect("on_loading", self, "load_data")
+	# this should make it so anytime the player is unloaded from a scene, whether returning to a menu or the game is closing normally, the data gets saved.
+	# this doesn't prevent loss from crashing, but that's really hard to prevent anyway
+	self.connect("tree_exiting", self, "save_data")
+	#load_data()
+	
 func _physics_process(delta: float) -> void:
 	process_input(delta)
 	process_movement(delta)
@@ -117,3 +125,36 @@ func _on_RayCast_on_start_can_interact() -> void:
 
 func _on_RayCast_on_end_can_interact() -> void:
 	anim.play_backwards("can_interact_start")
+
+
+const save_vars := [
+	# variable paths for values to save
+	# this could be extrapolated to a seperate node for resuability
+	"inventory:items",
+	"transform",
+	"rotation_helper:rotation"
+]
+
+func load_data() -> void:
+	var data := SaveData.load_custom_data(CUSTOM_DATA_SUFFIX)
+	if data.empty():
+		return
+#	if data.has("transform"):
+#		var t = data["transform"]
+#		print("data variable is type ", typeof(t), " with value ", t)
+#		if typeof(t) == TYPE_TRANSFORM:
+#			print("Successfully stored/loaded as a transform!!!")
+#		set_indexed("transform", t)
+	print("TYPE_VECTOR3=", TYPE_VECTOR3)
+	for key in save_vars:
+		if data.has(key):
+			var value = data[key]
+			print("Loading [",key,"] with value [", value, "], type=", typeof(value))
+			set_indexed(key, data[key])
+
+func save_data() -> void:
+	var data := {}
+	for key in save_vars:
+		data[key] = get_indexed(key)
+#	data["transform"] = get_indexed("transform")
+	SaveData.save_custom_data(CUSTOM_DATA_SUFFIX, data)

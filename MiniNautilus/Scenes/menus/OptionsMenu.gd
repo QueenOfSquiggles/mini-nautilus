@@ -50,8 +50,36 @@ const managed_settings := {
 		},
 	}
 }
+const default_settings := {
+	"environment" : {
+		"glow_enabled":  true,
+		"ss_reflections_enabled": true,
+		"ssao_enabled": true,
+		"ssao_blur": Environment.SSAO_BLUR_1x1,
+		"ssao_quality": Environment.SSAO_QUALITY_MEDIUM,
+		"tonemap_mode" : Environment.TONE_MAPPER_ACES_FITTED,
+		"tonemap_exposure" :  1.0,
+	}
+}
 
 var queued_settings := {}
+
+const SAVE_SUFFIX := "_gfx_options"
+
+func _ready() -> void:
+	queued_settings = SaveData.load_custom_data(SAVE_SUFFIX)
+	if queued_settings.empty():
+		queued_settings = default_settings.duplicate(true)
+		save_settings()
+	print("Loaded GFX settings : ", queued_settings)
+	# TODO : how can I apply saved settings without using the pause menu?
+	propogate_changes()
+	connect("tree_exiting", self, "save_settings")
+	SaveData.connect("on_saving", self, "save_settings")
+	
+func save_settings() -> void:
+	print("Saving GFX settings : ", queued_settings)
+	SaveData.save_custom_data(SAVE_SUFFIX, queued_settings)	
 
 func _on_CheckButton_toggled(button_pressed: bool) -> void:
 	if not queued_settings.has("environment"):
@@ -60,6 +88,7 @@ func _on_CheckButton_toggled(button_pressed: bool) -> void:
 	propogate_changes()
 
 func propogate_changes() -> void:
+	print("Applying graphic settings : ", queued_settings)
 	if not try_set_current_environment():
 		print("failed to edit a currently loaded environment. attempting to edit the resource file?")
 		try_change_resource_file()
@@ -81,9 +110,10 @@ func apply_settings(env : Environment) -> void:
 	var env_settings :Dictionary = queued_settings["environment"] if queued_settings.has("environment") else {}
 	for entry in env_settings.keys():
 		print("Setting environment var [%s] to [%s]" % [entry, env_settings[entry]])
-		env.set(entry, env_settings[entry])
-	env_settings.clear()
+		env.set_indexed(entry, env_settings[entry])
+	#env_settings.clear()
 
 
 func _on_BtnReturn_pressed() -> void:
+	save_settings()
 	emit_signal("on_return_button_pressed")

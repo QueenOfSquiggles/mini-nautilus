@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=2]
+[gd_scene load_steps=43 format=2]
 
 [ext_resource path="res://Scenes/DebugLines.gd" type="Script" id=1]
 [ext_resource path="res://addons/zylann.hterrain/hterrain.gd" type="Script" id=2]
@@ -29,6 +29,9 @@
 [ext_resource path="res://Scenes/props/resourcess/plastic_rocks/PlasticRockYellow.tscn" type="PackedScene" id=27]
 [ext_resource path="res://Scenes/props/resourcess/CopperCluster.tscn" type="PackedScene" id=28]
 [ext_resource path="res://Scenes/player/PlayerFPSController.tscn" type="PackedScene" id=29]
+[ext_resource path="res://models/imported/creatures/Axolotl.tscn" type="PackedScene" id=30]
+[ext_resource path="res://Scenes/menus/OptionsMenu.tscn" type="PackedScene" id=31]
+[ext_resource path="res://Scenes/util/Transient.tscn" type="PackedScene" id=32]
 
 [sub_resource type="Resource" id=1]
 script = ExtResource( 3 )
@@ -142,6 +145,9 @@ extents = Vector3( 268.613, 1, 257.885 )
 [sub_resource type="PlaneMesh" id=7]
 size = Vector2( 500, 500 )
 
+[sub_resource type="BoxShape" id=21]
+extents = Vector3( 268.613, 3, 257.885 )
+
 [sub_resource type="StyleBoxFlat" id=18]
 bg_color = Color( 0, 0, 0, 0.345098 )
 
@@ -208,10 +214,10 @@ shape = SubResource( 17 )
 
 [node name="WaterSurface" type="Spatial" parent="CoreObjects"]
 
-[node name="StaticBody" type="StaticBody" parent="CoreObjects/WaterSurface"]
+[node name="surface_collider" type="StaticBody" parent="CoreObjects/WaterSurface"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 322.662, 118.042, 289.266 )
 
-[node name="CollisionShape" type="CollisionShape" parent="CoreObjects/WaterSurface/StaticBody"]
+[node name="CollisionShape" type="CollisionShape" parent="CoreObjects/WaterSurface/surface_collider"]
 shape = SubResource( 8 )
 
 [node name="water_plane" type="MeshInstance" parent="CoreObjects/WaterSurface"]
@@ -223,6 +229,13 @@ material/0 = ExtResource( 14 )
 __meta__ = {
 "_editor_description_": "need to rescale at some point"
 }
+
+[node name="breathable_layer" type="Area" parent="CoreObjects/WaterSurface"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, 0 )
+
+[node name="CollisionShape2" type="CollisionShape" parent="CoreObjects/WaterSurface/breathable_layer"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 322.662, 118.042, 289.266 )
+shape = SubResource( 21 )
 
 [node name="StaticWorldObjects" type="Spatial" parent="."]
 __meta__ = {
@@ -1200,3 +1213,11 @@ script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="axolotl" parent="." instance=ExtResource( 30 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 390.147, 7.74308, 282.815 )
+
+[node name="PanelContainer" parent="." instance=ExtResource( 31 )]
+visible = false
+
+[node name="Transient" parent="PanelContainer" instance=ExtResource( 32 )]

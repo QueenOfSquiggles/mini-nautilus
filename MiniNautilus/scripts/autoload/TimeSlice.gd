@@ -12,8 +12,8 @@ class Slice:
 	var current : int = 0
 	var id_aggregate : int = 0
 
-	func _init(num : int) -> void:
-		self.num = num
+	func _init(number : int) -> void:
+		self.num = number
 		current = 0
 		id_aggregate = 0
 
@@ -38,7 +38,7 @@ var SlicePhysics := Slice.new(4) # time sliced runs at 7.5fps for physics here
 func _process(_delta: float) -> void:
 	SliceProcess.increment()
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	SlicePhysics.increment()
 
 func get_current_process_slice() -> int:

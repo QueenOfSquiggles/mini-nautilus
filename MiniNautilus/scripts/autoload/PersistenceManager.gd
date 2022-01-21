@@ -61,6 +61,9 @@ func load_obj_from_data(data : Dictionary) -> void:
 	- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 	Leave below alone if no advanced changes are needed
 """
+signal on_saving
+signal on_loading
+
 # the group name for objects recognized as persistent objects
 const PERSISTENT_OBJ_GROUP_NAME := "persist"
 
@@ -70,34 +73,51 @@ const SAVE_FILE_TYPE := ".save"
 
 # A custom suffix for setting up a multiple saves system
 # this game probably won't use it
-var custom_save_suffix := ""
+var custom_save_suffix := "save_slot/"
 
 # a local queue for destruction. This is loaded 
 var destruction_queue := []
 
 func load_save_data() -> void:
-	var file := open_file(File.READ)
+	print("starting to load")
+	yield(VisualServer, "frame_post_draw")
+	var file := open_file(get_current_save_name(), File.READ)
 	if not file:
 		# no file, save data doesn't exist yet
 		return
+
+	print("file check success")
+	yield(VisualServer, "frame_post_draw")
 	var line := file.get_line()
 	destruction_queue = get_persistant_objs()
+
+	print("starting while loop")
+	yield(VisualServer, "frame_post_draw")
 	while not line.empty():
 		load_obj_from_data(parse_json(line))
 		line = file.get_line()
 	file.close()
+
+	print("file closed")
+	yield(VisualServer, "frame_post_draw")
 	if not destruction_queue.empty():
 		print("save data loaded : ", destruction_queue.size(), " objects to remove")
 		for node in destruction_queue:
 			print(node.name)
 		set_process(true)
+	else:
+		print("no objects queued for destruction")
+	
+	yield(VisualServer, "frame_post_draw")
+	emit_signal("on_loading")
+	print("Completed loading save data")
 
 func save_data() -> void:
 	var dir := Directory.new()
 	dir.remove(get_current_save_name()) # delete old file, we want clean data
 
 	# open file for writing (will create a new file)	
-	var file := open_file(File.WRITE)
+	var file := open_file(get_current_save_name(),File.WRITE)
 	if not file:
 		print("FAILED TO OPEN FILE???")
 		return
@@ -110,6 +130,7 @@ func save_data() -> void:
 		if not data.empty():
 			file.store_line(to_json(data))
 	file.close()
+	emit_signal("on_saving")
 
 func get_persistant_objs() -> Array:
 	"""
@@ -133,11 +154,10 @@ func _process(_delta: float) -> void:
 	for i in range(num):
 		destruction_queue.remove(0)
 
-func open_file(open_flags) -> File:
+func open_file(path: String, open_flags) -> File:
 	"""
 	Opens the current save file
 	"""
-	var path := get_current_save_name()
 	ensure_filepath(get_current_save_dir())
 	var file := File.new()
 	var err := file.open(path, open_flags)
@@ -156,14 +176,35 @@ func ensure_filepath(path : String) -> void:
 	assert(err == OK, "Something failed with creating the path")
 
 
-func get_current_save_name() -> String:
+func get_current_save_name(suffix : String = "") -> String:
 	"""
 	Generates a save file path for the currently loaded scene
 	This means that we don't need any special logic to save data for a different scene.
 	It's all automagic :3
 	"""
 	var scene_name := get_tree().current_scene.name
-	return get_current_save_dir() + scene_name + SAVE_FILE_TYPE
+	return get_current_save_dir() + scene_name + suffix + SAVE_FILE_TYPE
 
 func get_current_save_dir() -> String:
-	return SAVE_PATH_PREFIX + custom_save_suffix 
+	return SAVE_PATH_PREFIX + custom_save_suffix
+
+func save_custom_data(suffix : String, data : Dictionary) -> void:
+	var dir := Directory.new()
+	dir.remove(get_current_save_name(suffix))
+	var file := open_file(get_current_save_name(suffix),File.WRITE)
+	if not file:
+		print("FAILED TO OPEN FILE???")
+		return
+	file.store_var(data, true)
+	file.close()
+	
+func load_custom_data(suffix : String) -> Dictionary:
+	var file := open_file(get_current_save_name(suffix),File.READ)
+	if not file:
+		# no file, save data doesn't exist yet
+		return {}
+	# get all text not just read line in case user was messing around with the files
+	var data := file.get_var(true) as Dictionary
+	#var data := parse_json(file.get_as_text()) as Dictionary
+	file.close()
+	return data
