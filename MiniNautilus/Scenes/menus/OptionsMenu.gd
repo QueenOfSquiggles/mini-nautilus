@@ -67,7 +67,8 @@ var queued_settings := {}
 const SAVE_SUFFIX := "_gfx_options"
 
 func _ready() -> void:
-	queued_settings = SaveData.load_custom_data(SAVE_SUFFIX)
+	var temp = SaveData.load_custom_data(SAVE_SUFFIX)
+	queued_settings = temp as Dictionary
 	if queued_settings.empty():
 		queued_settings = default_settings.duplicate(true)
 		save_settings()

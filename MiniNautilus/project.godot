@@ -70,8 +70,8 @@ config/icon="res://icon.png"
 
 GM="*res://scripts/autoload/GameManager.gd"
 TimeSlice="*res://scripts/autoload/TimeSlice.gd"
-SaveData="*res://scripts/autoload/PersistenceManager.gd"
 SceneManagement="*res://scripts/autoload/SceneManagement.gd"
+SaveData="*res://scripts/autoload/SaveData.gd"
 
 [editor_plugins]
 

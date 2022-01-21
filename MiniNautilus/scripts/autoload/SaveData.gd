@@ -64,6 +64,8 @@ func load_obj_from_data(data : Dictionary) -> void:
 signal on_saving
 signal on_loading
 
+signal load_stage_signal
+
 # the group name for objects recognized as persistent objects
 const PERSISTENT_OBJ_GROUP_NAME := "persist"
 
@@ -109,7 +111,7 @@ func load_save_data() -> void:
 		print("no objects queued for destruction")
 	
 	yield(VisualServer, "frame_post_draw")
-	emit_signal("on_loading")
+	emit_signal("load_stage_signal")
 	print("Completed loading save data")
 
 func save_data() -> void:
@@ -192,19 +194,13 @@ func save_custom_data(suffix : String, data : Dictionary) -> void:
 	var dir := Directory.new()
 	dir.remove(get_current_save_name(suffix))
 	var file := open_file(get_current_save_name(suffix),File.WRITE)
-	if not file:
-		print("FAILED TO OPEN FILE???")
-		return
 	file.store_var(data, true)
 	file.close()
-	
+
 func load_custom_data(suffix : String) -> Dictionary:
 	var file := open_file(get_current_save_name(suffix),File.READ)
 	if not file:
-		# no file, save data doesn't exist yet
 		return {}
-	# get all text not just read line in case user was messing around with the files
 	var data := file.get_var(true) as Dictionary
-	#var data := parse_json(file.get_as_text()) as Dictionary
-	file.close()
+	file.close()	
 	return data

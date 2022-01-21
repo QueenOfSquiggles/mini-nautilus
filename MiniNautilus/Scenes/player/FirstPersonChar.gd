@@ -32,7 +32,9 @@ func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	GM.set_up_player(self)
 	SaveData.connect("on_saving", self, "save_data")
-	SaveData.connect("on_loading", self, "load_data")
+	#SaveData.connect("on_loading", self, "load_data")
+	call_deferred("load_data")
+	#load_data()
 	# this should make it so anytime the player is unloaded from a scene, whether returning to a menu or the game is closing normally, the data gets saved.
 	# this doesn't prevent loss from crashing, but that's really hard to prevent anyway
 	self.connect("tree_exiting", self, "save_data")
@@ -136,17 +138,27 @@ const save_vars := [
 ]
 
 func load_data() -> void:
-	var data := SaveData.load_custom_data(CUSTOM_DATA_SUFFIX)
+	yield(VisualServer, "frame_post_draw")
+	print("starting loading player data")
+	yield(VisualServer, "frame_post_draw")
+
+	var data := SaveData.load_custom_data(CUSTOM_DATA_SUFFIX) as Dictionary
+	print("data loading, beginning to process")
+	yield(VisualServer, "frame_post_draw")
+
 	if data.empty():
 		return
+	yield(VisualServer, "frame_post_draw")
+	print("Loaded player data : ", data)
 #	if data.has("transform"):
 #		var t = data["transform"]
 #		print("data variable is type ", typeof(t), " with value ", t)
 #		if typeof(t) == TYPE_TRANSFORM:
 #			print("Successfully stored/loaded as a transform!!!")
 #		set_indexed("transform", t)
-	print("TYPE_VECTOR3=", TYPE_VECTOR3)
+	yield(VisualServer, "frame_post_draw")
 	for key in save_vars:
+		yield(VisualServer, "frame_post_draw")
 		if data.has(key):
 			var value = data[key]
 			print("Loading [",key,"] with value [", value, "], type=", typeof(value))
