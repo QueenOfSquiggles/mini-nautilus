@@ -1,50 +1,56 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://Scenes/player/FirstPersonChar.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/player/PlayerRayCast.gd" type="Script" id=2]
 [ext_resource path="res://Scenes/player/HUD.gd" type="Script" id=3]
 [ext_resource path="res://models/weapon_pack/knifeRound_smooth.obj" type="ArrayMesh" id=4]
-[ext_resource path="res://Scenes/ui/item_system/ItemContainerUI.tscn" type="PackedScene" id=5]
-[ext_resource path="res://resources/implementations/itemscontainers/PlayerInventory.tres" type="Resource" id=7]
+[ext_resource path="res://resources/theme/ui_theme.tres" type="Theme" id=5]
+[ext_resource path="res://textures/particles/dirt_02.png" type="Texture" id=6]
+[ext_resource path="res://textures/item_icons/fish_icon.png" type="Texture" id=7]
+[ext_resource path="res://textures/item_icons/o2_tank_icon.png" type="Texture" id=8]
+[ext_resource path="res://textures/item_icons/water_bottle_icon.png" type="Texture" id=9]
+[ext_resource path="res://Scenes/player/PlayerStatsBar.gd" type="Script" id=10]
 
 [sub_resource type="CapsuleShape" id=1]
 height = 0.864072
 
+[sub_resource type="Curve" id=14]
+_data = [ Vector2( 0, 0 ), 0.0, 6.43182, 0, 0, Vector2( 0.490625, 1 ), -0.0378792, -0.0378792, 0, 0, Vector2( 1, 0 ), -5.58182, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=15]
+curve = SubResource( 14 )
+
+[sub_resource type="ParticlesMaterial" id=16]
+lifetime_randomness = 1.0
+emission_shape = 1
+emission_sphere_radius = 20.0
+direction = Vector3( 1, 1, 1 )
+spread = 180.0
+gravity = Vector3( 0, -1, 0 )
+initial_velocity = 2.0
+initial_velocity_random = 1.0
+angular_velocity = 10.0
+angular_velocity_random = 1.0
+damping = 1.0
+damping_random = 0.14
+angle = 720.0
+angle_random = 1.0
+scale = 0.5
+scale_random = 1.0
+scale_curve = SubResource( 15 )
+
+[sub_resource type="SpatialMaterial" id=17]
+flags_transparent = true
+params_billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+albedo_texture = ExtResource( 6 )
+
+[sub_resource type="QuadMesh" id=18]
+material = SubResource( 17 )
+
 [sub_resource type="CapsuleMesh" id=2]
-
-[sub_resource type="StyleBoxFlat" id=4]
-bg_color = Color( 0, 0, 0, 0.14902 )
-
-[sub_resource type="Animation" id=5]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:rect_position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( -7, -29 ) ]
-}
-
-[sub_resource type="Animation" id=6]
-resource_name = "enter_view"
-length = 0.5
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:rect_position")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Vector2( -540, -29 ), Vector2( -7, -29 ) ]
-}
 
 [sub_resource type="StyleBoxFlat" id=3]
 bg_color = Color( 0, 0, 0, 0.784314 )
@@ -259,9 +265,8 @@ tracks/1/keys = {
 "values": [ Vector3( -116.982, 0, 0 ), Vector3( 0, 0, 0 ) ]
 }
 
-[node name="FirstPersonChar" type="KinematicBody"]
+[node name="FirstPersonChar" type="KinematicBody" groups=["player"]]
 script = ExtResource( 1 )
-inventory = ExtResource( 7 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 shape = SubResource( 1 )
@@ -374,48 +379,29 @@ material/71 = null
 material/72 = null
 material/73 = null
 
+[node name="Particles" type="Particles" parent="rotation_helper/model/Camera"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.515 )
+amount = 100
+lifetime = 4.0
+preprocess = 5.0
+randomness = 0.44
+local_coords = false
+process_material = SubResource( 16 )
+draw_pass_1 = SubResource( 18 )
+
 [node name="MeshInstance" type="MeshInstance" parent="rotation_helper/model"]
 mesh = SubResource( 2 )
 material/0 = null
 
 [node name="HUD" type="Control" parent="."]
+pause_mode = 2
 anchor_right = 1.0
 anchor_bottom = 1.0
+theme = ExtResource( 5 )
 script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="InventoryPreview" type="Control" parent="HUD"]
-margin_left = 32.0
-margin_top = 55.0
-margin_right = 72.0
-margin_bottom = 95.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="PanelContainer" type="PanelContainer" parent="HUD/InventoryPreview"]
-margin_left = -7.0
-margin_top = -29.0
-margin_right = 207.0
-margin_bottom = 199.0
-custom_styles/panel = SubResource( 4 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="ItemContainerUI" parent="HUD/InventoryPreview/PanelContainer" instance=ExtResource( 5 )]
-margin_left = 0.0
-margin_top = 0.0
-margin_right = 214.0
-margin_bottom = 228.0
-columns = 4
-target_items_container = ExtResource( 7 )
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="HUD/InventoryPreview/PanelContainer"]
-anims/RESET = SubResource( 5 )
-anims/enter_view = SubResource( 6 )
 
 [node name="Tooltip" type="PanelContainer" parent="HUD"]
 margin_left = 552.0
@@ -431,11 +417,68 @@ __meta__ = {
 [node name="Label" type="Label" parent="HUD/Tooltip"]
 margin_left = 4.0
 margin_top = 4.0
-margin_right = 120.0
-margin_bottom = 35.0
+margin_right = 157.0
+margin_bottom = 43.0
 text = "I'm a tooltip! UwU
 "
 align = 1
+
+[node name="StatsBar" type="PanelContainer" parent="HUD"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_top = -142.0
+margin_right = 406.0
+script = ExtResource( 10 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HUD/StatsBar"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 399.0
+margin_bottom = 135.0
+
+[node name="StatThirst" type="TextureProgress" parent="HUD/StatsBar/HBoxContainer"]
+margin_right = 128.0
+margin_bottom = 128.0
+rect_min_size = Vector2( 64, 64 )
+max_value = 1.0
+step = 0.01
+value = 0.5
+texture_progress = ExtResource( 9 )
+fill_mode = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="StatOxygen" type="TextureProgress" parent="HUD/StatsBar/HBoxContainer"]
+margin_left = 132.0
+margin_right = 260.0
+margin_bottom = 128.0
+rect_min_size = Vector2( 64, 64 )
+max_value = 1.0
+step = 0.01
+value = 0.5
+texture_progress = ExtResource( 8 )
+fill_mode = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="StatHunger" type="TextureProgress" parent="HUD/StatsBar/HBoxContainer"]
+margin_left = 264.0
+margin_right = 392.0
+margin_bottom = 128.0
+rect_min_size = Vector2( 64, 64 )
+max_value = 1.0
+step = 0.01
+value = 0.5
+texture_progress = ExtResource( 7 )
+fill_mode = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/RESET = SubResource( 7 )

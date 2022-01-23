@@ -1,20 +1,21 @@
 extends KinematicBody
 
-export (Resource) var inventory : Resource
+#export (Resource) var inventory : Resource
 
 const CUSTOM_DATA_SUFFIX := "_player_data"
 
 const PAUSE_MENU_SCENE := "res://Scenes/menus/PauseMenu.tscn"
+const INVENTORY_MENU_SCENE := "res://Scenes/ui/PlayerInventory.tscn"
 
 const GRAVTIY := -24.8
 var vel := Vector3()
-const MAX_SPEED := 20.0
+const MAX_SPEED := 10.0
 const ACCEL := 4.5
 
 var dir := Vector3()
 
-const DEACCEL_MOVING := 4.0 # Likely will be lower because of water sim
-const DEACCEL_IDLE := 1.0 # Likely will be lower because of water sim
+const DEACCEL_MOVING := 4.0
+const DEACCEL_IDLE := 2.0
 
 var camera : Camera
 var rotation_helper : Spatial
@@ -22,11 +23,22 @@ var has_movement_input := false
 
 var MOUSE_SENSITIVITY := 0.3
 
+var inventory : ItemsContainer
+
+var hunger := 1.0
+var thirst := 1.0
+var oxygen := 1.0
+
+var hunger_rate := 0.001
+var thirst_rate := 0.002
+var oxygen_rate := 0.001
+
 onready var raycast : RayCast = $"rotation_helper/model/Camera/RayCast"
 
 onready var anim : AnimationPlayer = $AnimationPlayer
 
 func _ready() -> void:
+	inventory = ItemsContainer.new(50, "PlayerInventory")
 	camera = $rotation_helper/model/Camera
 	rotation_helper = $rotation_helper
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -34,11 +46,25 @@ func _ready() -> void:
 	SaveData.connect("on_saving", self, "save_data")
 	SaveData.connect("on_loading", self, "load_data")
 	self.connect("tree_exiting", self, "save_data")
+	assert(inventory)
+
+func _process(delta: float) -> void:
+	hunger -= hunger_rate * delta
+	thirst -= thirst_rate * delta
+	oxygen -= oxygen_rate * delta
+	if hunger < 0:
+		GM.trigger_game_over()
+		call_deferred("set", "hunger", 1.0)
+	if thirst < 0:
+		GM.trigger_game_over()
+		call_deferred("set", "thirst", 1.0)
+	if oxygen < 0:
+		GM.trigger_game_over()
+		call_deferred("set", "oxygen", 1.0)
 	
 func _physics_process(delta: float) -> void:
 	process_input(delta)
 	process_movement(delta)
-
 
 func process_input(_delta : float) -> void:
 	dir = Vector3()
@@ -91,10 +117,14 @@ func _input(event: InputEvent) -> void:
 			do_interact()
 		if event.is_action_pressed("attack"):
 			do_attack()
-	if Input.is_action_pressed("ui_cancel"):
-		var pause_menu :PackedScene= load(PAUSE_MENU_SCENE)
-		get_tree().current_scene.add_child(pause_menu.instance())
+	if event.is_action_pressed("ui_cancel"):
+		open_menu(PAUSE_MENU_SCENE)
+	if event.is_action_pressed("open_inventory"):
+		open_menu(INVENTORY_MENU_SCENE)
 
+func open_menu(path : String) -> void:
+		var menu :PackedScene= load(path)
+		get_tree().current_scene.add_child(menu.instance())
 
 func do_interact() -> void:
 	if raycast.interact():
@@ -107,7 +137,7 @@ func do_attack() -> void:
 		anim.play("cannot_attack")
 
 func get_inventory() -> ItemsContainer:
-	return inventory as ItemsContainer
+	return inventory
 
 
 func _on_RayCast_on_start_can_attack() -> void:
@@ -126,9 +156,11 @@ func _on_RayCast_on_end_can_interact() -> void:
 const save_vars := [
 	# variable paths for values to save
 	# this could be extrapolated to a seperate node for resuability
-	"inventory:items",
 	"transform",
-	"rotation_helper:rotation"
+	"rotation_helper:rotation",
+	"hunger",
+	"thirst",
+	"oxygen"
 ]
 
 func load_data() -> void:
@@ -138,9 +170,14 @@ func load_data() -> void:
 	for key in save_vars:
 		if data.has(key):
 			set_indexed(key, data[key])
+	if data.has("inventory"):
+		var ids := data["inventory"] as Array
+		inventory.clear()
+		inventory.load_from_ids(ids)
 
 func save_data() -> void:
 	var data := {}
 	for key in save_vars:
 		data[key] = get_indexed(key)
+	data["inventory"] = inventory.get_as_ids()
 	SaveData.save_custom_data(CUSTOM_DATA_SUFFIX, data)

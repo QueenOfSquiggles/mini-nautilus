@@ -72,6 +72,7 @@ GM="*res://scripts/autoload/GameManager.gd"
 TimeSlice="*res://scripts/autoload/TimeSlice.gd"
 SceneManagement="*res://scripts/autoload/SceneManagement.gd"
 SaveData="*res://scripts/autoload/SaveData.gd"
+Items="*res://scripts/autoload/Items.tscn"
 
 [editor_plugins]
 
@@ -133,6 +134,11 @@ attack={
 screenshot_fuckup_prevention={
 "deadzone": 0.5,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777238,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+open_inventory={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777218,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
  ]
 }
 

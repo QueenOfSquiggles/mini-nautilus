@@ -24,6 +24,9 @@ const DIRS := [
 	Vector3(-1,-1,-3),
 ]
 
+const MAX_Y_POI_LOCATION := 100 # based off on testing in game
+
+
 const POI_INFLUENCE := 5.0
 const POI_RANGE_ALL := 100.0
 const POI_RANGE := Vector3(POI_RANGE_ALL,POI_RANGE_ALL,POI_RANGE_ALL)
@@ -83,6 +86,8 @@ func get_dir(index : int) -> Vector3:
 func create_new_poi() -> void:
 	# TODO also set a timer for this in case the fish gets stuck?
 	poi = global_transform.origin + POI_RANGE * rand_vec3()
+	# this keeps them from swimming above the surface
+	poi.y = min(poi.y, MAX_Y_POI_LOCATION)
 
 func get_steer_dir() -> Vector3:
 	var composite := Vector3()
@@ -142,4 +147,3 @@ func draw_debug_info() -> void:
 func on_attacked() -> void:
 	(ItemFishResource as Item).drop_into_world(global_transform.origin, get_tree().current_scene)
 	queue_free()
-

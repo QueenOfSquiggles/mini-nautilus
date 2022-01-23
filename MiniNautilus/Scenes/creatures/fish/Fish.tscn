@@ -51,7 +51,7 @@ tracks/0/keys = {
 "values": [ Vector3( 9, 3, 3 ), Vector3( 12, 2, 3 ), Vector3( 9, 3, 3 ) ]
 }
 
-[node name="Fish" type="KinematicBody"]
+[node name="Fish" type="KinematicBody" groups=["fish"]]
 script = ExtResource( 1 )
 ItemFishResource = ExtResource( 2 )
 

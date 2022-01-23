@@ -89,14 +89,12 @@ func _ready() -> void:
 	if queued_settings.empty():
 		queued_settings = default_settings.duplicate(true)
 		save_settings()
-	# TODO : how can I apply saved settings without using the pause menu?
 	propogate_changes()
 	connect("tree_exiting", self, "save_settings")
 	SaveData.connect("on_saving", self, "save_settings")
 	create_menu_items()
-	
+
 func save_settings() -> void:
-	#print("Saving GFX settings : ", queued_settings)
 	SaveData.save_custom_data(SAVE_SUFFIX, queued_settings)	
 
 
@@ -125,6 +123,10 @@ func create_env_setting_dropdown(key : String) -> Control:
 	for option in names:
 		dropmenu.add_item(option)
 	dropmenu.connect("item_selected", self, "on_option_selected", [key])
+	
+	var prop_value = queued_settings["environment"][key]
+	var index = (dict["values"] as Array).find(prop_value)
+	dropmenu.select(index)
 	return split
 		
 		
@@ -133,10 +135,9 @@ func on_option_selected(index : int, property : String) -> void:
 	queued_settings["environment"][property] = value
 	propogate_changes()
 
-
-
 func propogate_changes() -> void:
 	if not try_set_current_environment():
+		# this effectively never runs
 		try_change_resource_file()
 
 func try_set_current_environment() -> bool:

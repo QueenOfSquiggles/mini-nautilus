@@ -78,6 +78,8 @@ var custom_save_suffix := "save_slot/"
 # a local queue for destruction. This is loaded 
 var destruction_queue := []
 
+const RESOURCE_RESPAWN_PROBABILITY := 0.25
+
 func load_save_data() -> void:
 	var file := open_file(get_current_save_name(), File.READ)
 	if not file:
@@ -90,9 +92,6 @@ func load_save_data() -> void:
 		line = file.get_line()
 	file.close()
 	if not destruction_queue.empty():
-		print("save data loaded : ", destruction_queue.size(), " objects to remove")
-		for node in destruction_queue:
-			print(node.name)
 		set_process(true)
 	emit_signal("on_loading")
 
@@ -133,8 +132,14 @@ func _process(_delta: float) -> void:
 	var num := min(destructions_per_frame, destruction_queue.size())
 	for i in range(num):
 		var entry :Node = destruction_queue[i]
-		print("Destroying node :", entry.name)
-		entry.queue_free()
+		if not is_instance_valid(entry):
+			continue
+		if randf() > RESOURCE_RESPAWN_PROBABILITY:
+			# eg 0.25 -> 75% chance removal
+			# so percentage still works as expected
+			entry.queue_free()
+		else:
+			print("Resource Respawn : ", entry.name, " -> ", entry)
 	for i in range(num):
 		destruction_queue.remove(0)
 

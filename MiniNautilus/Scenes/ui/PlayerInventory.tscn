@@ -1,0 +1,182 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Scenes/ui/PlayerMenuBase.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/ui/PlayerInventory.gd" type="Script" id=2]
+[ext_resource path="res://resources/implementations/recipes/RecipeDrink.tres" type="Resource" id=3]
+[ext_resource path="res://Scenes/ui/item_system/ItemContainerUI.tscn" type="PackedScene" id=4]
+[ext_resource path="res://resources/implementations/recipes/RecipeEat.tres" type="Resource" id=5]
+[ext_resource path="res://resources/implementations/recipes/RecipeWaterBottle.tres" type="Resource" id=6]
+
+[node name="PlayerInventory" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+recipe_eat_e = ExtResource( 5 )
+recipe_drink_e = ExtResource( 3 )
+recipe_water_bottle_e = ExtResource( 6 )
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer" index="0"]
+margin_left = 20.0
+margin_top = 20.0
+margin_right = 1004.0
+margin_bottom = 580.0
+custom_constants/margin_right = 50
+custom_constants/margin_top = 50
+custom_constants/margin_left = 50
+custom_constants/margin_bottom = 50
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer" index="0"]
+margin_left = 50.0
+margin_top = 50.0
+margin_right = 934.0
+margin_bottom = 510.0
+
+[node name="ItemContainerUI" parent="PanelContainer/MarginContainer/HBoxContainer" index="0" instance=ExtResource( 4 )]
+margin_left = 0.0
+margin_top = 0.0
+margin_right = 586.0
+margin_bottom = 460.0
+size_flags_horizontal = 3
+
+[node name="PanelContainer" type="PanelContainer" parent="PanelContainer/MarginContainer/HBoxContainer" index="1"]
+margin_left = 590.0
+margin_right = 884.0
+margin_bottom = 460.0
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.5
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/HBoxContainer/PanelContainer" index="0"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 287.0
+margin_bottom = 453.0
+custom_constants/margin_right = 20
+custom_constants/margin_top = 20
+custom_constants/margin_left = 20
+custom_constants/margin_bottom = 20
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="PanelContainer/MarginContainer/HBoxContainer/PanelContainer/MarginContainer" index="0"]
+margin_left = 20.0
+margin_top = 20.0
+margin_right = 260.0
+margin_bottom = 426.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer2" index="0"]
+margin_right = 240.0
+margin_bottom = 98.0
+size_flags_vertical = 3
+
+[node name="BtnEat" type="Button" parent="PanelContainer/MarginContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer" index="0"]
+margin_right = 240.0
+margin_bottom = 30.0
+size_flags_vertical = 3
+text = "Eat"
+
+[node name="BtnDrink" type="Button" parent="PanelContainer/MarginContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer" index="1"]
+margin_top = 34.0
+margin_right = 240.0
+margin_bottom = 64.0
+size_flags_vertical = 3
+text = "Drink"
+
+[node name="BtnCraftWater" type="Button" parent="PanelContainer/MarginContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer" index="2"]
+margin_top = 68.0
+margin_right = 240.0
+margin_bottom = 98.0
+size_flags_vertical = 3
+text = "Craft Water"
+
+[node name="StatHunger" type="PanelContainer" parent="PanelContainer/MarginContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer2" index="1"]
+margin_top = 102.0
+margin_right = 240.0
+margin_bottom = 201.0
+rect_min_size = Vector2( 0, 50 )
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/StatHunger" index="0"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 233.0
+margin_bottom = 92.0
+alignment = 1
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/StatHunger/HBoxContainer" index="0"]
+margin_top = 22.0
+margin_right = 226.0
+margin_bottom = 40.0
+text = "Hunger"
+align = 1
+valign = 1
+
+[node name="ProgressBar" type="ProgressBar" parent="PanelContainer/MarginContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/StatHunger/HBoxContainer" index="1"]
+margin_top = 44.0
+margin_right = 226.0
+margin_bottom = 62.0
+size_flags_horizontal = 3
+max_value = 1.0
+value = 0.7
+
+[node name="StatThirst" type="PanelContainer" parent="PanelContainer/MarginContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer2" index="2"]
+margin_top = 205.0
+margin_right = 240.0
+margin_bottom = 303.0
+rect_min_size = Vector2( 0, 50 )
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/StatThirst" index="0"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 233.0
+margin_bottom = 91.0
+alignment = 1
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/StatThirst/HBoxContainer" index="0"]
+margin_top = 22.0
+margin_right = 226.0
+margin_bottom = 40.0
+text = "Thirst"
+align = 1
+valign = 1
+
+[node name="ProgressBar" type="ProgressBar" parent="PanelContainer/MarginContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/StatThirst/HBoxContainer" index="1"]
+margin_top = 44.0
+margin_right = 226.0
+margin_bottom = 62.0
+size_flags_horizontal = 3
+max_value = 1.0
+value = 0.7
+
+[node name="StatOxygen" type="PanelContainer" parent="PanelContainer/MarginContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer2" index="3"]
+margin_top = 307.0
+margin_right = 240.0
+margin_bottom = 406.0
+rect_min_size = Vector2( 0, 50 )
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/StatOxygen" index="0"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 233.0
+margin_bottom = 92.0
+alignment = 1
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/StatOxygen/HBoxContainer" index="0"]
+margin_top = 22.0
+margin_right = 226.0
+margin_bottom = 40.0
+text = "Oxygen"
+align = 1
+valign = 1
+
+[node name="ProgressBar" type="ProgressBar" parent="PanelContainer/MarginContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/StatOxygen/HBoxContainer" index="1"]
+margin_top = 44.0
+margin_right = 226.0
+margin_bottom = 62.0
+size_flags_horizontal = 3
+max_value = 1.0
+value = 0.7
+
+[connection signal="pressed" from="PanelContainer/MarginContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer/BtnEat" to="." method="_on_BtnEat_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer/BtnDrink" to="." method="_on_BtnDrink_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer/BtnCraftWater" to="." method="_on_BtnCraftWater_pressed"]

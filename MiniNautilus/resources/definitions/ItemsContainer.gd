@@ -10,13 +10,20 @@ export var inventory_size := 0
 
 export (Array, Resource) var items := []
 
+func _init(size : int, name : String = "Generated") -> void:
+	self.inventory_size = size
+	self.container_name = name
+	ensure_full()
+
 func ensure_full() -> void:
 	if inventory_size > items.size():
 		for i in range(inventory_size - items.size()):
 			items.append(null)
-		print("Items ready in '", container_name, "' : ", items)
+		#print("Items ready in '", container_name, "' : ", items)
 
 func add_item(item : Item) -> Item:
+	if item == null:
+		return null
 	for index in range(items.size()):
 		if items[index] == null:
 			# empty slot for item. put it in and return
@@ -68,3 +75,20 @@ func get_item(index : int) -> Item:
 func is_valid_index(index : int) -> bool:
 	ensure_full() # <-- make sure there are slots for fixed size inventories
 	return index >= 0 and index < items.size()
+	
+func clear() -> void:
+	for i in range(items.size()):
+		items[i] = null
+
+func get_as_ids() -> Array:
+	var ids := []
+	for item in items:
+		if item:
+			ids.append(Items.get_id(item))
+	return ids
+
+func load_from_ids(ids : Array) -> void:
+	for i in ids:
+		var item := Items.get_item(i) as Item
+		if item:
+			add_item(item)

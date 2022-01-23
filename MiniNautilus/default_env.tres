@@ -5,11 +5,14 @@
 [resource]
 background_mode = 2
 background_sky = SubResource( 1 )
+background_color = Color( 1, 1, 1, 1 )
 ambient_light_color = Color( 1, 1, 1, 1 )
+ambient_light_sky_contribution = 0.0
 fog_sun_color = Color( 1, 1, 1, 1 )
 fog_depth_end = 398.3
 fog_depth_curve = 4.14106
 fog_transmit_curve = 5.09824
+glow_enabled = true
 glow_intensity = 1.46
 glow_strength = 0.71
 glow_bloom = 0.11

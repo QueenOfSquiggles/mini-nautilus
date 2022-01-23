@@ -15,3 +15,7 @@ func set_up_player(player : KinematicBody) -> void:
 	player_hud = player.get_node("HUD")
 	emit_signal("on_player_setup")
 
+func trigger_game_over() -> void:
+	print("Gameover hit!")
+	SaveData.load_save_data()
+	#TODO : this is super jank but gets the job done

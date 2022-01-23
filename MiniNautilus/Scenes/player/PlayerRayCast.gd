@@ -20,7 +20,10 @@ signal on_end_can_interact
 func _physics_process(_delta: float) -> void:
 	if is_colliding():
 		var colliding = get_collider()
-		if colliding == cached_colliding_obj:
+		if colliding == cached_colliding_obj and player_hud.is_tooltip_visible() and can_interact:
+			var obj_pos := cached_colliding_obj.global_transform.origin
+			var pos = camera.unproject_position(obj_pos)
+			player_hud.set_tooltip_pos(pos)
 			return
 		if colliding.has_method("get_interact_text"):
 			$Timer.stop()

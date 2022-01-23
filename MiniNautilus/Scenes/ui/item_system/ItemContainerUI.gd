@@ -3,17 +3,26 @@ extends GridContainer
 
 const Slot := preload("res://Scenes/ui/item_system/InventorySlotUI.tscn")
 
-export (Resource) var target_items_container : Resource
 export var disable_drag_and_drop := false
 
 var container : ItemsContainer
 
 func _ready() -> void:
-	container = target_items_container as ItemsContainer
+	call_deferred("post_ready")
+
+func post_ready() -> void:
+	yield(VisualServer, "frame_post_draw")
+	var player :Node = GM.player_node
+	var inv = player.get_inventory()
+	container = inv as ItemsContainer
 	# assert to keep me sane
+	if not container:
+		GM.connect("on_player_setup", self, "post_ready")
+		return
 	assert(container, "Container is not assigned to a valid ItemsContainer")
 	container.connect("items_changed", self, "on_items_changed")
 	refresh_entire_display() # initializes needed slots and fills them with their items
+	
 
 func refresh_entire_display() -> void:
 	var target = container.inventory_size

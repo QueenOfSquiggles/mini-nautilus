@@ -18,8 +18,10 @@ func interact(interacted_with) -> void:
 	print("Object ", self.name, " was interacted with by ", interacted_with)
 
 	if interacted_with and interacted_with.has_method("get_inventory"):
-		var inv := interacted_with.get_inventory() as ItemsContainer
+		var temp = interacted_with.get_inventory()
+		var inv := temp as ItemsContainer
 		if not inv:
+			print("[", interacted_with, "] has a null inventory!")
 			return
 		var returned_item = inv.add_item(item)
 		if returned_item:
