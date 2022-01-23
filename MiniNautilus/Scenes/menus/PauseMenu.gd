@@ -6,6 +6,8 @@ enum State {
 	NORMAL=0, OPTIONS=1
 }
 
+onready var sound_lib : SoundLib = $SoundLib_UI
+
 var current_state :int = State.NORMAL # setup invalid value so ready func calls the enter value
 
 onready var OptionsMenuSlider : UISlide = $OptionsMenu/UiSlide
@@ -43,14 +45,18 @@ func on_enter_options() -> void:
 
 func _on_OptionsMenu_on_return_button_pressed() -> void:
 	set_state(State.NORMAL)
+	sound_lib.play("succeed")
 
 func _on_BtnSave_pressed() -> void:
 	SaveData.save_data()
+	sound_lib.play("succeed")
 
 func _on_BtnOptions_pressed() -> void:
 	set_state(State.OPTIONS)
+	sound_lib.play("succeed")
 
 func _on_BtnMainMenu_pressed() -> void:
+	sound_lib.play("succeed")
 	leave_pause()
 	SceneManagement.load_scene("res://Scenes/menus/MainMenu.tscn", true)
 
@@ -59,11 +65,11 @@ func _on_BtnReturn_pressed() -> void:
 		GM.player_hud.visible = true
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	leave_pause()
+	sound_lib.play("succeed")
 
 func leave_pause() -> void:
 	get_tree().paused = false
 	queue_free()
-	
 
 func _input(event: InputEvent) -> void:
 	if not accept_inputs:

@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Scenes/menus/PauseMenu.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/menus/OptionsMenu.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/ui/UiSlide.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/sfx/SoundLib_UI.tscn" type="PackedScene" id=4]
 
 [node name="PauseMenu" type="CanvasLayer"]
 pause_mode = 2
@@ -32,6 +33,7 @@ margin_bottom = 364.0
 margin_right = 116.0
 margin_bottom = 14.0
 text = "Pause Menu"
+align = 1
 
 [node name="Control" type="Control" parent="CenterMenu/PanelContainer/VBoxContainer"]
 margin_top = 18.0
@@ -93,6 +95,8 @@ margin_right = 148.0
 pause_mode = 2
 SlideStyleOption = 0
 InputActionName = ""
+
+[node name="SoundLib_UI" parent="." instance=ExtResource( 4 )]
 
 [connection signal="pressed" from="CenterMenu/PanelContainer/VBoxContainer/BtnReturn" to="." method="_on_BtnReturn_pressed"]
 [connection signal="pressed" from="CenterMenu/PanelContainer/VBoxContainer/BtnSave" to="." method="_on_BtnSave_pressed"]

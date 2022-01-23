@@ -80,6 +80,14 @@ var destruction_queue := []
 
 const RESOURCE_RESPAWN_PROBABILITY := 0.25
 
+func does_save_data_exist() -> bool:
+	var file := open_file(get_current_save_name(), File.READ)
+	if not file:
+		return false
+	var flag := file.file_exists(get_current_save_name())
+	file.close()
+	return flag
+
 func load_save_data() -> void:
 	var file := open_file(get_current_save_name(), File.READ)
 	if not file:
@@ -151,7 +159,9 @@ func open_file(path: String, open_flags) -> File:
 	var file := File.new()
 	var err := file.open(path, open_flags)
 	if err != OK:
+		print("failed to open file : ", path)
 		return null
+	#print("Opened file [", path, "]")
 	return file
 
 func ensure_filepath(path : String) -> void:
@@ -193,3 +203,35 @@ func load_custom_data(suffix : String) -> Dictionary:
 	var data := v as Dictionary
 	file.close()
 	return data
+
+func delete_data() -> void:
+	print("Deleting save data for : ", get_current_save_dir())
+	delete_dir(get_current_save_dir())
+
+func delete_dir(path : String) -> void:
+	var dir := Directory.new()
+	if not dir.dir_exists(get_current_save_dir()):
+		# directory already deleted
+		return
+	if dir.open(get_current_save_dir()) != OK:
+		return
+	dir.list_dir_begin()
+	var filename := dir.get_next()
+	var queue := []
+	while filename:
+		if dir.current_is_dir():
+			if not (filename == ".." or filename == "."):				
+				var f_path := path + filename
+				print("Adding dir to queue : ", f_path)
+				delete_dir(f_path)
+		else:
+			queue.append(filename)
+		filename = dir.get_next()
+	dir.list_dir_end()
+
+	for file in queue:
+		print("Deleted file : ", file)
+		dir.remove(file)
+	dir.remove(path)
+	print("Deleted dir : ", path)
+	

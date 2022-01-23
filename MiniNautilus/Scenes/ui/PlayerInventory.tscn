@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Scenes/ui/PlayerMenuBase.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/ui/PlayerInventory.gd" type="Script" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://Scenes/ui/item_system/ItemContainerUI.tscn" type="PackedScene" id=4]
 [ext_resource path="res://resources/implementations/recipes/RecipeEat.tres" type="Resource" id=5]
 [ext_resource path="res://resources/implementations/recipes/RecipeWaterBottle.tres" type="Resource" id=6]
+[ext_resource path="res://Scenes/sfx/SoundLib_UI.tscn" type="PackedScene" id=7]
 
 [node name="PlayerInventory" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
@@ -176,6 +177,8 @@ margin_bottom = 62.0
 size_flags_horizontal = 3
 max_value = 1.0
 value = 0.7
+
+[node name="SoundLib_UI" parent="." index="1" instance=ExtResource( 7 )]
 
 [connection signal="pressed" from="PanelContainer/MarginContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer/BtnEat" to="." method="_on_BtnEat_pressed"]
 [connection signal="pressed" from="PanelContainer/MarginContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer/BtnDrink" to="." method="_on_BtnDrink_pressed"]

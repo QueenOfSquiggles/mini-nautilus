@@ -1,10 +1,11 @@
-[gd_scene load_steps=33 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://models/personal/suppert.material" type="Material" id=1]
 [ext_resource path="res://models/personal/sphere.material" type="Material" id=2]
 [ext_resource path="res://models/personal/disk.material" type="Material" id=3]
 [ext_resource path="res://Scenes/props/workstation/RadioTower.gd" type="Script" id=4]
 [ext_resource path="res://Scenes/ui/crafting/RadioTowerMenu.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/sfx/SoundLib_RadioTower.tscn" type="PackedScene" id=6]
 
 [sub_resource type="SphereMesh" id=41]
 
@@ -144,6 +145,9 @@ script = ExtResource( 4 )
 interaction_text = "Radio Tower"
 num_interacts = -1
 workstation_menu = ExtResource( 5 )
+
+[node name="SoundLib_RadioTower" parent="." instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 245.492, 0 )
 
 [node name="Extras" type="Spatial" parent="."]
 

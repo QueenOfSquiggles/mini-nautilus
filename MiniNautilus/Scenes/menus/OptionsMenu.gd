@@ -69,6 +69,7 @@ const managed_settings := {
 }
 const default_settings := {
 	"environment" : {
+		"fog_enabled" : true,
 		"glow_enabled":  true,
 		"ss_reflections_enabled": false,
 		"ssao_enabled": false,

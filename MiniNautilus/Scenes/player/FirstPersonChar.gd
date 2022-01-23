@@ -45,7 +45,6 @@ func _ready() -> void:
 	GM.set_up_player(self)
 	SaveData.connect("on_saving", self, "save_data")
 	SaveData.connect("on_loading", self, "load_data")
-	self.connect("tree_exiting", self, "save_data")
 	assert(inventory)
 
 func _process(delta: float) -> void:
@@ -121,6 +120,8 @@ func _input(event: InputEvent) -> void:
 		open_menu(PAUSE_MENU_SCENE)
 	if event.is_action_pressed("open_inventory"):
 		open_menu(INVENTORY_MENU_SCENE)
+	if event.is_action_pressed("toggle_hud"):
+		GM.player_hud.visible = not GM.player_hud.visible
 
 func open_menu(path : String) -> void:
 		var menu :PackedScene= load(path)

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/interact-02.ogg-bda8e035955e2c463cb3210bb5970c04.oggstr"
+
+[deps]
+
+source_file="res://sfx/interact/interact-02.ogg"
+dest_files=[ "res://.import/interact-02.ogg-bda8e035955e2c463cb3210bb5970c04.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

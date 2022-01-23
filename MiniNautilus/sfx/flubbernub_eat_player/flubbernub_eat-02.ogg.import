@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/flubbernub_eat-02.ogg-a57fc740debfdf5c9271a03341040603.oggstr"
+
+[deps]
+
+source_file="res://sfx/flubbernub_eat_player/flubbernub_eat-02.ogg"
+dest_files=[ "res://.import/flubbernub_eat-02.ogg-a57fc740debfdf5c9271a03341040603.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

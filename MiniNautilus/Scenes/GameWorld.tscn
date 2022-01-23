@@ -506,7 +506,7 @@ transform = Transform( -0.442355, -3.68824, 0.255495, 1.307, -1.22397, -1.45209,
 transform = Transform( 2.79545, -2.97715, 0, 2.03838, 1.26705, 0, 0, 0, 4.85513, 433.078, 0.647717, 133.506 )
 
 [node name="Rock001_30" parent="StaticWorldObjects" instance=ExtResource( 17 )]
-transform = Transform( -3.1477, -3.26193, 0, 3.26193, -3.1477, 0, 0, 0, 4.53302, 446.693, 91.9219, 117.184 )
+transform = Transform( -3.1477, -3.26193, 0, 1.27963, -1.23481, 0, 0, 0, 4.53302, 446.693, 91.9219, 117.184 )
 
 [node name="Rock001_31" parent="StaticWorldObjects" instance=ExtResource( 17 )]
 transform = Transform( 1.40559, 0.851826, 0.349689, 0, 0.638135, -1.55447, -0.92081, 1.30029, 0.533792, 415.657, 79.0831, 68.7209 )
@@ -530,7 +530,7 @@ transform = Transform( -0.243417, 1.55977, 0, 1.98447, 0.309695, -1.87498, -1.85
 transform = Transform( -0.459764, 0, -2.72784, 0, 1.74899, 0, 2.66419, 0, -0.449035, 262.577, 41.6427, 109.868 )
 
 [node name="Rock001_38" parent="StaticWorldObjects" instance=ExtResource( 17 )]
-transform = Transform( 2.25364, 0, -1.73166, 4.73518, 0.923964, 6.16254, 0.204435, -2.82222, 0.266059, 259.268, 94.8402, 104.175 )
+transform = Transform( 2.25364, 0, -1.73166, 0.653704, 0.127556, 0.850755, 0.204435, -2.82222, 0.266059, 259.268, 94.8402, 104.175 )
 
 [node name="Rock001_39" parent="StaticWorldObjects" instance=ExtResource( 17 )]
 transform = Transform( 1.72253, 0.244797, 0.838824, 0.873814, -0.482563, -1.65356, 0, 1.85415, -0.541103, 259.745, 43.1433, 133.795 )
@@ -1149,7 +1149,7 @@ __meta__ = {
 }
 
 [node name="FirstPersonChar" parent="Dynamics" instance=ExtResource( 29 )]
-transform = Transform( -0.1529, 0, 0.988242, 0, 1, 0, -0.988242, 0, -0.1529, 332.767, -12.3414, 215.72 )
+transform = Transform( 0.996703, 0, -0.0811381, 0, 1, 0, 0.0811381, 0, 0.996703, 150.525, 100.682, 258.107 )
 
 [node name="DefaultFishManager" parent="Dynamics" instance=ExtResource( 24 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 369.162, 9.4835, 202.507 )

@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Scenes/menus/CreditsMenu.gd" type="Script" id=1]
 [ext_resource path="res://resources/theme/ui_theme.tres" type="Theme" id=2]
+[ext_resource path="res://textures/menus/credits_screen.png" type="Texture" id=3]
 
 [node name="CreditsMenu" type="Control"]
 anchor_right = 1.0
@@ -12,21 +13,317 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="."]
-margin_left = 224.0
-margin_top = 128.0
-margin_right = 276.0
-margin_bottom = 142.0
-text = "CREDITS"
+[node name="TextureRect" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 3 )
+expand = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="BtnMainMenu" type="Button" parent="."]
+anchor_top = 1.0
+anchor_bottom = 1.0
 margin_left = 32.0
-margin_top = 448.0
-margin_right = 125.0
-margin_bottom = 468.0
-text = "Main Menuw"
+margin_top = -56.0
+margin_right = 134.0
+margin_bottom = -32.0
+text = "Main Menu"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_left = 32.0
+margin_top = -108.0
+margin_right = 480.0
+margin_bottom = 212.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 441.0
+margin_bottom = 313.0
+custom_constants/margin_right = 20
+custom_constants/margin_top = 20
+custom_constants/margin_left = 20
+custom_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
+margin_left = 20.0
+margin_top = 20.0
+margin_right = 414.0
+margin_bottom = 286.0
+
+[node name="Title" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
+margin_right = 394.0
+margin_bottom = 18.0
+text = "CREDITS"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Spacer" type="Control" parent="PanelContainer/MarginContainer/VBoxContainer"]
+margin_top = 22.0
+margin_right = 394.0
+margin_bottom = 38.0
+rect_min_size = Vector2( 0, 16 )
+
+[node name="Entry" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+margin_top = 42.0
+margin_right = 394.0
+margin_bottom = 60.0
+
+[node name="Heading" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/Entry"]
+margin_right = 99.0
+margin_bottom = 18.0
+text = "PolyHaven"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Spacer" type="Control" parent="PanelContainer/MarginContainer/VBoxContainer/Entry"]
+margin_left = 103.0
+margin_right = 135.0
+margin_bottom = 18.0
+rect_min_size = Vector2( 32, 16 )
+
+[node name="Details" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/Entry"]
+margin_left = 139.0
+margin_right = 394.0
+margin_bottom = 18.0
+size_flags_horizontal = 3
+text = "Textures"
+align = 2
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Entry2" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+margin_top = 64.0
+margin_right = 394.0
+margin_bottom = 82.0
+
+[node name="Heading" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/Entry2"]
+margin_right = 93.0
+margin_bottom = 18.0
+text = "AmbientCG"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Spacer" type="Control" parent="PanelContainer/MarginContainer/VBoxContainer/Entry2"]
+margin_left = 97.0
+margin_right = 129.0
+margin_bottom = 18.0
+rect_min_size = Vector2( 32, 16 )
+
+[node name="Details" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/Entry2"]
+margin_left = 133.0
+margin_right = 394.0
+margin_bottom = 18.0
+size_flags_horizontal = 3
+text = "Textures & Models"
+align = 2
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Entry3" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+margin_top = 86.0
+margin_right = 394.0
+margin_bottom = 104.0
+
+[node name="Heading" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/Entry3"]
+margin_right = 66.0
+margin_bottom = 18.0
+text = "Kenney"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Spacer" type="Control" parent="PanelContainer/MarginContainer/VBoxContainer/Entry3"]
+margin_left = 70.0
+margin_right = 102.0
+margin_bottom = 18.0
+rect_min_size = Vector2( 32, 16 )
+
+[node name="Details" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/Entry3"]
+margin_left = 106.0
+margin_right = 394.0
+margin_bottom = 18.0
+size_flags_horizontal = 3
+text = "Models, Font, Particles"
+align = 2
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Entry4" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+margin_top = 108.0
+margin_right = 394.0
+margin_bottom = 126.0
+
+[node name="Heading" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/Entry4"]
+margin_right = 64.0
+margin_bottom = 18.0
+text = "Garbaj"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Spacer" type="Control" parent="PanelContainer/MarginContainer/VBoxContainer/Entry4"]
+margin_left = 68.0
+margin_right = 100.0
+margin_bottom = 18.0
+rect_min_size = Vector2( 32, 16 )
+
+[node name="Details" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/Entry4"]
+margin_left = 104.0
+margin_right = 394.0
+margin_bottom = 18.0
+size_flags_horizontal = 3
+text = "Day/Night Cycle"
+align = 2
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Entry5" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+margin_top = 130.0
+margin_right = 394.0
+margin_bottom = 148.0
+
+[node name="Heading" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/Entry5"]
+margin_right = 142.0
+margin_bottom = 18.0
+text = "Dener Game Dev"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Spacer" type="Control" parent="PanelContainer/MarginContainer/VBoxContainer/Entry5"]
+margin_left = 146.0
+margin_right = 178.0
+margin_bottom = 18.0
+rect_min_size = Vector2( 32, 16 )
+
+[node name="Details" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/Entry5"]
+margin_left = 182.0
+margin_right = 394.0
+margin_bottom = 18.0
+size_flags_horizontal = 3
+text = "Water Shader"
+align = 2
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Entry6" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+margin_top = 152.0
+margin_right = 394.0
+margin_bottom = 170.0
+
+[node name="Heading" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/Entry6"]
+margin_right = 106.0
+margin_bottom = 18.0
+text = "HeartBeast"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Spacer" type="Control" parent="PanelContainer/MarginContainer/VBoxContainer/Entry6"]
+margin_left = 110.0
+margin_right = 142.0
+margin_bottom = 18.0
+rect_min_size = Vector2( 32, 16 )
+
+[node name="Details" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/Entry6"]
+margin_left = 146.0
+margin_right = 394.0
+margin_bottom = 18.0
+size_flags_horizontal = 3
+text = "Inventory system"
+align = 2
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Entry7" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+margin_top = 174.0
+margin_right = 394.0
+margin_bottom = 213.0
+
+[node name="Heading" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/Entry7"]
+margin_right = 200.0
+margin_bottom = 39.0
+rect_min_size = Vector2( 200, 0 )
+text = "OpenGameArt user \"rubberduck\""
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Spacer" type="Control" parent="PanelContainer/MarginContainer/VBoxContainer/Entry7"]
+margin_left = 204.0
+margin_right = 236.0
+margin_bottom = 39.0
+rect_min_size = Vector2( 32, 16 )
+
+[node name="Details" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/Entry7"]
+margin_left = 240.0
+margin_right = 394.0
+margin_bottom = 39.0
+size_flags_horizontal = 3
+text = "hand painted rocks"
+align = 2
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Entry8" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+margin_top = 217.0
+margin_right = 394.0
+margin_bottom = 235.0
+
+[node name="Heading" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/Entry8"]
+margin_right = 170.0
+margin_bottom = 18.0
+text = "QueenOfSquiggles"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Spacer" type="Control" parent="PanelContainer/MarginContainer/VBoxContainer/Entry8"]
+margin_left = 174.0
+margin_right = 206.0
+margin_bottom = 18.0
+rect_min_size = Vector2( 32, 16 )
+
+[node name="Details" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/Entry8"]
+margin_left = 210.0
+margin_right = 394.0
+margin_bottom = 18.0
+size_flags_horizontal = 3
+text = "All else"
+align = 2
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [connection signal="pressed" from="BtnMainMenu" to="." method="_on_BtnMainMenu_pressed"]

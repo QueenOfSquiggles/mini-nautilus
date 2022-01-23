@@ -40,6 +40,12 @@ func _refresh_display() -> void:
 	emit_signal("on_values_changed")
 	print("Radio Tower Status : ", copper, "/", COPPER_REQUIRED, "copper; ", plastics, "/", PLASTICS_REQUIRED, " plastics")
 	save_progress.save_data()
+	if copper >= COPPER_REQUIRED and plastics >= PLASTICS_REQUIRED:
+		on_tower_completed()
+
+func on_tower_completed() -> void:
+	GM.trigger_win_condition()
+	queue_free()
 
 func _on_BtnAddCopper_pressed() -> void:
 	if consume_copper.do_craft(_player_inv()):

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/radio_tower_ambient.ogg-635c9522c46d8746626c6c5821ae0433.oggstr"
+
+[deps]
+
+source_file="res://sfx/radio_tower_ambient/radio_tower_ambient.ogg"
+dest_files=[ "res://.import/radio_tower_ambient.ogg-635c9522c46d8746626c6c5821ae0433.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

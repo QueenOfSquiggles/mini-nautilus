@@ -5,6 +5,13 @@ export var PlayerChaseDistance := 60.0
 var chase_obj : Spatial
 var chasing_player := false
 
+onready var sound_lib :SoundLib= $SoundLib_Flubbernubs
+
+onready var idle_sound_timer :Timer = $IdleSoundTimer
+
+func _ready() -> void:
+	idle_sound_timer.start(5.0 + randf() * 5.0)
+ 
 func on_attacked() -> void:
 	pass # do nothing. No killing Lt. Flubbernubs
 	
@@ -14,7 +21,7 @@ func _physics_process(delta: float) -> void:
 		check_player()
 		#if chasing_player:
 		#	create_new_poi()
-		if chase_obj:
+		if chase_obj and is_instance_valid(chase_obj):
 			poi = chase_obj.global_transform.origin
 		else:
 			create_new_poi()
@@ -50,11 +57,13 @@ func create_new_poi() -> void:
 func on_begin_chase() -> void:
 	chasing_player = true
 	create_new_poi()
+	play_sound("start_chase")
 	print("Starting chase")
 
 func on_end_chase() -> void:
 	chasing_player = false
 	create_new_poi()
+	play_sound("end_chase")
 	print("Ending chase")
 
 func _on_KillZone_body_entered(body: Node) -> void:
@@ -64,4 +73,12 @@ func _on_KillZone_body_entered(body: Node) -> void:
 	if body.is_in_group("fish") or body.has_method("on_attacked"):
 		# fish was caught
 		body.on_attacked()
+		play_sound("eat")
 		create_new_poi()
+
+func play_sound(name : String) -> void:
+	sound_lib.play(name)
+	idle_sound_timer.start(5.0 + randf() * 5.0)
+
+func _on_IdleSoundTimer_timeout() -> void:
+	play_sound("idle")

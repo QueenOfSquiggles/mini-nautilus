@@ -1,7 +1,32 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Scenes/menus/MainMenu.gd" type="Script" id=1]
 [ext_resource path="res://resources/theme/ui_theme.tres" type="Theme" id=2]
+[ext_resource path="res://materials/water_material.tres" type="Material" id=3]
+[ext_resource path="res://models/imported/rocks/Rock001.tscn" type="PackedScene" id=4]
+[ext_resource path="res://textures/branding/game_logo.png" type="Texture" id=5]
+
+[sub_resource type="ProceduralSky" id=3]
+
+[sub_resource type="Environment" id=4]
+background_mode = 2
+background_sky = SubResource( 3 )
+fog_enabled = true
+fog_color = Color( 0, 0, 0, 1 )
+fog_depth_begin = 5.0
+fog_depth_end = 15.0
+fog_depth_curve = 0.183011
+
+[sub_resource type="PlaneMesh" id=1]
+size = Vector2( 20, 20 )
+
+[sub_resource type="SpatialMaterial" id=2]
+albedo_color = Color( 0, 0, 0, 1 )
+
+[sub_resource type="CubeMesh" id=5]
+
+[sub_resource type="SpatialMaterial" id=6]
+albedo_color = Color( 0, 0, 0, 1 )
 
 [node name="MainMenu" type="Control"]
 anchor_right = 1.0
@@ -15,10 +40,10 @@ __meta__ = {
 [node name="PanelContainer" type="PanelContainer" parent="."]
 anchor_top = 1.0
 anchor_bottom = 1.0
-margin_left = 64.0
-margin_top = -280.0
-margin_right = 206.0
-margin_bottom = -82.0
+margin_left = 32.0
+margin_top = -216.0
+margin_right = 216.0
+margin_bottom = -18.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -26,58 +51,45 @@ __meta__ = {
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
 margin_left = 7.0
 margin_top = 7.0
-margin_right = 135.0
+margin_right = 177.0
 margin_bottom = 191.0
 alignment = 1
 
 [node name="BtnPlay" type="Button" parent="PanelContainer/VBoxContainer"]
-margin_top = 18.0
-margin_right = 128.0
-margin_bottom = 42.0
+margin_top = 2.0
+margin_right = 170.0
+margin_bottom = 26.0
 text = "Play"
 
 [node name="Control" type="Control" parent="PanelContainer/VBoxContainer"]
-margin_top = 46.0
-margin_right = 128.0
-margin_bottom = 110.0
-rect_min_size = Vector2( 128, 64 )
+margin_top = 30.0
+margin_right = 170.0
+margin_bottom = 62.0
+rect_min_size = Vector2( 128, 32 )
 
 [node name="BtnCredits" type="Button" parent="PanelContainer/VBoxContainer"]
-margin_top = 114.0
-margin_right = 128.0
-margin_bottom = 138.0
+margin_top = 66.0
+margin_right = 170.0
+margin_bottom = 90.0
 text = "Credits"
 
 [node name="BtnQuit" type="Button" parent="PanelContainer/VBoxContainer"]
-margin_top = 142.0
-margin_right = 128.0
-margin_bottom = 166.0
+margin_top = 94.0
+margin_right = 170.0
+margin_bottom = 118.0
 text = "Exit"
 
-[node name="PanelContainer2" type="PanelContainer" parent="."]
-anchor_left = 1.0
-anchor_right = 1.0
-margin_left = -288.0
-margin_top = 64.0
-margin_right = -146.0
-margin_bottom = 110.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="CenterContainer" type="CenterContainer" parent="PanelContainer2"]
-margin_left = 7.0
-margin_top = 7.0
-margin_right = 135.0
-margin_bottom = 39.0
-
-[node name="Label" type="Label" parent="PanelContainer2/CenterContainer"]
-margin_right = 128.0
-margin_bottom = 32.0
+[node name="Control2" type="Control" parent="PanelContainer/VBoxContainer"]
+margin_top = 122.0
+margin_right = 170.0
+margin_bottom = 154.0
 rect_min_size = Vector2( 128, 32 )
-text = "MiniNautilus"
-align = 1
-valign = 1
+
+[node name="BtnDeleteSaveData" type="Button" parent="PanelContainer/VBoxContainer"]
+margin_top = 158.0
+margin_right = 170.0
+margin_bottom = 182.0
+text = "Delete Save Data"
 
 [node name="PanelContainer3" type="PanelContainer" parent="."]
 anchor_left = 1.0
@@ -85,9 +97,9 @@ anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = -352.0
-margin_top = -120.0
-margin_right = -109.0
-margin_bottom = -74.0
+margin_top = -88.0
+margin_right = -27.0
+margin_bottom = -35.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -107,6 +119,45 @@ For Godot Wild Jam #41"
 align = 1
 valign = 1
 
+[node name="bg_scene" type="Spatial" parent="."]
+
+[node name="Camera" type="Camera" parent="bg_scene"]
+transform = Transform( 1, 0, 0, 0, 0.881031, 0.473058, 0, -0.473058, 0.881031, -0.00123167, 1.561, 2.63838 )
+environment = SubResource( 4 )
+
+[node name="MeshInstance" type="MeshInstance" parent="bg_scene"]
+mesh = SubResource( 1 )
+material/0 = ExtResource( 3 )
+
+[node name="MeshInstance2" type="MeshInstance" parent="bg_scene"]
+transform = Transform( 2.22288, 0, 0, 0, 1, 0, 0, 0, 2.22288, 0, -2.10684, 0 )
+mesh = SubResource( 1 )
+material/0 = SubResource( 2 )
+
+[node name="Rock001_" parent="bg_scene" instance=ExtResource( 4 )]
+transform = Transform( 0.127575, 0, 0.281525, 0.257329, 0.12536, -0.116611, -0.114183, 0.282518, 0.0517429, -1.1464, 0.00134966, -1.08558 )
+
+[node name="MeshInstance3" type="MeshInstance" parent="bg_scene"]
+transform = Transform( 9.7171, 0, 0, 0, 7.85709, 0, 0, 0, 1, -0.394716, 0, -5.42076 )
+mesh = SubResource( 5 )
+material/0 = SubResource( 6 )
+
+[node name="DirectionalLight" type="DirectionalLight" parent="bg_scene"]
+transform = Transform( -0.250181, 0.605488, 0.755509, -0.0339545, -0.785331, 0.618144, 0.967604, 0.128995, 0.217034, 0, 3.52502, 0 )
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -448.0
+margin_bottom = 288.0
+texture = ExtResource( 5 )
+expand = true
+stretch_mode = 5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [connection signal="pressed" from="PanelContainer/VBoxContainer/BtnPlay" to="." method="_on_BtnPlay_pressed"]
 [connection signal="pressed" from="PanelContainer/VBoxContainer/BtnCredits" to="." method="_on_BtnCredits_pressed"]
 [connection signal="pressed" from="PanelContainer/VBoxContainer/BtnQuit" to="." method="_on_BtnQuit_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/BtnDeleteSaveData" to="." method="_on_BtnDeleteSaveData_pressed"]

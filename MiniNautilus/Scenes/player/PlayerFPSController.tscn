@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://Scenes/player/FirstPersonChar.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/player/PlayerRayCast.gd" type="Script" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://textures/item_icons/o2_tank_icon.png" type="Texture" id=8]
 [ext_resource path="res://textures/item_icons/water_bottle_icon.png" type="Texture" id=9]
 [ext_resource path="res://Scenes/player/PlayerStatsBar.gd" type="Script" id=10]
+[ext_resource path="res://Scenes/sfx/SoundLib_Player.tscn" type="PackedScene" id=11]
 
 [sub_resource type="CapsuleShape" id=1]
 height = 0.864072
@@ -154,6 +155,20 @@ tracks/1/keys = {
 "update": 0,
 "values": [ Vector3( 0, 0, 0 ), Vector3( 0, 0, 37.097 ), Vector3( 0, 0, -23.83 ), Vector3( 0, 0, 0 ) ]
 }
+tracks/2/type = "method"
+tracks/2/path = NodePath("SoundLib_Player")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "ui_fail" ],
+"method": "play"
+} ]
+}
 
 [sub_resource type="Animation" id=9]
 resource_name = "interact"
@@ -180,6 +195,20 @@ tracks/1/keys = {
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
 "values": [ Vector3( 0, 0, 0 ), Vector3( 0, 0, -49.867 ), Vector3( 0, 0, 0 ) ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath("SoundLib_Player")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "interact" ],
+"method": "play"
+} ]
 }
 
 [sub_resource type="Animation" id=8]
@@ -208,6 +237,20 @@ tracks/1/keys = {
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 0,
 "values": [ Vector3( 0, 0, 0 ), Vector3( -90, 0, 0 ), Vector3( 45, 0, 0 ), Vector3( 135, 0, 0 ), Vector3( 225, 0, 0 ), Vector3( 315, 0, 0 ), Vector3( 356.374, 0, 0 ), Vector3( 0, 0, 0 ) ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath("SoundLib_Player")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "attack" ],
+"method": "play"
+} ]
 }
 
 [sub_resource type="Animation" id=11]
@@ -488,6 +531,9 @@ anims/interact = SubResource( 9 )
 anims/knife_attack = SubResource( 8 )
 anims/knife_ready = SubResource( 11 )
 anims/knife_unready = SubResource( 12 )
+
+[node name="SoundLib_Player" parent="." instance=ExtResource( 11 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.72727 )
 
 [connection signal="on_end_can_attack" from="rotation_helper/model/Camera/RayCast" to="." method="_on_RayCast_on_end_can_attack"]
 [connection signal="on_end_can_interact" from="rotation_helper/model/Camera/RayCast" to="." method="_on_RayCast_on_end_can_interact"]

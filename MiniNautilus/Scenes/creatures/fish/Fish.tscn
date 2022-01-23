@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://Scenes/creatures/fish/Fish.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/creatures/fish/Chonkus.gd" type="Script" id=1]
 [ext_resource path="res://resources/implementations/items/ItemFish.tres" type="Resource" id=2]
 [ext_resource path="res://models/food_kit/fish.glb" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/sfx/SoundLib_Chonkus.tscn" type="PackedScene" id=4]
 
 [sub_resource type="CapsuleShape" id=2]
 radius = 0.5
@@ -51,7 +52,7 @@ tracks/0/keys = {
 "values": [ Vector3( 9, 3, 3 ), Vector3( 12, 2, 3 ), Vector3( 9, 3, 3 ) ]
 }
 
-[node name="Fish" type="KinematicBody" groups=["fish"]]
+[node name="Chonkus" type="KinematicBody" groups=["fish"]]
 script = ExtResource( 1 )
 ItemFishResource = ExtResource( 2 )
 
@@ -67,3 +68,11 @@ shape = SubResource( 2 )
 autoplay = "swimming"
 anims/RESET = SubResource( 4 )
 anims/swimming = SubResource( 3 )
+
+[node name="IdleSoundTimer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
+[node name="SoundLib_Chonkus" parent="." instance=ExtResource( 4 )]
+
+[connection signal="timeout" from="IdleSoundTimer" to="." method="_on_IdleSoundTimer_timeout"]

@@ -19,6 +19,8 @@ onready var stat_thirst := $"PanelContainer/MarginContainer/HBoxContainer/PanelC
 onready var stat_oxygen := $"PanelContainer/MarginContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/StatOxygen/HBoxContainer/ProgressBar"
 
 
+onready var sound_lib :SoundLib = $SoundLib_UI
+
 func _ready() -> void:
 	stat_hunger.value = GM.player_node.hunger
 	stat_thirst.value = GM.player_node.thirst
@@ -27,25 +29,25 @@ func _ready() -> void:
 
 func _on_BtnEat_pressed() -> void:
 	if does_player_have(recipe_eat):
-		print("Player ate!")
 		GM.player_node.hunger = min(GM.player_node.hunger + EAT_HUNGER_VALUE, 1.0)
 		stat_hunger.value = GM.player_node.hunger
+		sound_lib.play("succeed")
 	else:
-		print("Player is unable to eat")
+		sound_lib.play("fail")
 
 func _on_BtnDrink_pressed() -> void:
 	if does_player_have(recipe_drink):
-		print("Player drank!")
 		GM.player_node.thirst = min(GM.player_node.thirst + DRINK_THIRST_VALUE, 1.0)
 		stat_thirst.value = GM.player_node.thirst
+		sound_lib.play("succeed")
 	else:
-		print("Player is unable to drink")
+		sound_lib.play("fail")
 
 func _on_BtnCraftWater_pressed() -> void:
 	if does_player_have(recipe_water_bottle):
-		print("Player made a water bottle!")
+		sound_lib.play("succeed")
 	else:
-		print("Player is unable to craft bottle5")
+		sound_lib.play("fail")
 
 func does_player_have(recipe : Recipe) -> bool:
 	var inventory :ItemsContainer = GM.player_node.inventory

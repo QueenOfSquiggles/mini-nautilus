@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/ui_succeed.ogg-4ab596a0554eeb12ad5b71f5f6db2086.oggstr"
+
+[deps]
+
+source_file="res://sfx/ui_succeed/ui_succeed.ogg"
+dest_files=[ "res://.import/ui_succeed.ogg-4ab596a0554eeb12ad5b71f5f6db2086.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0
