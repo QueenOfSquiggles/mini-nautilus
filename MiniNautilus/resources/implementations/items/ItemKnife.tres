@@ -1,6 +1,6 @@
 [gd_resource type="Resource" load_steps=4 format=2]
 
-[ext_resource path="res://resources/definitions/Item.gd" type="Script" id=1]
+[ext_resource path="res://modules/item_system/Item.gd" type="Script" id=1]
 [ext_resource path="res://models/weapon_pack/knifeRound_smooth.png" type="Texture" id=2]
 [ext_resource path="res://Scenes/items/ItemKnife.tscn" type="PackedScene" id=3]
 

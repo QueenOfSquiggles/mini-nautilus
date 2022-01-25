@@ -10,6 +10,6 @@ func update_progress(stage : int, stage_count : int) -> void:
 	var stageF := float(stage)
 	var stage_countF := float(stage_count)
 	var progress := stageF / stage_countF
-	print("Progress : ", int(progress * 100.0), "% -> (", stage, " / ", stage_count, ")")
+	#print("Progress : ", int(progress * 100.0), "% -> (", stage, " / ", stage_count, ")")
 	prog_bar.value = progress
 	prog_label.text = LoadingString % [stage, stage_count]

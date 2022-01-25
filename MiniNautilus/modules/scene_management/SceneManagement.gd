@@ -4,7 +4,7 @@ extends Node
 An autoload script that manages changing scenes.
 """
 
-const LOADING_SCREEN_SCENE := "res://Scenes/menus/LoadingScreen.tscn"
+const LOADING_SCREEN_SCENE := "res://modules/scene_management/LoadingScreen.tscn"
 
 var loading_scene : LoadingScreen
 
@@ -62,7 +62,6 @@ func _process(delta: float) -> void:
 
 func set_new_scene(scene : PackedScene) -> void:
 	current_scene = scene
-	# TODO : find out if this is good enough
 	get_tree().change_scene_to(scene)
 	
 func update_progress() -> void:

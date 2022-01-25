@@ -81,6 +81,9 @@ func clear() -> void:
 		items[i] = null
 
 func get_as_ids() -> Array:
+	"""
+	Using the array of ids works better for serialization
+	"""
 	var ids := []
 	for item in items:
 		if item:
@@ -88,6 +91,10 @@ func get_as_ids() -> Array:
 	return ids
 
 func load_from_ids(ids : Array) -> void:
+	"""
+	Using the array of ids works better for serialization
+	this method does not automatically clear the inventory
+	"""
 	for i in ids:
 		var item := Items.get_item(i) as Item
 		if item:

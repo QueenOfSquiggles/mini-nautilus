@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://Scenes/menus/LoadingScreen.gd" type="Script" id=1]
+[ext_resource path="res://modules/scene_management/LoadingScreen.gd" type="Script" id=1]
 [ext_resource path="res://textures/menus/loading_screen.png" type="Texture" id=2]
 [ext_resource path="res://resources/theme/ui_theme.tres" type="Theme" id=3]
 
@@ -13,7 +13,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="background_image" type="TextureRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
 texture = ExtResource( 2 )

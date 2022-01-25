@@ -27,17 +27,17 @@ _global_script_classes=[ {
 "base": "Resource",
 "class": "Item",
 "language": "GDScript",
-"path": "res://resources/definitions/Item.gd"
+"path": "res://modules/item_system/Item.gd"
 }, {
 "base": "Resource",
 "class": "ItemsContainer",
 "language": "GDScript",
-"path": "res://resources/definitions/ItemsContainer.gd"
+"path": "res://modules/item_system/ItemsContainer.gd"
 }, {
 "base": "Control",
 "class": "LoadingScreen",
 "language": "GDScript",
-"path": "res://Scenes/menus/LoadingScreen.gd"
+"path": "res://modules/scene_management/LoadingScreen.gd"
 }, {
 "base": "Resource",
 "class": "Recipe",
@@ -77,10 +77,10 @@ config/icon="res://textures/branding/nautilus.png"
 [autoload]
 
 GM="*res://scripts/autoload/GameManager.gd"
-TimeSlice="*res://scripts/autoload/TimeSlice.gd"
-SceneManagement="*res://scripts/autoload/SceneManagement.gd"
+TimeSlice="*res://modules/optimization/TimeSlice.gd"
+SceneManagement="*res://modules/scene_management/SceneManagement.gd"
 SaveData="*res://modules/serialization/SaveData.gd"
-Items="*res://scripts/autoload/Items.tscn"
+Items="*res://modules/item_system/Items.tscn"
 
 [editor_plugins]
 

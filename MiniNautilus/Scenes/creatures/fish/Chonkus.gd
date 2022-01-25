@@ -1,4 +1,4 @@
-extends "res://Scenes/creatures/fish/Fish.gd"
+extends "res://modules/context_based_steering/CBSAgent3D.gd"
 
 onready var idle_sound_timer := $IdleSoundTimer
 onready var sound_lib : SoundLib = $SoundLib_Chonkus

@@ -1,4 +1,4 @@
-extends "res://Scenes/creatures/fish/Fish.gd"
+extends "res://modules/context_based_steering/CBSAgent3D.gd"
 
 export var PlayerChaseDistance := 60.0
 

@@ -1,4 +1,7 @@
 extends Node
+"""
+An Autoload script for handling item system registration. Essentially a conversion utility between item resource references and item ids
+"""
 
 export (Array, Resource) var registered_items := []
 
