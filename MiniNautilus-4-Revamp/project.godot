@@ -1,0 +1,199 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+_global_script_classes=[{
+"base": "Control",
+"class": &"DebugDraw",
+"language": &"GDScript",
+"path": "res://Scenes/DebugLines.gd"
+}, {
+"base": "Resource",
+"class": &"Item",
+"language": &"GDScript",
+"path": "res://resources/definitions/Item.gd"
+}, {
+"base": "Node",
+"class": &"SoundLib",
+"language": &"GDScript",
+"path": "res://Scenes/sfx/SoundLib.gd"
+}, {
+"base": "VisualShaderNodeCustom",
+"class": &"VisualShaderNodeAntiTiling3D",
+"language": &"GDScript",
+"path": "res://addons/terrain-gpu/Shader/VisualShaderNodeAntiTiling3D.gd"
+}, {
+"base": "VisualShaderNodeCustom",
+"class": &"VisualShaderNodeDepthBlending3D",
+"language": &"GDScript",
+"path": "res://addons/terrain-gpu/Shader/VisualShaderNodeDepthBlending3D.gd"
+}, {
+"base": "VisualShaderNodeCustom",
+"class": &"VisualShaderNodeNoisePerlin2D",
+"language": &"GDScript",
+"path": "res://addons/terrain-gpu/Shader/VisualShaderNodeNoisePerlin2D.gd"
+}, {
+"base": "VisualShaderNodeCustom",
+"class": &"VisualShaderNodeSplatmapHeight3D",
+"language": &"GDScript",
+"path": "res://addons/terrain-gpu/Shader/VisualShaderNodeSplatmapHeight3D.gd"
+}, {
+"base": "VisualShaderNodeCustom",
+"class": &"VisualShaderNodeTerrainGenerator3D",
+"language": &"GDScript",
+"path": "res://addons/terrain-gpu/Shader/VisualShaderNodeTerrainGenerator3D.gd"
+}, {
+"base": "VisualShaderNodeCustom",
+"class": &"VisualShaderNodeTerrainMaterial3D",
+"language": &"GDScript",
+"path": "res://addons/terrain-gpu/Shader/VisualShaderNodeTerrainMaterial3D.gd"
+}, {
+"base": "VisualShaderNodeCustom",
+"class": &"VisualShaderNodeTexturePack3D",
+"language": &"GDScript",
+"path": "res://addons/terrain-gpu/Shader/VisualShaderNodeTexturePack3D.gd"
+}, {
+"base": "VisualShaderNodeCustom",
+"class": &"VisualShaderNodeTextureUnpack3D",
+"language": &"GDScript",
+"path": "res://addons/terrain-gpu/Shader/VisualShaderNodeTextureUnpack3D.gd"
+}, {
+"base": "VisualShaderNodeCustom",
+"class": &"VisualShaderNodeUVMultiply3D",
+"language": &"GDScript",
+"path": "res://addons/terrain-gpu/Shader/VisualShaderNodeUVMultiply3D.gd"
+}]
+_global_script_class_icons={
+"DebugDraw": "",
+"Item": "",
+"SoundLib": "",
+"VisualShaderNodeAntiTiling3D": "",
+"VisualShaderNodeDepthBlending3D": "",
+"VisualShaderNodeNoisePerlin2D": "",
+"VisualShaderNodeSplatmapHeight3D": "",
+"VisualShaderNodeTerrainGenerator3D": "",
+"VisualShaderNodeTerrainMaterial3D": "",
+"VisualShaderNodeTexturePack3D": "",
+"VisualShaderNodeTextureUnpack3D": "",
+"VisualShaderNodeUVMultiply3D": ""
+}
+
+[application]
+
+config/name="G4 Port - MiniNautilus"
+config/description="A short subnautica clone made for GodotWild Jam #41"
+run/main_scene="res://Scenes/menus/MainMenu.tscn"
+config/features=PackedStringArray("4.0")
+boot_splash/bg_color=Color(0, 0, 0, 1)
+config/icon="res://textures/branding/nautilus.png"
+
+[autoload]
+
+GM="*res://scripts/autoload/GameManager.gd"
+TimeSlice="*res://scripts/autoload/TimeSlice.gd"
+SceneManagement="*res://scripts/autoload/SceneManagement.gd"
+SaveData="*res://scripts/autoload/SaveData.gd"
+Items="*res://scripts/autoload/Items.tscn"
+
+[dotnet]
+
+project/assembly_name="MiniNautilus"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/SIsilicon.vfx.godrays/plugin.cfg")
+
+[global]
+
+gravity=false
+
+[importer_defaults]
+
+ogg_vorbis={
+"loop": false,
+"loop_offset": 0
+}
+
+[input]
+
+ui_accept={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":0,"unicode":0,"echo":false,"script":null)
+, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":0,"unicode":0,"echo":false,"script":null)
+, Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":0,"button_index":0,"pressure":0.0,"pressed":false,"script":null)
+]
+}
+move_forwards={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":0,"unicode":0,"echo":false,"script":null)
+]
+}
+move_back={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":0,"unicode":0,"echo":false,"script":null)
+]
+}
+move_left={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":0,"unicode":0,"echo":false,"script":null)
+]
+}
+move_right={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":0,"unicode":0,"echo":false,"script":null)
+]
+}
+move_global_up={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":0,"unicode":0,"echo":false,"script":null)
+]
+}
+move_global_down={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":0,"unicode":0,"echo":false,"script":null)
+]
+}
+interact={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":0,"unicode":0,"echo":false,"script":null)
+]
+}
+attack={
+"deadzone": 0.5,
+"events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":0,"position":Vector2(0, 0),"global_position":Vector2(0, 0),"factor":1.0,"button_index":1,"pressed":false,"double_click":false,"script":null)
+]
+}
+screenshot_fuckup_prevention={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":0,"unicode":0,"echo":false,"script":null)
+]
+}
+open_inventory={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":0,"unicode":0,"echo":false,"script":null)
+]
+}
+toggle_hud={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":0,"unicode":0,"echo":false,"script":null)
+]
+}
+
+[physics]
+
+3d/default_gravity=4.0
+common/physics_fps=30
+common/enable_pause_aware_picking=true
+
+[rendering]
+
+environment/default_environment="res://default_env.tres"
+quality/godrays/sample_number=50
+quality/godrays/use_pcf5=false
+quality/godrays/dither_amount=1.0

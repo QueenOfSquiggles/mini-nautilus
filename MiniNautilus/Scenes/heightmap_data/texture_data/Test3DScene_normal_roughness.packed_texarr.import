@@ -1,0 +1,18 @@
+[remap]
+
+importer="hterrain_packed_texture_array_importer"
+type="TextureArray"
+path.s3tc="res://.import/Test3DScene_normal_roughness.packed_texarr-0e07249c6f474a6533b3e84a321aaccf.s3tc.texarr"
+path.etc2="res://.import/Test3DScene_normal_roughness.packed_texarr-0e07249c6f474a6533b3e84a321aaccf.etc2.texarr"
+
+[deps]
+
+source_file="res://Scenes/heightmap_data/texture_data/Test3DScene_normal_roughness.packed_texarr"
+dest_files=[ "res://.import/Test3DScene_normal_roughness.packed_texarr-0e07249c6f474a6533b3e84a321aaccf.s3tc.texarr", "res://.import/Test3DScene_normal_roughness.packed_texarr-0e07249c6f474a6533b3e84a321aaccf.etc2.texarr" ]
+
+[params]
+
+compress/mode=1
+flags/repeat=1
+flags/filter=true
+flags/mipmaps=true

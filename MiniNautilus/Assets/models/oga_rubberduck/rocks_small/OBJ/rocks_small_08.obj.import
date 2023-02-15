@@ -1,0 +1,20 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/rocks_small_08.obj-e795841e16df7510a56cba8d8a649d47.mesh"
+
+[deps]
+
+files=[ "res://.import/rocks_small_08.obj-e795841e16df7510a56cba8d8a649d47.mesh" ]
+
+source_file="res://Assets/models/oga_rubberduck/rocks_small/OBJ/rocks_small_08.obj"
+dest_files=[ "res://.import/rocks_small_08.obj-e795841e16df7510a56cba8d8a649d47.mesh", "res://.import/rocks_small_08.obj-e795841e16df7510a56cba8d8a649d47.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+octahedral_compression=true
+optimize_mesh_flags=4286

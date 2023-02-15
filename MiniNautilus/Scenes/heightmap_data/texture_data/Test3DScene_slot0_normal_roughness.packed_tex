@@ -1,0 +1,8 @@
+{
+	"contains_albedo": false,
+	"resolution": 2048,
+	"src": {
+		"a": "res://textures/terrain/rock_ground_05/rocks_ground_05_rough_2k.jpg",
+		"rgb": "res://textures/terrain/rock_ground_05/rocks_ground_05_nor_gl_2k.jpg"
+	}
+}

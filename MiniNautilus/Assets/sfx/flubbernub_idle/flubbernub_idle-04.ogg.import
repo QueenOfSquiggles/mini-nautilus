@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/flubbernub_idle-04.ogg-166fefef385f12004590d8937ea77dfc.oggstr"
+
+[deps]
+
+source_file="res://Assets/sfx/flubbernub_idle/flubbernub_idle-04.ogg"
+dest_files=[ "res://.import/flubbernub_idle-04.ogg-166fefef385f12004590d8937ea77dfc.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

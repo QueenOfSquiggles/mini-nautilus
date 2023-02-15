@@ -1,0 +1,18 @@
+[remap]
+
+importer="hterrain_packed_texture_array_importer"
+type="TextureArray"
+path.s3tc="res://.import/Test3DScene_albedo_bump.packed_texarr-25dc179d987099d2ceff92f840fcdc5a.s3tc.texarr"
+path.etc2="res://.import/Test3DScene_albedo_bump.packed_texarr-25dc179d987099d2ceff92f840fcdc5a.etc2.texarr"
+
+[deps]
+
+source_file="res://Scenes/heightmap_data/texture_data/Test3DScene_albedo_bump.packed_texarr"
+dest_files=[ "res://.import/Test3DScene_albedo_bump.packed_texarr-25dc179d987099d2ceff92f840fcdc5a.s3tc.texarr", "res://.import/Test3DScene_albedo_bump.packed_texarr-25dc179d987099d2ceff92f840fcdc5a.etc2.texarr" ]
+
+[params]
+
+compress/mode=1
+flags/repeat=1
+flags/filter=true
+flags/mipmaps=true

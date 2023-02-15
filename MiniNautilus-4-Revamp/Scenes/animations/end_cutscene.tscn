@@ -1,0 +1,317 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://textures/branding/game_logo.png" type="Texture2D" id=1]
+[ext_resource path="res://resources/theme/ui_theme.tres" type="Theme" id=2]
+[ext_resource path="res://textures/end_cutscene/plywood.tres" type="Material" id=4]
+[ext_resource path="res://textures/end_cutscene/wood_table.tres" type="Material" id=5]
+[ext_resource path="res://textures/end_cutscene/wood_plank.tres" type="Material" id=6]
+[ext_resource path="res://Scenes/animations/end_cutscene.gd" type="Script" id=7]
+
+[sub_resource type="Sky" id=23]
+
+[sub_resource type="Environment" id=22]
+background_mode = 2
+background_sky = SubResource( 23 )
+ambient_light_color = Color( 0, 0.670588, 1, 1 )
+tonemap_mode = 4
+glow_enabled = true
+
+[sub_resource type="Animation" id=24]
+resource_name = "endgame_win_cutscene"
+length = 120.0
+step = 1.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Camera3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PackedFloat32Array( 0, 5, 15, 22, 37, 55, 60 ),
+"transitions": PackedFloat32Array( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 222.338, 314.134, 255.043 ), Vector3( 206.848, 90.4666, 210.164 ), Vector3( 206.848, 90.4666, 210.164 ), Vector3( 351.38, 77.495, 305.974 ), Vector3( 351.38, 77.495, 305.974 ), Vector3( 351.38, 236.212, 698.963 ), Vector3( 151.452, 381.774, 1153.69 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Camera3D:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PackedFloat32Array( 0, 5, 15, 22, 37, 55, 60 ),
+"transitions": PackedFloat32Array( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 34.779, 0 ), Vector3( 0, 34.779, 0 ), Vector3( 0, 34.779, 0 ), Vector3( -32.999, -7.65601, 0 ), Vector3( -32.999, -7.65601, 0 ), Vector3( -32.999, -7.65601, 0 ), Vector3( -32.999, -7.65601, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("end_scene_objects:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PackedFloat32Array( 0, 41 ),
+"transitions": PackedFloat32Array( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("../Resources:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PackedFloat32Array( 0, 41 ),
+"transitions": PackedFloat32Array( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("../Dynamics:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PackedFloat32Array( 0, 41 ),
+"transitions": PackedFloat32Array( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("../StaticWorldObjects:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PackedFloat32Array( 0, 41 ),
+"transitions": PackedFloat32Array( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("end_scene_ui/stage1:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PackedFloat32Array( 0, 5, 16 ),
+"transitions": PackedFloat32Array( 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, false ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("end_scene_ui/stage2:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PackedFloat32Array( 0, 22, 37 ),
+"transitions": PackedFloat32Array( 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, false ]
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("end_scene_ui/stage3:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PackedFloat32Array( 0, 60 ),
+"transitions": PackedFloat32Array( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/9/type = "method"
+tracks/9/path = NodePath("../Resources")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PackedFloat32Array( 44 ),
+"transitions": PackedFloat32Array( 1 ),
+"values": [ {
+"args": [  ],
+"method": "queue_free"
+} ]
+}
+tracks/10/type = "method"
+tracks/10/path = NodePath("../StaticWorldObjects")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"times": PackedFloat32Array( 44 ),
+"transitions": PackedFloat32Array( 1 ),
+"values": [ {
+"args": [  ],
+"method": "queue_free"
+} ]
+}
+tracks/11/type = "method"
+tracks/11/path = NodePath("../Dynamics")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/keys = {
+"times": PackedFloat32Array( 44 ),
+"transitions": PackedFloat32Array( 1 ),
+"values": [ {
+"args": [  ],
+"method": "queue_free"
+} ]
+}
+tracks/12/type = "value"
+tracks/12/path = NodePath("Camera3D:current")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/keys = {
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/13/type = "method"
+tracks/13/path = NodePath(".")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/keys = {
+"times": PackedFloat32Array( 64 ),
+"transitions": PackedFloat32Array( 1 ),
+"values": [ {
+"args": [  ],
+"method": "end_cutscene"
+} ]
+}
+
+[sub_resource type="BoxMesh" id=26]
+size = Vector3( 10, 10, 2 )
+
+[sub_resource type="BoxMesh" id=27]
+size = Vector3( 50, 50, 50 )
+
+[sub_resource type="BoxMesh" id=28]
+
+[node name="end_cutscene" type="Node3D"]
+script = ExtResource( 7 )
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D( 0.821358, 0, 0.570412, 0, 1, 0, -0.570413, 0, 0.821358, 222.338, 314.134, 255.043 )
+environment = SubResource( 22 )
+current = true
+far = 3000.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "endgame_win_cutscene"
+anims/endgame_win_cutscene = SubResource( 24 )
+
+[node name="end_scene_objects" type="Node3D" parent="."]
+visible = false
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="end_scene_objects"]
+transform = Transform3D( 272.625, 0, 0, 0, 272.625, 0, 0, 0, 415.034, 343, -1934.47, 358.754 )
+mesh = SubResource( 26 )
+material/0 = ExtResource( 5 )
+
+[node name="MeshInstance2" type="MeshInstance3D" parent="end_scene_objects"]
+transform = Transform3D( 1, 0, 0, 0, 15.947, 0, 0, 0, 13.847, 44.6776, -176.178, 274.291 )
+mesh = SubResource( 27 )
+material/0 = ExtResource( 4 )
+
+[node name="MeshInstance3" type="MeshInstance3D" parent="end_scene_objects"]
+transform = Transform3D( 1, 0, 0, 0, 15.9474, 0, 0, 0, 13.8468, 598.308, -184.613, 274.291 )
+mesh = SubResource( 27 )
+material/0 = ExtResource( 4 )
+
+[node name="MeshInstance4" type="MeshInstance3D" parent="end_scene_objects"]
+transform = Transform3D( 6475.13, 0, 0, 0, 2302.98, 0, 0, 0, 0.99156, 173.003, -183.306, 40.3616 )
+mesh = SubResource( 28 )
+material/0 = ExtResource( 6 )
+
+[node name="end_scene_ui" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="stage1" type="Control" parent="end_scene_ui"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PanelContainer" type="PanelContainer" parent="end_scene_ui/stage1"]
+offset_left = 126.0
+offset_top = 450.0
+offset_right = 140.0
+offset_bottom = 464.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="end_scene_ui/stage1/PanelContainer"]
+offset_left = 7.0
+offset_top = 7.0
+offset_right = 268.0
+offset_bottom = 25.0
+text = "A game by QueenOfSquiggles"
+
+[node name="stage2" type="Control" parent="end_scene_ui"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="end_scene_ui/stage2"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -477.0
+offset_top = -317.0
+texture = ExtResource( 1 )
+expand = true
+stretch_mode = 5
+
+[node name="stage3" type="Control" parent="end_scene_ui"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PanelContainer3" type="PanelContainer" parent="end_scene_ui/stage3"]
+offset_left = 400.0
+offset_top = 534.0
+offset_right = 675.0
+offset_bottom = 566.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="end_scene_ui/stage3/PanelContainer3"]
+offset_left = 7.0
+offset_top = 7.0
+offset_right = 268.0
+offset_bottom = 25.0
+text = "Made for Godot Wild Jam #41"

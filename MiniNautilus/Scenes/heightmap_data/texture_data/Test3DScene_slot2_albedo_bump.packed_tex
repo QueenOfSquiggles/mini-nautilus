@@ -1,0 +1,8 @@
+{
+	"contains_albedo": true,
+	"resolution": 2048,
+	"src": {
+		"a": "res://textures/terrain/sand_02/aerial_beach_02_disp_2k.jpg",
+		"rgb": "res://textures/terrain/sand_02/aerial_beach_02_diff_2k.jpg"
+	}
+}

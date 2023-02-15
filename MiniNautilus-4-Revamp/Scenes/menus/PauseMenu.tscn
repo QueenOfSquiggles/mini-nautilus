@@ -1,0 +1,107 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Scenes/menus/PauseMenu.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/menus/OptionsMenu.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/ui/UiSlide.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/sfx/SoundLib_UI.tscn" type="PackedScene" id=4]
+
+[node name="PauseMenu" type="CanvasLayer"]
+process_mode = 2
+layer = 5
+script = ExtResource( 1 )
+
+[node name="CenterMenu" type="CenterContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PanelContainer" type="PanelContainer" parent="CenterMenu"]
+offset_left = 447.0
+offset_top = 114.0
+offset_right = 577.0
+offset_bottom = 485.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterMenu/PanelContainer"]
+offset_left = 7.0
+offset_top = 7.0
+offset_right = 123.0
+offset_bottom = 364.0
+
+[node name="Label" type="Label" parent="CenterMenu/PanelContainer/VBoxContainer"]
+offset_right = 116.0
+offset_bottom = 14.0
+text = "Pause Menu"
+align = 1
+
+[node name="Control" type="Control" parent="CenterMenu/PanelContainer/VBoxContainer"]
+offset_top = 18.0
+offset_right = 116.0
+offset_bottom = 33.0
+minimum_size = Vector2( 0, 15 )
+
+[node name="BtnReturn" type="Button" parent="CenterMenu/PanelContainer/VBoxContainer"]
+offset_top = 37.0
+offset_right = 116.0
+offset_bottom = 87.0
+minimum_size = Vector2( 0, 50 )
+text = "Return To Game"
+
+[node name="BtnSave" type="Button" parent="CenterMenu/PanelContainer/VBoxContainer"]
+offset_top = 91.0
+offset_right = 116.0
+offset_bottom = 141.0
+minimum_size = Vector2( 0, 50 )
+text = "Save Game"
+
+[node name="BtnLoadSave" type="Button" parent="CenterMenu/PanelContainer/VBoxContainer"]
+offset_top = 145.0
+offset_right = 116.0
+offset_bottom = 195.0
+minimum_size = Vector2( 0, 50 )
+text = "Load Last Save"
+
+[node name="BtnOptions" type="Button" parent="CenterMenu/PanelContainer/VBoxContainer"]
+offset_top = 199.0
+offset_right = 116.0
+offset_bottom = 249.0
+minimum_size = Vector2( 0, 50 )
+text = "Options"
+
+[node name="BtnMainMenu" type="Button" parent="CenterMenu/PanelContainer/VBoxContainer"]
+offset_top = 253.0
+offset_right = 116.0
+offset_bottom = 303.0
+minimum_size = Vector2( 0, 50 )
+text = "Main Menu"
+
+[node name="BtnQuitDesktop" type="Button" parent="CenterMenu/PanelContainer/VBoxContainer"]
+offset_top = 307.0
+offset_right = 116.0
+offset_bottom = 357.0
+minimum_size = Vector2( 0, 50 )
+text = "Quit To Desktop"
+
+[node name="OptionsMenu" parent="." instance=ExtResource( 2 )]
+process_mode = 2
+visible = false
+anchor_left = 0.0
+anchor_right = 0.0
+offset_left = 0.0
+offset_right = 148.0
+
+[node name="UiSlide" parent="OptionsMenu" instance=ExtResource( 3 )]
+process_mode = 2
+SlideStyleOption = 0
+InputActionName = ""
+
+[node name="SoundLib_UI" parent="." instance=ExtResource( 4 )]
+
+[connection signal="pressed" from="CenterMenu/PanelContainer/VBoxContainer/BtnReturn" to="." method="_on_BtnReturn_pressed"]
+[connection signal="pressed" from="CenterMenu/PanelContainer/VBoxContainer/BtnSave" to="." method="_on_BtnSave_pressed"]
+[connection signal="pressed" from="CenterMenu/PanelContainer/VBoxContainer/BtnLoadSave" to="." method="_on_BtnLoadSave_pressed"]
+[connection signal="pressed" from="CenterMenu/PanelContainer/VBoxContainer/BtnOptions" to="." method="_on_BtnOptions_pressed"]
+[connection signal="pressed" from="CenterMenu/PanelContainer/VBoxContainer/BtnMainMenu" to="." method="_on_BtnMainMenu_pressed"]
+[connection signal="pressed" from="CenterMenu/PanelContainer/VBoxContainer/BtnQuitDesktop" to="." method="_on_BtnQuitDesktop_pressed"]
+[connection signal="on_return_button_pressed" from="OptionsMenu" to="." method="_on_OptionsMenu_on_return_button_pressed"]

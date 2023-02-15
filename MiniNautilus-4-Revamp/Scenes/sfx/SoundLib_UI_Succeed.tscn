@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scenes/sfx/SoundLib.gd" type="Script" id=1]
+[ext_resource path="res://sfx/ui_succeed/ui_succeed.ogg" type="AudioStream" id=2]
+
+[node name="SoundLib_UI_Succeed" type="Node"]
+script = ExtResource( 1 )
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 2 )

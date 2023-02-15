@@ -1,0 +1,18 @@
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://c8xu0q8p4s7im"]
+
+[ext_resource type="FontFile" uid="uid://dsmxsbywq2vlw" path="res://resources/theme/font/Kenney Future Narrow.ttf" id="1"]
+
+[sub_resource type="FontFile" id="1"]
+fallbacks = [ExtResource("1")]
+face_index = null
+embolden = null
+transform = null
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
+
+[resource]
+default_font = SubResource("1")

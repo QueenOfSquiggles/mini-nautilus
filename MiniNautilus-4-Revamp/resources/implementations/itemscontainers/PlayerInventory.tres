@@ -1,0 +1,11 @@
+[gd_resource type="Resource" load_steps=4 format=2]
+
+[ext_resource path="res://resources/definitions/ItemsContainer.gd" type="Script" id=1]
+[ext_resource path="res://resources/implementations/items/ItemWaterBottle.tres" type="Resource" id=3]
+[ext_resource path="res://resources/implementations/items/ItemFish.tres" type="Resource" id=7]
+
+[resource]
+script = ExtResource( 1 )
+container_name = "Generic Inventory"
+inventory_size = 16
+items = [ ExtResource( 7 ), ExtResource( 3 ) ]

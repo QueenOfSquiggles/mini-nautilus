@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Scenes/props/resourcess/CopperFormation_Single.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/props/resourcess/BasicInteractor.gd" type="Script" id=3]
+[ext_resource path="res://resources/implementations/items/ItemCopper.tres" type="Resource" id=4]
+
+[sub_resource type="BoxShape3D" id=1]
+extents = Vector3( 5.61177, 5.93347, 4.39649 )
+
+[node name="CopperCluster" type="StaticBody3D" groups=["persist"]]
+script = ExtResource( 3 )
+interaction_text = "Press E to collect"
+item = ExtResource( 4 )
+destroy_on_interact = true
+
+[node name="CopperFormation" parent="." instance=ExtResource( 1 )]
+transform = Transform3D( 1.20874, 0, 0, 0, 1.20874, 0, 0, 0, 1.20874, 0, -3.2013, 0 )
+
+[node name="CopperFormation2" parent="." instance=ExtResource( 1 )]
+transform = Transform3D( 0.599176, 0, 0, 0, 0.560665, -0.211343, 0, 0.211343, 0.560665, 0, -3.49673, 2.06487 )
+
+[node name="CopperFormation3" parent="." instance=ExtResource( 1 )]
+transform = Transform3D( 0.748679, 0, 0, 0, 0.696728, 0.274027, 0, -0.274027, 0.696728, 0, -3.67997, -1.85703 )
+
+[node name="CopperFormation4" parent="." instance=ExtResource( 1 )]
+transform = Transform3D( 0.314803, -0.175016, 0, 0.175016, 0.314803, 0, 0, 0, 0.360182, -1.55103, -3.38646, -0.636506 )
+
+[node name="CopperFormation5" parent="." instance=ExtResource( 1 )]
+transform = Transform3D( 1.13596, 0.33798, 0.00787223, -0.338021, 1.13596, 0.00579508, -0.00589264, -0.00779947, 1.18516, 2.31584, -4.01849, 0.715889 )
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.21694, -1.03657 )
+shape = SubResource( 1 )

@@ -1,0 +1,14 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Unorganized/scripts/autoload/Items.gd" type="Script" id=1]
+[ext_resource path="res://Unorganized/resources/implementations/items/ItemEnhancedFlippers.tres" type="Resource" id=2]
+[ext_resource path="res://Unorganized/resources/implementations/items/ItemPlastic.tres" type="Resource" id=3]
+[ext_resource path="res://Unorganized/resources/implementations/items/ItemFish.tres" type="Resource" id=4]
+[ext_resource path="res://Unorganized/resources/implementations/items/ItemCopper.tres" type="Resource" id=5]
+[ext_resource path="res://Unorganized/resources/implementations/items/ItemEnhancedO2Tank.tres" type="Resource" id=6]
+[ext_resource path="res://Unorganized/resources/implementations/items/ItemKnife.tres" type="Resource" id=7]
+[ext_resource path="res://Unorganized/resources/implementations/items/ItemWaterBottle.tres" type="Resource" id=8]
+
+[node name="Items" type="Node"]
+script = ExtResource( 1 )
+registered_items = [ ExtResource( 5 ), ExtResource( 2 ), ExtResource( 6 ), ExtResource( 4 ), ExtResource( 7 ), ExtResource( 3 ), ExtResource( 8 ) ]

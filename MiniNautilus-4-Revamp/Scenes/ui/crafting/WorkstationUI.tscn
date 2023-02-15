@@ -1,0 +1,62 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Scenes/ui/item_system/InventorySlotUI.tscn" type="PackedScene" id=1]
+
+[node name="WorkstationUI" type="PanelContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+offset_left = 7.0
+offset_top = 7.0
+offset_right = 1017.0
+offset_bottom = 593.0
+
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer"]
+offset_right = 1010.0
+offset_bottom = 60.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/PanelContainer"]
+offset_left = 7.0
+offset_top = 7.0
+offset_right = 1003.0
+offset_bottom = 53.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/PanelContainer/HBoxContainer"]
+offset_right = 146.0
+offset_bottom = 46.0
+
+[node name="InventorySlotUI" parent="VBoxContainer/PanelContainer/HBoxContainer/HBoxContainer" instance=ExtResource( 1 )]
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 46.0
+offset_bottom = 46.0
+
+[node name="InventorySlotUI2" parent="VBoxContainer/PanelContainer/HBoxContainer/HBoxContainer" instance=ExtResource( 1 )]
+offset_left = 50.0
+offset_top = 0.0
+offset_right = 96.0
+offset_bottom = 46.0
+
+[node name="InventorySlotUI4" parent="VBoxContainer/PanelContainer/HBoxContainer/HBoxContainer" instance=ExtResource( 1 )]
+offset_left = 100.0
+offset_top = 0.0
+offset_right = 146.0
+offset_bottom = 46.0
+
+[node name="TextureRect" type="Label" parent="VBoxContainer/PanelContainer/HBoxContainer"]
+offset_left = 150.0
+offset_top = 16.0
+offset_right = 214.0
+offset_bottom = 30.0
+minimum_size = Vector2( 64, 0 )
+text = "-->"
+align = 1
+valign = 1
+
+[node name="InventorySlotUI3" parent="VBoxContainer/PanelContainer/HBoxContainer" instance=ExtResource( 1 )]
+offset_left = 218.0
+offset_top = 0.0
+offset_right = 264.0
+offset_bottom = 46.0
+size_flags_horizontal = 1

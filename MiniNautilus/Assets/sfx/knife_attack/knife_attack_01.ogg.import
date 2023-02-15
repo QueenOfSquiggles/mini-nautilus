@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/knife_attack_01.ogg-c063b7ae4e3de54d4aa79e919ac2c2dd.oggstr"
+
+[deps]
+
+source_file="res://Assets/sfx/knife_attack/knife_attack_01.ogg"
+dest_files=[ "res://.import/knife_attack_01.ogg-c063b7ae4e3de54d4aa79e919ac2c2dd.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

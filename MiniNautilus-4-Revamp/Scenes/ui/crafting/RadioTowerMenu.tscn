@@ -1,0 +1,175 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://Scenes/ui/PlayerMenuBase.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/ui/item_system/ItemContainerUI.tscn" type="PackedScene" id=2]
+[ext_resource path="res://textures/item_icons/copper_icon.png" type="Texture2D" id=3]
+[ext_resource path="res://textures/item_icons/plastics_icon.png" type="Texture2D" id=4]
+[ext_resource path="res://Scenes/util/PersistentProperties.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/ui/crafting/RadioTowerMenu.gd" type="Script" id=6]
+[ext_resource path="res://resources/implementations/items/ItemCopper.tres" type="Resource" id=7]
+[ext_resource path="res://resources/implementations/items/ItemPlastic.tres" type="Resource" id=8]
+[ext_resource path="res://resources/implementations/recipes/RecipeConsumePlastics.tres" type="Resource" id=9]
+[ext_resource path="res://resources/implementations/recipes/RecipeConsumeCopper.tres" type="Resource" id=10]
+
+[node name="RadioTowerMenu" instance=ExtResource( 1 )]
+script = ExtResource( 6 )
+copper_item = ExtResource( 7 )
+plastics_item = ExtResource( 8 )
+consume_copper_exported = ExtResource( 10 )
+consume_plastics_exported = ExtResource( 9 )
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer" index="0"]
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 1004.0
+offset_bottom = 580.0
+custom_constants/offset_right = 25
+custom_constants/offset_top = 25
+custom_constants/offset_left = 25
+custom_constants/offset_bottom = 25
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer" index="0"]
+offset_left = 25.0
+offset_top = 25.0
+offset_right = 959.0
+offset_bottom = 535.0
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer" index="0"]
+offset_right = 934.0
+offset_bottom = 18.0
+text = "Repair The Radio Tower!"
+align = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer" index="1"]
+offset_top = 22.0
+offset_right = 934.0
+offset_bottom = 510.0
+size_flags_vertical = 3
+
+[node name="ItemContainerUI" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" index="0" instance=ExtResource( 2 )]
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 465.0
+offset_bottom = 488.0
+size_flags_horizontal = 3
+
+[node name="PanelContainer" type="PanelContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" index="1"]
+offset_left = 469.0
+offset_right = 934.0
+offset_bottom = 488.0
+size_flags_horizontal = 3
+
+[node name="Requirements" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/PanelContainer" index="0"]
+offset_left = 7.0
+offset_top = 7.0
+offset_right = 458.0
+offset_bottom = 481.0
+
+[node name="CopperRequirement" type="PanelContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/PanelContainer/Requirements" index="0"]
+offset_right = 451.0
+offset_bottom = 186.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/PanelContainer/Requirements/CopperRequirement" index="0"]
+offset_left = 7.0
+offset_top = 7.0
+offset_right = 444.0
+offset_bottom = 179.0
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/PanelContainer/Requirements/CopperRequirement/VBoxContainer" index="0"]
+offset_right = 437.0
+offset_bottom = 18.0
+text = "Copper"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/PanelContainer/Requirements/CopperRequirement/VBoxContainer" index="1"]
+offset_top = 22.0
+offset_right = 437.0
+offset_bottom = 150.0
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/PanelContainer/Requirements/CopperRequirement/VBoxContainer/HBoxContainer" index="0"]
+offset_right = 128.0
+offset_bottom = 128.0
+texture = ExtResource( 3 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/PanelContainer/Requirements/CopperRequirement/VBoxContainer/HBoxContainer" index="1"]
+offset_left = 132.0
+offset_right = 437.0
+offset_bottom = 128.0
+size_flags_horizontal = 3
+
+[node name="BtnAddCopper" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/PanelContainer/Requirements/CopperRequirement/VBoxContainer/HBoxContainer/VBoxContainer" index="0"]
+offset_right = 305.0
+offset_bottom = 62.0
+size_flags_vertical = 3
+text = "Add"
+
+[node name="BtnRemoveCopper" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/PanelContainer/Requirements/CopperRequirement/VBoxContainer/HBoxContainer/VBoxContainer" index="1"]
+offset_top = 66.0
+offset_right = 305.0
+offset_bottom = 128.0
+size_flags_vertical = 3
+text = "Remove"
+
+[node name="ProgressBar" type="ProgressBar" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/PanelContainer/Requirements/CopperRequirement/VBoxContainer" index="2"]
+offset_top = 154.0
+offset_right = 437.0
+offset_bottom = 172.0
+
+[node name="PlasticRequirement" type="PanelContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/PanelContainer/Requirements" index="1"]
+offset_top = 190.0
+offset_right = 451.0
+offset_bottom = 376.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/PanelContainer/Requirements/PlasticRequirement" index="0"]
+offset_left = 7.0
+offset_top = 7.0
+offset_right = 444.0
+offset_bottom = 179.0
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/PanelContainer/Requirements/PlasticRequirement/VBoxContainer" index="0"]
+offset_right = 437.0
+offset_bottom = 18.0
+text = "Plastics"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/PanelContainer/Requirements/PlasticRequirement/VBoxContainer" index="1"]
+offset_top = 22.0
+offset_right = 437.0
+offset_bottom = 150.0
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/PanelContainer/Requirements/PlasticRequirement/VBoxContainer/HBoxContainer" index="0"]
+offset_right = 128.0
+offset_bottom = 128.0
+texture = ExtResource( 4 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/PanelContainer/Requirements/PlasticRequirement/VBoxContainer/HBoxContainer" index="1"]
+offset_left = 132.0
+offset_right = 437.0
+offset_bottom = 128.0
+size_flags_horizontal = 3
+
+[node name="BtnAddPlastics" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/PanelContainer/Requirements/PlasticRequirement/VBoxContainer/HBoxContainer/VBoxContainer" index="0"]
+offset_right = 305.0
+offset_bottom = 62.0
+size_flags_vertical = 3
+text = "Add"
+
+[node name="BtnRemovePlastics" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/PanelContainer/Requirements/PlasticRequirement/VBoxContainer/HBoxContainer/VBoxContainer" index="1"]
+offset_top = 66.0
+offset_right = 305.0
+offset_bottom = 128.0
+size_flags_vertical = 3
+text = "Remove"
+
+[node name="ProgressBar" type="ProgressBar" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/PanelContainer/Requirements/PlasticRequirement/VBoxContainer" index="2"]
+offset_top = 154.0
+offset_right = 437.0
+offset_bottom = 172.0
+
+[node name="PersistentProperties" parent="." index="1" instance=ExtResource( 5 )]
+save_id = "radio_tower"
+source_node = NodePath("..")
+properties = [ "copper", "plastics" ]
+
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/PanelContainer/Requirements/CopperRequirement/VBoxContainer/HBoxContainer/VBoxContainer/BtnAddCopper" to="." method="_on_BtnAddCopper_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/PanelContainer/Requirements/CopperRequirement/VBoxContainer/HBoxContainer/VBoxContainer/BtnRemoveCopper" to="." method="_on_BtnRemoveCopper_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/PanelContainer/Requirements/PlasticRequirement/VBoxContainer/HBoxContainer/VBoxContainer/BtnAddPlastics" to="." method="_on_BtnAddPlastics_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/PanelContainer/Requirements/PlasticRequirement/VBoxContainer/HBoxContainer/VBoxContainer/BtnRemovePlastics" to="." method="_on_BtnRemovePlastics_pressed"]

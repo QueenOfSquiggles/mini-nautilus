@@ -1,0 +1,48 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://models/imported/creatures/Axolotl.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/creatures/AxolotlCreature.gd" type="Script" id=2]
+[ext_resource path="res://Scenes/util/PersistentProperties.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/sfx/SoundLib_Flubbernubs.tscn" type="PackedScene" id=4]
+
+[sub_resource type="CapsuleShape3D" id=1]
+radius = 5.57683
+height = 26.4716
+
+[sub_resource type="SphereShape3D" id=2]
+radius = 9.40439
+
+[node name="AxolotlCreature" type="CharacterBody3D"]
+script = ExtResource( 2 )
+view_distance = 30.0
+speed = 8.0
+PlayerChaseDistance = 80.0
+
+[node name="axolotl" parent="." instance=ExtResource( 1 )]
+transform = Transform3D( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0 )
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6.15495 )
+shape = SubResource( 1 )
+
+[node name="view_rays" type="Marker3D" parent="."]
+transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -11.8149 )
+
+[node name="KillZone" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="KillZone"]
+transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -11.2062 )
+shape = SubResource( 2 )
+
+[node name="PersistentProperties" parent="." instance=ExtResource( 3 )]
+save_id = "_lt_flubbernubs"
+source_node = NodePath("..")
+properties = [ "transform", "poi" ]
+
+[node name="SoundLib_Flubbernubs" parent="." instance=ExtResource( 4 )]
+
+[node name="IdleSoundTimer" type="Timer" parent="."]
+wait_time = 3.0
+
+[connection signal="body_entered" from="KillZone" to="." method="_on_KillZone_body_entered"]
+[connection signal="timeout" from="IdleSoundTimer" to="." method="_on_IdleSoundTimer_timeout"]

@@ -1,0 +1,42 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Scenes/ui/item_system/InventorySlotUI.gd" type="Script" id=1]
+[ext_resource path="res://textures/item_icons/fish_icon.png" type="Texture2D" id=2]
+[ext_resource path="res://Scenes/ui/item_system/ItemSlotTooltipHelper.gd" type="Script" id=3]
+
+[node name="InventorySlotUI" type="AspectRatioContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="PanelContainer" parent="."]
+offset_left = 212.0
+offset_right = 812.0
+offset_bottom = 600.0
+mouse_filter = 1
+mouse_default_cursor_shape = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Texture2D" type="TextureRect" parent="Panel"]
+offset_left = 7.0
+offset_top = 7.0
+offset_right = 593.0
+offset_bottom = 593.0
+minimum_size = Vector2( 32, 32 )
+input_pass_on_modal_close_click = false
+texture = ExtResource( 2 )
+expand = true
+stretch_mode = 6
+
+[connection signal="mouse_entered" from="Panel" to="Panel" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Panel" to="Panel" method="_on_mouse_exited"]

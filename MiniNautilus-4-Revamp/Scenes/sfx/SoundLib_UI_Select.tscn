@@ -1,0 +1,18 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Scenes/sfx/SoundLib.gd" type="Script" id=1]
+[ext_resource path="res://sfx/ui_select/ui_select-01.ogg" type="AudioStream" id=2]
+[ext_resource path="res://sfx/ui_select/ui_select-03.ogg" type="AudioStream" id=3]
+[ext_resource path="res://sfx/ui_select/ui_select-02.ogg" type="AudioStream" id=4]
+
+[node name="SoundLib_UI_Select" type="Node"]
+script = ExtResource( 1 )
+
+[node name="select1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 2 )
+
+[node name="select2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+
+[node name="select3" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
